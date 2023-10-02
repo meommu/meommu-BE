@@ -1,10 +1,10 @@
 package com.meommu.meommuapi.common.dto;
 
-import com.meommu.meommuapi.common.exception.BusinessCode;
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
 
 public class ApiResponseGenerator {
-	private static final ApiResponse<Void> SUCCESS = new ApiResponse<>(BusinessCode.SUCCESS);
-	private static final ApiResponse<Void> FAILURE = new ApiResponse<>(BusinessCode.INTERNAL_SERVER_ERROR);
+	private static final ApiResponse<Void> SUCCESS = new ApiResponse<>(BusinessErrorCode.SUCCESS);
+	private static final ApiResponse<Void> FAILURE = new ApiResponse<>(BusinessErrorCode.INTERNAL_SERVER_ERROR);
 
 	private ApiResponseGenerator() {
 	}

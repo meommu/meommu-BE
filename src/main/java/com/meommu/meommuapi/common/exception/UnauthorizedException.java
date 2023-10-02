@@ -2,14 +2,27 @@ package com.meommu.meommuapi.common.exception;
 
 import org.springframework.http.HttpStatus;
 
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
+
 public abstract class UnauthorizedException extends BusinessException {
 
 	private static final HttpStatus HTTP_STATUS = HttpStatus.UNAUTHORIZED;
 
-	private static final String ERROR_CODE = BusinessCode.UNAUTHORIZED.getCode();
+	private String ERROR_CODE = BusinessErrorCode.UNAUTHORIZED.getCode();
 
 	protected UnauthorizedException(String message) {
 		super(message);
+	}
+
+	protected UnauthorizedException(ErrorCode errorCode) {
+		super(errorCode.getDescription());
+		this.ERROR_CODE = errorCode.getCode();
+	}
+
+	protected UnauthorizedException(ErrorCode errorCode, String message) {
+		super(message);
+		this.ERROR_CODE = errorCode.getCode();
 	}
 
 	@Override

@@ -1,9 +1,6 @@
-package com.meommu.meommuapi.common.exception;
+package com.meommu.meommuapi.common.exception.errorCode;
 
-import lombok.Getter;
-
-@Getter
-public enum BusinessCode {
+public enum BusinessErrorCode implements ErrorCode {
 	//Common
 	SUCCESS("0000", "OK"),
 
@@ -15,15 +12,25 @@ public enum BusinessCode {
 
 	//Application
 	INTERNAL_SERVER_ERROR("S500", "시스템 내부오류가 발생했습니다. 담당자에게 문의바랍니다."),
-	JSON_PROCESSING_ERROR("S500", "시스템 내부오류가 발생했습니다. 담당자에게 문의바랍니다."),
+	JSON_PROCESSING_ERROR("S501", "시스템 내부오류가 발생했습니다. 담당자에게 문의바랍니다."),
 
 	;
 
 	private final String code;
 	private final String description;
 
-	BusinessCode(String code, String description) {
+	BusinessErrorCode(String code, String description) {
 		this.code = code;
 		this.description = description;
+	}
+
+	@Override
+	public String getCode() {
+		return this.code;
+	}
+
+	@Override
+	public String getDescription() {
+		return this.description;
 	}
 }

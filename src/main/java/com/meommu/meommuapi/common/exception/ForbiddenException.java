@@ -2,14 +2,27 @@ package com.meommu.meommuapi.common.exception;
 
 import org.springframework.http.HttpStatus;
 
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
+
 public abstract class ForbiddenException extends BusinessException {
 
 	private static final HttpStatus HTTP_STATUS = HttpStatus.FORBIDDEN;
 
-	private static final String ERROR_CODE = BusinessCode.FORBIDDEN.getCode();
+	private String ERROR_CODE = BusinessErrorCode.FORBIDDEN.getCode();
 
 	protected ForbiddenException(String message) {
 		super(message);
+	}
+
+	protected ForbiddenException(ErrorCode errorCode) {
+		super(errorCode.getDescription());
+		this.ERROR_CODE = errorCode.getCode();
+	}
+
+	protected ForbiddenException(ErrorCode errorCode, String message) {
+		super(message);
+		this.ERROR_CODE = errorCode.getCode();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.common.dto;
 
-import com.meommu.meommuapi.common.exception.BusinessCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 import lombok.Getter;
 
@@ -13,9 +13,9 @@ public class ApiResponse<T> {
 	public ApiResponse() {
 	}
 
-	public ApiResponse(BusinessCode code) {
-		this.code = code.getCode();
-		this.message = code.getDescription();
+	public ApiResponse(ErrorCode errorCode) {
+		this.code = errorCode.getCode();
+		this.message = errorCode.getDescription();
 	}
 
 	public ApiResponse(String code, String message) {

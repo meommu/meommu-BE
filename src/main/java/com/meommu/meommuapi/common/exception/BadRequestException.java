@@ -2,14 +2,27 @@ package com.meommu.meommuapi.common.exception;
 
 import org.springframework.http.HttpStatus;
 
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
+
 public abstract class BadRequestException extends BusinessException {
 
 	private static final HttpStatus HTTP_STATUS = HttpStatus.BAD_REQUEST;
 
-	private static final String ERROR_CODE = BusinessCode.BAD_REQUEST.getCode();
+	private String ERROR_CODE = BusinessErrorCode.BAD_REQUEST.getCode();
 
 	protected BadRequestException(String message) {
 		super(message);
+	}
+
+	protected BadRequestException(ErrorCode errorCode) {
+		super(errorCode.getDescription());
+		this.ERROR_CODE = errorCode.getCode();
+	}
+
+	protected BadRequestException(ErrorCode errorCode, String message) {
+		super(message);
+		this.ERROR_CODE = errorCode.getCode();
 	}
 
 	@Override
