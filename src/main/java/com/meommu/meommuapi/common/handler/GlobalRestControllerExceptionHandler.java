@@ -1,6 +1,7 @@
 package com.meommu.meommuapi.common.handler;
 
-import static com.meommu.meommuapi.common.exception.BusinessCode.*;
+
+import static com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode.*;
 
 import java.nio.file.AccessDeniedException;
 import java.util.stream.Collectors;

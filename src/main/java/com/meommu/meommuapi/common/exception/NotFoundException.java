@@ -2,14 +2,27 @@ package com.meommu.meommuapi.common.exception;
 
 import org.springframework.http.HttpStatus;
 
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
+
 public abstract class NotFoundException extends BusinessException {
 
 	private static final HttpStatus HTTP_STATUS = HttpStatus.NOT_FOUND;
 
-	private static final String ERROR_CODE = BusinessCode.NOT_FOUND.getCode();
+	private String ERROR_CODE = BusinessErrorCode.NOT_FOUND.getCode();
 
 	protected NotFoundException(String message) {
 		super(message);
+	}
+
+	protected NotFoundException(ErrorCode errorCode) {
+		super(errorCode.getDescription());
+		this.ERROR_CODE = errorCode.getCode();
+	}
+
+	protected NotFoundException(ErrorCode errorCode, String message) {
+		super(message);
+		this.ERROR_CODE = errorCode.getCode();
 	}
 
 	@Override

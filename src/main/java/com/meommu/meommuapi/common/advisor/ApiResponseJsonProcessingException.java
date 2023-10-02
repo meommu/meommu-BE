@@ -2,11 +2,11 @@ package com.meommu.meommuapi.common.advisor;
 
 import org.springframework.http.HttpStatus;
 
-import com.meommu.meommuapi.common.exception.BusinessCode;
 import com.meommu.meommuapi.common.exception.BusinessException;
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
 
 public class ApiResponseJsonProcessingException extends BusinessException {
-	private static final String ERROR_CODE = BusinessCode.JSON_PROCESSING_ERROR.getCode();
+	private static final String ERROR_CODE = BusinessErrorCode.JSON_PROCESSING_ERROR.getCode();
 
 	private static final HttpStatus HTTP_STATUS = HttpStatus.INTERNAL_SERVER_ERROR;
 
