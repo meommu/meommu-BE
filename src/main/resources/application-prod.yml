@@ -6,3 +6,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+security:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length:
+        access: ${JWT_EXPIRATION_DURATION}
