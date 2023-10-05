@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://${RDS_ENDPOINT}:${RDS_PORT}/${RDS_SCHEMA}?characterEncoding=UTF-8
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+security:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length:
+        access: ${JWT_EXPIRATION_DURATION}
