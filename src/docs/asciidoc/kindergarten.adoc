@@ -1,0 +1,43 @@
+== 유치원
+유치원 회원에 대한 이메일 중복확인, 회원가입, 로그인, 정보수정, 회원탈퇴를 제공합니다.
+
+=== 이메일 중복확인
+이메일 중복을 확인합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/email/success/http-request.adoc[]
+include::{snippets}/kindergartens/email/success/query-parameters.adoc[]
+[discrete]
+
+==== 응답
+[discrete]
+===== 중복이 아닐 경우
+include::{snippets}/kindergartens/email/success/http-response.adoc[]
+[discrete]
+===== 중복일 경우
+include::{snippets}/kindergartens/email/fail/http-response.adoc[]
+
+
+=== 회원가입
+회원가입을 진행합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/signUp/success/http-request.adoc[]
+include::{snippets}/kindergartens/signUp/success/request-fields.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/signUp/success/http-response.adoc[]
+
+=== 로그인
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/signIn/success/http-request.adoc[]
+include::{snippets}/kindergartens/signIn/success/request-fields.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/signIn/success/http-response.adoc[]
