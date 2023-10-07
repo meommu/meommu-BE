@@ -99,4 +99,6 @@ a|[source,json]
 // 유치원
 include::kindergarten.adoc[]
 
+// 이미지
+include::image.adoc[]
 

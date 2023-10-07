@@ -1,0 +1,68 @@
+== 이미지
+이미지 업로드를 제공합니다.
+
+=== 이미지 다건 조회
+이미지 id를 통해 여러장을 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/images/getAll/success/http-request.adoc[]
+include::{snippets}/images/getAll/success/query-parameters.adoc[]
+[discrete]
+
+==== 응답
+include::{snippets}/images/getAll/success/http-response.adoc[]
+
+
+=== 이미지 단건 조회
+이미지 id를 통해 한 장을 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/images/get/success/http-request.adoc[]
+include::{snippets}/images/get/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/images/get/success/http-response.adoc[]
+
+
+=== 이미지 업로드
+이미지를 업로드 합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/images/create/success/http-request.adoc[]
+include::{snippets}/images/create/success/request-parts.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/images/create/success/http-response.adoc[]
+
+
+=== 이미지 다건 삭제
+이미지 id를 통해 여러 장을 삭제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/images/deleteAll/success/http-request.adoc[]
+include::{snippets}/images/deleteAll/success/query-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/images/deleteAll/success/http-response.adoc[]
+
+
+=== 이미지 단건 삭제
+이미지 id를 통해 한 장을 삭제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/images/delete/success/http-request.adoc[]
+include::{snippets}/images/delete/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/images/delete/success/http-response.adoc[]
+
+
