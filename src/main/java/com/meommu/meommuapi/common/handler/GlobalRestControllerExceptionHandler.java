@@ -24,6 +24,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import com.meommu.meommuapi.common.dto.ApiResponse;
 import com.meommu.meommuapi.common.dto.ApiResponseGenerator;
 import com.meommu.meommuapi.common.exception.BusinessException;
+import com.meommu.meommuapi.common.exception.InternalServerException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +35,17 @@ public class GlobalRestControllerExceptionHandler {
 	protected ResponseEntity<ApiResponse<Void>> handle(BusinessException exception) {
 		if (exception.isNecessaryToLog()) {
 			log.error("[BusinessException] {}", exception.getMessage(), exception);
+		}
+
+		return ResponseEntity
+			.status(exception.getHttpStatus())
+			.body(ApiResponseGenerator.fail(exception.getErrorCode(), exception.getMessage()));
+	}
+
+	@ExceptionHandler(InternalServerException.class)
+	protected ResponseEntity<ApiResponse<Void>> handle(InternalServerException exception) {
+		if (exception.isNecessaryToLog()) {
+			log.error("[InternalServerException] {}", exception.getMessage(), exception);
 		}
 
 		return ResponseEntity
