@@ -36,6 +36,14 @@ jobs:
                   value: ${{ secrets.RDS_USERNAME }}
                 - name: RDS_PASSWORD
                   value: ${{ secrets.RDS_PASSWORD }}
+                - name: S3_BUCKET_NAME
+                  value: ${{ secrets.S3_BUCKET_NAME }}
+                - name: S3_ACCESS_KEY
+                  value: ${{ secrets.S3_ACCESS_KEY }}
+                - name: S3_SECRET_KEY
+                  value: ${{ secrets.S3_SECRET_KEY }}
+                - name: S3_END_POINT
+                  value: ${{ secrets.S3_END_POINT }}
                 - name: JWT_SECRET_KEY
                   value: ${{ secrets.JWT_SECRET_KEY }}
                 - name: JWT_EXPIRATION_DURATION

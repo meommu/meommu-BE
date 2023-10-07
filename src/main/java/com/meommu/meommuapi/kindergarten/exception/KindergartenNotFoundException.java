@@ -11,7 +11,7 @@ public class KindergartenNotFoundException extends NotFoundException {
 		super(KindergartenErrorCode.KINDERGARTEN_NOT_FOUND);
 	}
 
-	public KindergartenNotFoundException(Long id) {
+	public KindergartenNotFoundException(long id) {
 		super(KindergartenErrorCode.KINDERGARTEN_NOT_FOUND, String.format(MESSAGE, id));
 	}
 }

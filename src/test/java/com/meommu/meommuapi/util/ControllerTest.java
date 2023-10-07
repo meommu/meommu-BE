@@ -18,13 +18,16 @@ import com.meommu.meommuapi.auth.controller.AuthController;
 import com.meommu.meommuapi.auth.service.AuthService;
 import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.common.interceptor.AuthInterceptor;
+import com.meommu.meommuapi.image.controller.ImageController;
+import com.meommu.meommuapi.image.service.ImageService;
 import com.meommu.meommuapi.kindergarten.controller.KindergartenController;
 import com.meommu.meommuapi.kindergarten.service.KindergartenService;
 import com.meommu.meommuapi.util.documentation.DocumentUtils;
 
 @WebMvcTest({
 	KindergartenController.class,
-	AuthController.class
+	AuthController.class,
+	ImageController.class
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)
@@ -44,6 +47,9 @@ public abstract class ControllerTest {
 
 	@MockBean
 	protected KindergartenService kindergartenService;
+
+	@MockBean
+	protected ImageService imageService;
 
 	@BeforeEach
 	void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
