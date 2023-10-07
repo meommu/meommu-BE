@@ -30,6 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/api/v1/kindergartens/signin")
 			.excludePathPatterns("/api/v1/kindergartens/signup")
 			.excludePathPatterns("/api/v1/kindergartens/email")
+			.excludePathPatterns("/api/v1/images/**")
 			.excludePathPatterns("/docs/index.html");
 	}
 
