@@ -48,6 +48,8 @@ jobs:
                   value: ${{ secrets.JWT_SECRET_KEY }}
                 - name: JWT_EXPIRATION_DURATION
                   value: ${{ secrets.JWT_EXPIRATION_DURATION }} 
+                - name: GPT_API_KEY
+                  value: ${{ secrets.GPT_API_KEY }}
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
