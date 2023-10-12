@@ -1,6 +1,7 @@
 package com.meommu.meommuapi.gpt.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -10,5 +11,10 @@ public class GptGenerateRequest {
 	private String details;
 
 	private GptGenerateRequest() {
+	}
+
+	@Builder
+	private GptGenerateRequest(String details) {
+		this.details = details;
 	}
 }
