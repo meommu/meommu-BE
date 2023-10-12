@@ -1,8 +1,8 @@
-package com.meommu.meommuapi.gpt.domain.embedded;
+package com.meommu.meommuapi.guide.domain.embedded;
 
 import java.util.Objects;
 
-import com.meommu.meommuapi.gpt.exception.InvalidGuideException;
+import com.meommu.meommuapi.guide.exception.InvalidGuideFormatException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -30,7 +30,7 @@ public class Content {
 
 	private static void validate(String value) {
 		if (value.length() > LIMIT_LENGTH || value.length() == 0) {
-			throw new InvalidGuideException();
+			throw new InvalidGuideFormatException();
 		}
 	}
 
