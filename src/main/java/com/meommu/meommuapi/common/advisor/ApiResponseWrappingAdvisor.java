@@ -38,7 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice(basePackages = {
 	"com.meommu.meommuapi.kindergarten.controller",
 	"com.meommu.meommuapi.auth.controller",
-	"com.meommu.meommuapi.image.controller"
+	"com.meommu.meommuapi.image.controller",
+	"com.meommu.meommuapi.gpt.controller",
+	"com.meommu.meommuapi.guide.controller",
 })
 public class ApiResponseWrappingAdvisor implements ResponseBodyAdvice<Object> {
 
