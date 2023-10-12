@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
-import com.meommu.meommuapi.auth.token.Auth;
-import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
 import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.kindergarten.service.KindergartenService;
