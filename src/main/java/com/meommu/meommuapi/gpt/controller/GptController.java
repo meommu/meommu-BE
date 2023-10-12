@@ -10,6 +10,8 @@ import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
 import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
 import com.meommu.meommuapi.gpt.service.GptService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class GptController {
 
@@ -21,7 +23,7 @@ public class GptController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/api/v1/gpt")
-	public GptGenerateResponse createGptContent(@RequestBody GptGenerateRequest gptGenerateRequest) {
+	public GptGenerateResponse createGptContent(@Valid @RequestBody GptGenerateRequest gptGenerateRequest) {
 		return gptService.createGptContent(gptGenerateRequest);
 	}
 }
