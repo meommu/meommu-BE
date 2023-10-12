@@ -3,15 +3,25 @@ package com.meommu.meommuapi.gpt.exception.errorCode;
 import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 public enum GptErrorCode implements ErrorCode {
-	;
+
+	GPT_SERVER_EXCEPTION("G001", "GPT 서버 오류입니다.");
+
+	private final String code;
+
+	private final String description;
+
+	GptErrorCode(String code, String description) {
+		this.code = code;
+		this.description = description;
+	}
 
 	@Override
 	public String getCode() {
-		return null;
+		return this.code;
 	}
 
 	@Override
 	public String getDescription() {
-		return null;
+		return this.description;
 	}
 }

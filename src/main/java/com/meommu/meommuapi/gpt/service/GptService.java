@@ -9,6 +9,7 @@ import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
 import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
 import com.meommu.meommuapi.gpt.dto.GptRequest;
 import com.meommu.meommuapi.gpt.dto.GptResponse;
+import com.meommu.meommuapi.gpt.exception.GptGenerateException;
 import com.meommu.meommuapi.gpt.util.GptClient;
 
 @Transactional(readOnly = true)
@@ -26,7 +27,7 @@ public class GptService {
 			GptResponse gptResponse = gptClient.chat(new GptRequest(gptGenerateRequest.getDetails()));
 			return GptGenerateResponse.from(extractContent(gptResponse));
 		} catch (Exception e) {
-			throw new RuntimeException();
+			throw new GptGenerateException();
 		}
 	}
 
