@@ -102,3 +102,5 @@ include::kindergarten.adoc[]
 // 이미지
 include::image.adoc[]
 
+// 일기
+include::diary.adoc[]

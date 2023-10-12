@@ -565,6 +565,15 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_이미지_단건_삭제">3.5. 이미지 단건 삭제</a></li>
 </ul>
 </li>
+<li><a href="#_일기">4. 일기</a>
+<ul class="sectlevel2">
+<li><a href="#_gpt_일기_생성">4.1. GPT 일기 생성</a></li>
+<li><a href="#_일기_가이드_조회">4.2. 일기 가이드 조회</a></li>
+<li><a href="#_일기_가이드_디테일_조회">4.3. 일기 가이드 디테일 조회</a></li>
+<li><a href="#_일기_가이드_디테일_생성">4.4. 일기 가이드 디테일 생성</a></li>
+<li><a href="#_일기_가이드_디테일_삭제">4.5. 일기 가이드 디테일 삭제</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1272,11 +1281,304 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_일기"><a class="link" href="#_일기">4. 일기</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GPT 일기 생성 기능과 일기 기능을 제공합니다.</p>
+</div>
+<div class="sect2">
+<h3 id="_gpt_일기_생성"><a class="link" href="#_gpt_일기_생성">4.1. GPT 일기 생성</a></h3>
+<div class="paragraph">
+<p>GPT API를 통해 일기를 생성합니다.</p>
+</div>
+<h4 id="_요청_9" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/gpt HTTP/1.1
+Content-Type: application/json
+Authorization: &lt;ACCESS_TOKEN&gt;
+Content-Length: 77
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
+
+{
+  &quot;details&quot; : &quot;수영장에서 친구랑 놀기, 맛있는 간식 먹기&quot;
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">제약사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>details</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 생성을 위한 디테일</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 디테일은 최소 1개이상 존재해야하며, 디테일들은 콤마(,)로 구분되어야 합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_9" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 101
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;content&quot; : &quot;생성된 일기 내용&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_가이드_조회"><a class="link" href="#_일기_가이드_조회">4.2. 일기 가이드 조회</a></h3>
+<div class="paragraph">
+<p>일기 자동생성을 위한 일기 가이드를 조회합니다.</p>
+</div>
+<h4 id="_요청_10" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/guides HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<h4 id="_응답_10" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 211
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;guides&quot; : [ {
+      &quot;id&quot; : 1,
+      &quot;guide&quot; : &quot;산책에 관한 일상&quot;
+    }, {
+      &quot;id&quot; : 2,
+      &quot;guide&quot; : &quot;낮잠에 관한 일상&quot;
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_가이드_디테일_조회"><a class="link" href="#_일기_가이드_디테일_조회">4.3. 일기 가이드 디테일 조회</a></h3>
+<div class="paragraph">
+<p>일기 자동생성을 위한 일기 가이드 디테일을 조회합니다.</p>
+</div>
+<h4 id="_요청_11" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/guides/1/details HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. /api/v1/guides/{guideId}/details</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>guideId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_11" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 222
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;details&quot; : [ {
+      &quot;id&quot; : 1,
+      &quot;detail&quot; : &quot;산책을 오래 했어요.&quot;
+    }, {
+      &quot;id&quot; : 2,
+      &quot;detail&quot; : &quot;산책을 조금 했어요.&quot;
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_가이드_디테일_생성"><a class="link" href="#_일기_가이드_디테일_생성">4.4. 일기 가이드 디테일 생성</a></h3>
+<div class="paragraph">
+<p>일기 자동생성을 위한 일기 가이드 디테일을 생성합니다.</p>
+</div>
+<h4 id="_요청_12" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/guides/1/details HTTP/1.1
+Content-Type: application/json
+Authorization: &lt;ACCESS_TOKEN&gt;
+Content-Length: 49
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
+
+{
+  &quot;detail&quot; : &quot;산책하다 꽃을 봤어요.&quot;
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. /api/v1/guides/{guideId}/details</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>guideId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 id</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">제약사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>detail</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">디테일</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_12" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 222
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;details&quot; : [ {
+      &quot;id&quot; : 1,
+      &quot;detail&quot; : &quot;산책을 오래 했어요.&quot;
+    }, {
+      &quot;id&quot; : 2,
+      &quot;detail&quot; : &quot;산책을 조금 했어요.&quot;
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_가이드_디테일_삭제"><a class="link" href="#_일기_가이드_디테일_삭제">4.5. 일기 가이드 디테일 삭제</a></h3>
+<div class="paragraph">
+<p>일기 자동생성을 위한 일기 가이드 디테일을 삭제합니다.</p>
+</div>
+<h4 id="_요청_13" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/guides/1/details/1 HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. /api/v1/guides/{guideId}/details/{detailId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>guideId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 id</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>detailId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">디테일 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_13" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-10-07 13:24:44 +0900
+Last updated 2023-10-12 23:25:27 +0900
 </div>
 </div>
 </body>
