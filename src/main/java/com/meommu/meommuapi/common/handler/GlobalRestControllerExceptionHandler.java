@@ -1,6 +1,5 @@
 package com.meommu.meommuapi.common.handler;
 
-
 import static com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode.*;
 
 import java.nio.file.AccessDeniedException;
@@ -100,17 +99,17 @@ public class GlobalRestControllerExceptionHandler {
 	@ExceptionHandler({BindException.class})
 	public ApiResponse<Void> handle(BindException exception) {
 		log.info("[BadRequest] {}", exception.getMessage(), exception);
-		return getVoidApiResponse(exception);
+		return mergeErrorMessageAndGetVoidApiResponse(exception);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	public ApiResponse<Void> handle(MethodArgumentNotValidException exception) {
 		log.info("[BadRequest] {}", exception.getMessage(), exception);
-		return getVoidApiResponse(exception);
+		return mergeErrorMessageAndGetVoidApiResponse(exception);
 	}
 
-	private ApiResponse<Void> getVoidApiResponse(BindException exception) {
+	private ApiResponse<Void> mergeErrorMessageAndGetVoidApiResponse(BindException exception) {
 		BindingResult bindingResult = exception.getBindingResult();
 
 		String errorMessage = bindingResult.getFieldErrors().stream()
