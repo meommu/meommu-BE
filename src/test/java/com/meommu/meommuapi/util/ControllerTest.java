@@ -20,6 +20,8 @@ import com.meommu.meommuapi.auth.controller.AuthController;
 import com.meommu.meommuapi.auth.service.AuthService;
 import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.common.interceptor.AuthInterceptor;
+import com.meommu.meommuapi.diary.controller.DiaryController;
+import com.meommu.meommuapi.diary.service.DiaryService;
 import com.meommu.meommuapi.gpt.controller.GptController;
 import com.meommu.meommuapi.gpt.service.GptService;
 import com.meommu.meommuapi.guide.controller.GuideController;
@@ -35,7 +37,8 @@ import com.meommu.meommuapi.util.documentation.DocumentUtils;
 	AuthController.class,
 	ImageController.class,
 	GptController.class,
-	GuideController.class
+	GuideController.class,
+	DiaryController.class
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)
@@ -64,6 +67,9 @@ public abstract class ControllerTest {
 
 	@MockBean
 	protected GuideService guideService;
+
+	@MockBean
+	protected DiaryService diaryService;
 
 	@BeforeEach
 	void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {

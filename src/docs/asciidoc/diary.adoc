@@ -1,65 +1,67 @@
 == 일기
-GPT 일기 생성 기능과 일기 기능을 제공합니다.
+일기 조회, 생성, 수정, 삭제 기능을 제공합니다.
 
-=== GPT 일기 생성
-GPT API를 통해 일기를 생성합니다.
-
-[discrete]
-==== 요청
-include::{snippets}/gpt/create/success/http-request.adoc[]
-include::{snippets}/gpt/create/success/request-fields.adoc[]
-
-[discrete]
-==== 응답
-include::{snippets}/gpt/create/success/http-response.adoc[]
-
-=== 일기 가이드 조회
-일기 자동생성을 위한 일기 가이드를 조회합니다.
+=== 일기 전체 조회
+일기를 년월별로 조회합니다. 최신순으로 정렬됩니다.
+이미지 URL은 이미지 API를 통해 id로 조회하면 됩니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/guide/getAll/success/http-request.adoc[]
+include::{snippets}/diaries/getAll/success/http-request.adoc[]
+include::{snippets}/diaries/getAll/success/query-parameters.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/guide/getAll/success/http-response.adoc[]
+include::{snippets}/diaries/getAll/success/http-response.adoc[]
 
-
-=== 일기 가이드 디테일 조회
-일기 자동생성을 위한 일기 가이드 디테일을 조회합니다.
+=== 일기 조회
+일기 id를 통해 일기 하나를 조회합니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/guide-detail/getAll/success/http-request.adoc[]
-include::{snippets}/guide-detail/getAll/success/path-parameters.adoc[]
+include::{snippets}/diaries/get/success/http-request.adoc[]
+include::{snippets}/diaries/get/success/path-parameters.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/guide-detail/getAll/success/http-response.adoc[]
+include::{snippets}/diaries/get/success/http-response.adoc[]
 
 
-=== 일기 가이드 디테일 생성
-일기 자동생성을 위한 일기 가이드 디테일을 생성합니다.
+=== 일기 생성
+일기를 생성합니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/guide-detail/create/success/http-request.adoc[]
-include::{snippets}/guide-detail/create/success/path-parameters.adoc[]
-include::{snippets}/guide-detail/create/success/request-fields.adoc[]
+include::{snippets}/diaries/create/success/http-request.adoc[]
+include::{snippets}/diaries/create/success/request-fields.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/guide-detail/getAll/success/http-response.adoc[]
+include::{snippets}/diaries/create/success/http-response.adoc[]
 
 
-=== 일기 가이드 디테일 삭제
-일기 자동생성을 위한 일기 가이드 디테일을 삭제합니다.
+=== 일기 수정
+일기 날짜, 제목, 내용, 이미지를 수정합니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/guide-detail/delete/success/http-request.adoc[]
-include::{snippets}/guide-detail/delete/success/path-parameters.adoc[]
+include::{snippets}/diaries/update/success/http-request.adoc[]
+include::{snippets}/diaries/update/success/path-parameters.adoc[]
+include::{snippets}/diaries/update/success/request-fields.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/guide-detail/delete/success/http-response.adoc[]
+include::{snippets}/diaries/update/success/http-response.adoc[]
+
+
+=== 일기 삭제
+일기 id를 통해 일기를 삭제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/diaries/delete/success/http-request.adoc[]
+include::{snippets}/diaries/delete/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/diaries/delete/success/http-response.adoc[]
