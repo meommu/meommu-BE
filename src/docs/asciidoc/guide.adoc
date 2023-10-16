@@ -1,0 +1,65 @@
+== GPT 일기 가이드
+GPT 일기 생성 기능과 일기 기능을 제공합니다.
+
+=== GPT 일기 생성
+GPT API를 통해 일기를 생성합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/gpt/create/success/http-request.adoc[]
+include::{snippets}/gpt/create/success/request-fields.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/gpt/create/success/http-response.adoc[]
+
+=== GPT 일기 가이드 조회
+GPT 일기 자동생성을 위한 일기 가이드를 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/guide/getAll/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/guide/getAll/success/http-response.adoc[]
+
+
+=== GPT 일기 가이드 디테일 조회
+GPT 일기 자동생성을 위한 일기 가이드 디테일을 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/guide-detail/getAll/success/http-request.adoc[]
+include::{snippets}/guide-detail/getAll/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/guide-detail/getAll/success/http-response.adoc[]
+
+
+=== GPT 일기 가이드 디테일 생성
+GPT 일기 자동생성을 위한 일기 가이드 디테일을 생성합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/guide-detail/create/success/http-request.adoc[]
+include::{snippets}/guide-detail/create/success/path-parameters.adoc[]
+include::{snippets}/guide-detail/create/success/request-fields.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/guide-detail/getAll/success/http-response.adoc[]
+
+
+=== GPT 일기 가이드 디테일 삭제
+GPT 일기 자동생성을 위한 일기 가이드 디테일을 삭제합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/guide-detail/delete/success/http-request.adoc[]
+include::{snippets}/guide-detail/delete/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/guide-detail/delete/success/http-response.adoc[]
