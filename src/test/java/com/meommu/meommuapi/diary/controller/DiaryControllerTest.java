@@ -160,7 +160,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("생성: 성공 -> 201")
 	@Test
-	void diaryAdd() throws Exception {
+	void testCreateDiary() throws Exception {
 		// given
 		DiarySaveRequest diarySaveRequest = DiarySaveRequest.builder()
 			.date(LocalDate.now())
@@ -210,7 +210,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("수정: 성공 -> 200")
 	@Test
-	void diaryModify() throws Exception {
+	void testUpdateDiary() throws Exception {
 		// given
 		DiaryUpdateRequest diaryUpdateRequest = DiaryUpdateRequest.builder()
 			.date(LocalDate.now())
@@ -262,7 +262,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("[일기] 일기 삭제 요청을 하면 200을 반환한다.")
 	@Test
-	void removeDiary() throws Exception {
+	void testDeleteDiary() throws Exception {
 		// given
 		doNothing().when(diaryService).delete(any(), any());
 
