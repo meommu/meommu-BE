@@ -31,7 +31,9 @@ include::{snippets}/kindergartens/signUp/success/request-fields.adoc[]
 ==== 응답
 include::{snippets}/kindergartens/signUp/success/http-response.adoc[]
 
+
 === 로그인
+로그인을 진행합니다.
 
 [discrete]
 ==== 요청
@@ -41,3 +43,39 @@ include::{snippets}/kindergartens/signIn/success/request-fields.adoc[]
 [discrete]
 ==== 응답
 include::{snippets}/kindergartens/signIn/success/http-response.adoc[]
+
+
+=== 회원 로그인 정보 조회
+accessToken을 통해 로그인한 회원의 회원 id, 이메일을 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/info-basic/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/info-basic/success/http-response.adoc[]
+
+=== 회원 정보 조회
+accessToken을 통해 회원 상세 정보를 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/info/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/info/success/http-response.adoc[]
+
+
+=== 회원 탈퇴
+회원탈퇴를 진행합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/delete/success/http-request.adoc[]
+include::{snippets}/kindergartens/delete/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/delete/success/http-response.adoc[]
