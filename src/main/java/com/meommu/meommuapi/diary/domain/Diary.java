@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 import com.meommu.meommuapi.diary.domain.embedded.Content;
+import com.meommu.meommuapi.diary.domain.embedded.DogName;
 import com.meommu.meommuapi.diary.domain.embedded.Title;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 
@@ -30,7 +31,7 @@ public class Diary extends BaseTimeEntity {
 	private Long id;
 
 	@NotNull
-	private String dogName;
+	private DogName dogName;
 
 	@NotNull
 	private Title title;
@@ -53,7 +54,7 @@ public class Diary extends BaseTimeEntity {
 
 	@Builder
 	private Diary(String dogName, String title, String content, LocalDate date, Kindergarten kindergarten) {
-		this.dogName = dogName;
+		this.dogName = DogName.from(dogName);
 		this.title = Title.from(title);
 		this.content = Content.from(content);
 		this.date = date;
@@ -69,7 +70,7 @@ public class Diary extends BaseTimeEntity {
 	}
 
 	public String getDogName() {
-		return dogName;
+		return dogName.getValue();
 	}
 
 	public String getTitle() {

@@ -197,7 +197,7 @@ class DiaryControllerTest extends ControllerTest {
 					fieldWithPath("dogName").type(JsonFieldType.STRING).description("강아지 이름")
 						.attributes(getConstraints("constraints", "1자 이상 10자 이하여야 합니다.")),
 					fieldWithPath("title").type(JsonFieldType.STRING).description("일기 제목")
-						.attributes(getConstraints("constraints", "1자 이상 15자 이하여야 합니다.")),
+						.attributes(getConstraints("constraints", "1자 이상 20자 이하여야 합니다.")),
 					fieldWithPath("content").type(JsonFieldType.STRING).description("일기 내용")
 						.attributes(getConstraints("constraints", "1자 이상 1000자 이하여야 합니다.")),
 					fieldWithPath("imageIds").type(JsonFieldType.ARRAY).description("일기 이미지 id 리스트")
@@ -249,7 +249,7 @@ class DiaryControllerTest extends ControllerTest {
 					fieldWithPath("dogName").type(JsonFieldType.STRING).description("강아지 이름")
 						.attributes(getConstraints("constraints", "1자 이상 10자 이하여야 합니다.")),
 					fieldWithPath("title").type(JsonFieldType.STRING).description("일기 제목")
-						.attributes(getConstraints("constraints", "1자 이상 15자 이하여야 합니다.")),
+						.attributes(getConstraints("constraints", "1자 이상 20자 이하여야 합니다.")),
 					fieldWithPath("content").type(JsonFieldType.STRING).description("일기 내용")
 						.attributes(getConstraints("constraints", "1자 이상 1000자 이하여야 합니다.")),
 					fieldWithPath("imageIds").type(JsonFieldType.ARRAY).description("일기 이미지 id 리스트")
@@ -260,7 +260,7 @@ class DiaryControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("[일기] 일기 삭제 요청을 하면 200을 반환한다.")
+	@DisplayName("삭제: 성공 -> 204")
 	@Test
 	void testDeleteDiary() throws Exception {
 		// given

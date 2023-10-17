@@ -62,10 +62,10 @@ class KindergartenControllerTest extends ControllerTest {
 				requestFields(
 					fieldWithPath("name").type(JsonFieldType.STRING).description("유치원이름")
 						.attributes(
-							getConstraints("constraints", "1~18자 사이여야 합니다.")),
+							getConstraints("constraints", "2~13자 사이여야 합니다.")),
 					fieldWithPath("ownerName").type(JsonFieldType.STRING).description("원장님 성함")
 						.attributes(
-							getConstraints("constraints", "2~18자 사이여야 합니다.")),
+							getConstraints("constraints", "2~8자 사이여야 합니다.")),
 					fieldWithPath("phone").type(JsonFieldType.STRING).description("전화번호")
 						.attributes(
 							getConstraints("constraints", "xxxxxxxxxxx 의 형식이어야 합니다.")),

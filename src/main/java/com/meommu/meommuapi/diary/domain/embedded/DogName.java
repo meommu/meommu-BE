@@ -2,35 +2,36 @@ package com.meommu.meommuapi.diary.domain.embedded;
 
 import java.util.Objects;
 
+import com.meommu.meommuapi.diary.exception.InvalidDogNameFormatException;
 import com.meommu.meommuapi.diary.exception.InvalidTitleFormatException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Title {
+public class DogName {
 
-	private static final int LIMIT_LENGTH = 20;
+	private static final int LIMIT_LENGTH = 10;
 
-	@Column(name = "title")
+	@Column(name = "dog_name")
 	private String value;
 
-	protected Title() {
+	protected DogName() {
 	}
 
-	private Title(String value) {
+	private DogName(String value) {
 		this.value = value;
 	}
 
-	public static Title from(String value) {
+	public static DogName from(String value) {
 		String trimValue = value.trim();
 		validate(trimValue);
-		return new Title(trimValue);
+		return new DogName(trimValue);
 	}
 
 	private static void validate(String value) {
 		if (value.length() > LIMIT_LENGTH || value.length() == 0) {
-			throw new InvalidTitleFormatException();
+			throw new InvalidDogNameFormatException();
 		}
 	}
 
@@ -46,7 +47,7 @@ public class Title {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		Title title = (Title)o;
+		DogName title = (DogName)o;
 		return Objects.equals(value, title.value);
 	}
 
