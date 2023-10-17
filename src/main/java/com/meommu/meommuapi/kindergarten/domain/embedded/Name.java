@@ -10,8 +10,8 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Name {
 
-	private static final int LIMIT_MIN_LENGTH = 1;
-	private static final int LIMIT_MAX_LENGTH = 18;
+	private static final int LIMIT_MIN_LENGTH = 2;
+	private static final int LIMIT_MAX_LENGTH = 13;
 
 	@Column(name = "name")
 	private String value;
