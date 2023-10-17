@@ -554,6 +554,9 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_이메일_중복확인">2.1. 이메일 중복확인</a></li>
 <li><a href="#_회원가입">2.2. 회원가입</a></li>
 <li><a href="#_로그인">2.3. 로그인</a></li>
+<li><a href="#_회원_로그인_정보_조회">2.4. 회원 로그인 정보 조회</a></li>
+<li><a href="#_회원_정보_조회">2.5. 회원 정보 조회</a></li>
+<li><a href="#_회원_탈퇴">2.6. 회원 탈퇴</a></li>
 </ul>
 </li>
 <li><a href="#_이미지">3. 이미지</a>
@@ -565,13 +568,22 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_이미지_단건_삭제">3.5. 이미지 단건 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_일기">4. 일기</a>
+<li><a href="#_gpt_일기_가이드">4. GPT 일기 가이드</a>
 <ul class="sectlevel2">
 <li><a href="#_gpt_일기_생성">4.1. GPT 일기 생성</a></li>
-<li><a href="#_일기_가이드_조회">4.2. 일기 가이드 조회</a></li>
-<li><a href="#_일기_가이드_디테일_조회">4.3. 일기 가이드 디테일 조회</a></li>
-<li><a href="#_일기_가이드_디테일_생성">4.4. 일기 가이드 디테일 생성</a></li>
-<li><a href="#_일기_가이드_디테일_삭제">4.5. 일기 가이드 디테일 삭제</a></li>
+<li><a href="#_gpt_일기_가이드_조회">4.2. GPT 일기 가이드 조회</a></li>
+<li><a href="#_gpt_일기_가이드_디테일_조회">4.3. GPT 일기 가이드 디테일 조회</a></li>
+<li><a href="#_gpt_일기_가이드_디테일_생성">4.4. GPT 일기 가이드 디테일 생성</a></li>
+<li><a href="#_gpt_일기_가이드_디테일_삭제">4.5. GPT 일기 가이드 디테일 삭제</a></li>
+</ul>
+</li>
+<li><a href="#_일기">5. 일기</a>
+<ul class="sectlevel2">
+<li><a href="#_일기_전체_조회">5.1. 일기 전체 조회</a></li>
+<li><a href="#_일기_조회">5.2. 일기 조회</a></li>
+<li><a href="#_일기_생성">5.3. 일기 생성</a></li>
+<li><a href="#_일기_수정">5.4. 일기 수정</a></li>
+<li><a href="#_일기_삭제">5.5. 일기 삭제</a></li>
 </ul>
 </li>
 </ul>
@@ -940,6 +952,9 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 </div>
 <div class="sect2">
 <h3 id="_로그인"><a class="link" href="#_로그인">2.3. 로그인</a></h3>
+<div class="paragraph">
+<p>로그인을 진행합니다.</p>
+</div>
 <h4 id="_요청_3" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
@@ -1005,6 +1020,109 @@ Content-Length: 96
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_회원_로그인_정보_조회"><a class="link" href="#_회원_로그인_정보_조회">2.4. 회원 로그인 정보 조회</a></h3>
+<div class="paragraph">
+<p>accessToken을 통해 로그인한 회원의 회원 id, 이메일을 조회합니다.</p>
+</div>
+<h4 id="_요청_4" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/kindergartens/info-basic HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<h4 id="_응답_4" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 105
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;id&quot; : 1,
+    &quot;email&quot; : &quot;meommu@exam.com&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_회원_정보_조회"><a class="link" href="#_회원_정보_조회">2.5. 회원 정보 조회</a></h3>
+<div class="paragraph">
+<p>accessToken을 통해 회원 상세 정보를 조회합니다.</p>
+</div>
+<h4 id="_요청_5" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/kindergartens/info HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<h4 id="_응답_5" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 183
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;name&quot; : &quot;멈무유치원&quot;,
+    &quot;ownerName&quot; : &quot;홍길동&quot;,
+    &quot;phone&quot; : &quot;01000000000&quot;,
+    &quot;email&quot; : &quot;meommu@exam.com&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_회원_탈퇴"><a class="link" href="#_회원_탈퇴">2.6. 회원 탈퇴</a></h3>
+<div class="paragraph">
+<p>회원탈퇴를 진행합니다.</p>
+</div>
+<h4 id="_요청_6" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/kindergartens/1 HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. /api/v1/kindergartens/{kindergartenId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kindergartenId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유치원 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_6" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1018,7 +1136,7 @@ Content-Length: 96
 <div class="paragraph">
 <p>이미지 id를 통해 여러장을 조회합니다.</p>
 </div>
-<h4 id="_요청_4" class="discrete">요청</h4>
+<h4 id="_요청_7" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/images?id=1&amp;id=2 HTTP/1.1
@@ -1049,7 +1167,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_4" class="discrete">응답</h4>
+<h4 id="_응답_7" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -1077,7 +1195,7 @@ Content-Length: 195
 <div class="paragraph">
 <p>이미지 id를 통해 한 장을 조회합니다.</p>
 </div>
-<h4 id="_요청_5" class="discrete">요청</h4>
+<h4 id="_요청_8" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/images/1 HTTP/1.1
@@ -1085,7 +1203,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. /api/v1/images/{imageId}</caption>
+<caption class="title">Table 2. /api/v1/images/{imageId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1103,7 +1221,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_5" class="discrete">응답</h4>
+<h4 id="_응답_8" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -1126,7 +1244,7 @@ Content-Length: 105
 <div class="paragraph">
 <p>이미지를 업로드 합니다.</p>
 </div>
-<h4 id="_요청_6" class="discrete">요청</h4>
+<h4 id="_요청_9" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/images HTTP/1.1
@@ -1174,7 +1292,7 @@ src/test/resources/testimages/coco.jpeg
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_6" class="discrete">응답</h4>
+<h4 id="_응답_9" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
@@ -1202,7 +1320,7 @@ Content-Length: 195
 <div class="paragraph">
 <p>이미지 id를 통해 여러 장을 삭제합니다.</p>
 </div>
-<h4 id="_요청_7" class="discrete">요청</h4>
+<h4 id="_요청_10" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/images?id=1&amp;id=2 HTTP/1.1
@@ -1234,7 +1352,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_7" class="discrete">응답</h4>
+<h4 id="_응답_10" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
@@ -1246,7 +1364,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="paragraph">
 <p>이미지 id를 통해 한 장을 삭제합니다.</p>
 </div>
-<h4 id="_요청_8" class="discrete">요청</h4>
+<h4 id="_요청_11" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/images/1 HTTP/1.1
@@ -1254,7 +1372,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. /api/v1/images/{imageId}</caption>
+<caption class="title">Table 3. /api/v1/images/{imageId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1272,7 +1390,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_8" class="discrete">응답</h4>
+<h4 id="_응답_11" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
@@ -1282,7 +1400,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_일기"><a class="link" href="#_일기">4. 일기</a></h2>
+<h2 id="_gpt_일기_가이드"><a class="link" href="#_gpt_일기_가이드">4. GPT 일기 가이드</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GPT 일기 생성 기능과 일기 기능을 제공합니다.</p>
@@ -1292,7 +1410,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="paragraph">
 <p>GPT API를 통해 일기를 생성합니다.</p>
 </div>
-<h4 id="_요청_9" class="discrete">요청</h4>
+<h4 id="_요청_12" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/gpt HTTP/1.1
@@ -1333,7 +1451,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_9" class="discrete">응답</h4>
+<h4 id="_응답_12" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
@@ -1351,11 +1469,11 @@ Content-Length: 101
 </div>
 </div>
 <div class="sect2">
-<h3 id="_일기_가이드_조회"><a class="link" href="#_일기_가이드_조회">4.2. 일기 가이드 조회</a></h3>
+<h3 id="_gpt_일기_가이드_조회"><a class="link" href="#_gpt_일기_가이드_조회">4.2. GPT 일기 가이드 조회</a></h3>
 <div class="paragraph">
-<p>일기 자동생성을 위한 일기 가이드를 조회합니다.</p>
+<p>GPT 일기 자동생성을 위한 일기 가이드를 조회합니다.</p>
 </div>
-<h4 id="_요청_10" class="discrete">요청</h4>
+<h4 id="_요청_13" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/guides HTTP/1.1
@@ -1363,7 +1481,7 @@ Authorization: &lt;ACCESS_TOKEN&gt;
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
-<h4 id="_응답_10" class="discrete">응답</h4>
+<h4 id="_응답_13" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -1387,11 +1505,11 @@ Content-Length: 211
 </div>
 </div>
 <div class="sect2">
-<h3 id="_일기_가이드_디테일_조회"><a class="link" href="#_일기_가이드_디테일_조회">4.3. 일기 가이드 디테일 조회</a></h3>
+<h3 id="_gpt_일기_가이드_디테일_조회"><a class="link" href="#_gpt_일기_가이드_디테일_조회">4.3. GPT 일기 가이드 디테일 조회</a></h3>
 <div class="paragraph">
-<p>일기 자동생성을 위한 일기 가이드 디테일을 조회합니다.</p>
+<p>GPT 일기 자동생성을 위한 일기 가이드 디테일을 조회합니다.</p>
 </div>
-<h4 id="_요청_11" class="discrete">요청</h4>
+<h4 id="_요청_14" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/guides/1/details HTTP/1.1
@@ -1400,7 +1518,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. /api/v1/guides/{guideId}/details</caption>
+<caption class="title">Table 4. /api/v1/guides/{guideId}/details</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1418,7 +1536,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_11" class="discrete">응답</h4>
+<h4 id="_응답_14" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -1442,11 +1560,11 @@ Content-Length: 222
 </div>
 </div>
 <div class="sect2">
-<h3 id="_일기_가이드_디테일_생성"><a class="link" href="#_일기_가이드_디테일_생성">4.4. 일기 가이드 디테일 생성</a></h3>
+<h3 id="_gpt_일기_가이드_디테일_생성"><a class="link" href="#_gpt_일기_가이드_디테일_생성">4.4. GPT 일기 가이드 디테일 생성</a></h3>
 <div class="paragraph">
-<p>일기 자동생성을 위한 일기 가이드 디테일을 생성합니다.</p>
+<p>GPT 일기 자동생성을 위한 일기 가이드 디테일을 생성합니다.</p>
 </div>
-<h4 id="_요청_12" class="discrete">요청</h4>
+<h4 id="_요청_15" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/guides/1/details HTTP/1.1
@@ -1461,7 +1579,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. /api/v1/guides/{guideId}/details</caption>
+<caption class="title">Table 5. /api/v1/guides/{guideId}/details</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1506,7 +1624,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_12" class="discrete">응답</h4>
+<h4 id="_응답_15" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -1530,11 +1648,11 @@ Content-Length: 222
 </div>
 </div>
 <div class="sect2">
-<h3 id="_일기_가이드_디테일_삭제"><a class="link" href="#_일기_가이드_디테일_삭제">4.5. 일기 가이드 디테일 삭제</a></h3>
+<h3 id="_gpt_일기_가이드_디테일_삭제"><a class="link" href="#_gpt_일기_가이드_디테일_삭제">4.5. GPT 일기 가이드 디테일 삭제</a></h3>
 <div class="paragraph">
-<p>일기 자동생성을 위한 일기 가이드 디테일을 삭제합니다.</p>
+<p>GPT 일기 자동생성을 위한 일기 가이드 디테일을 삭제합니다.</p>
 </div>
-<h4 id="_요청_13" class="discrete">요청</h4>
+<h4 id="_요청_16" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/guides/1/details/1 HTTP/1.1
@@ -1543,7 +1661,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. /api/v1/guides/{guideId}/details/{detailId}</caption>
+<caption class="title">Table 6. /api/v1/guides/{guideId}/details/{detailId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1565,7 +1683,393 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </tr>
 </tbody>
 </table>
-<h4 id="_응답_13" class="discrete">응답</h4>
+<h4 id="_응답_16" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_일기"><a class="link" href="#_일기">5. 일기</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>일기 조회, 생성, 수정, 삭제 기능을 제공합니다.</p>
+</div>
+<div class="sect2">
+<h3 id="_일기_전체_조회"><a class="link" href="#_일기_전체_조회">5.1. 일기 전체 조회</a></h3>
+<div class="paragraph">
+<p>일기를 년월별로 조회합니다. 최신순으로 정렬됩니다.
+이미지 URL은 이미지 API를 통해 id로 조회하면 됩니다.</p>
+</div>
+<h4 id="_요청_17" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries?year=2023&amp;month=10 HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">파라미터</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">제약사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>year</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">년</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yyyy의 형식이어야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>month</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">월</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MM의 형식이어야 합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_17" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 560
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;diaries&quot; : [ {
+      &quot;id&quot; : 2,
+      &quot;date&quot; : &quot;2023-10-17&quot;,
+      &quot;dogName&quot; : &quot;똘이&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-17T18:19:45.492827&quot;,
+      &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
+      &quot;title&quot; : &quot;일기 2 제목&quot;,
+      &quot;content&quot; : &quot;일기 2 내용&quot;
+    }, {
+      &quot;id&quot; : 1,
+      &quot;date&quot; : &quot;2023-10-16&quot;,
+      &quot;dogName&quot; : &quot;코코&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-17T18:19:45.492821&quot;,
+      &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
+      &quot;title&quot; : &quot;일기 1 제목&quot;,
+      &quot;content&quot; : &quot;일기 1 내용&quot;
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_조회"><a class="link" href="#_일기_조회">5.2. 일기 조회</a></h3>
+<div class="paragraph">
+<p>일기 id를 통해 일기 하나를 조회합니다.</p>
+</div>
+<h4 id="_요청_18" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries/1 HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. /api/v1/diaries/{diaryId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diaryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_18" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 277
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;id&quot; : 1,
+    &quot;date&quot; : &quot;2023-10-16&quot;,
+    &quot;dogName&quot; : &quot;코코&quot;,
+    &quot;createdAt&quot; : &quot;2023-10-17T18:19:45.469181&quot;,
+    &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
+    &quot;title&quot; : &quot;일기 1 제목&quot;,
+    &quot;content&quot; : &quot;일기 1 내용&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_생성"><a class="link" href="#_일기_생성">5.3. 일기 생성</a></h3>
+<div class="paragraph">
+<p>일기를 생성합니다.</p>
+</div>
+<h4 id="_요청_19" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/diaries HTTP/1.1
+Content-Type: application/json
+Authorization: &lt;ACCESS_TOKEN&gt;
+Content-Length: 148
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
+
+{
+  &quot;date&quot; : &quot;2023-10-17&quot;,
+  &quot;dogName&quot; : &quot;사랑이&quot;,
+  &quot;title&quot; : &quot;일기 제목&quot;,
+  &quot;content&quot; : &quot;일기 내용&quot;,
+  &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">제약사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 날짜</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yyyy-MM-dd의 형식이어야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dogName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강아지 이름</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 10자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 제목</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 20자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 내용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 1000자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageIds</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 이미지 id 리스트</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id는 1개 이상 5개 이하여야 하며 리스트 형태로 입력해야합니다. [1,2,3&#8230;&#8203;], 사전에 이미지를 저장해서 id를 받아와야합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_19" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 77
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : {
+    &quot;savedId&quot; : 1
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_수정"><a class="link" href="#_일기_수정">5.4. 일기 수정</a></h3>
+<div class="paragraph">
+<p>일기 날짜, 제목, 내용, 이미지를 수정합니다.</p>
+</div>
+<h4 id="_요청_20" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">PUT /api/v1/diaries/1 HTTP/1.1
+Content-Type: application/json
+Authorization: &lt;ACCESS_TOKEN&gt;
+Content-Length: 148
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
+
+{
+  &quot;date&quot; : &quot;2023-10-17&quot;,
+  &quot;dogName&quot; : &quot;사랑이&quot;,
+  &quot;title&quot; : &quot;일기 제목&quot;,
+  &quot;content&quot; : &quot;일기 내용&quot;,
+  &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. /api/v1/diaries/{diaryId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diaryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 id</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">제약사항</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 날짜</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yyyy-MM-dd의 형식이어야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dogName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강아지 이름</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 10자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 제목</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 20자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 내용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1자 이상 1000자 이하여야 합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageIds</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 이미지 id 리스트</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id는 1개 이상 5개 이하여야 하며 리스트 형태로 입력해야합니다. [1,2,3&#8230;&#8203;], 사전에 이미지를 수정해서 id를 받아와야합니다.</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_20" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 58
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;OK&quot;,
+  &quot;data&quot; : null
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_일기_삭제"><a class="link" href="#_일기_삭제">5.5. 일기 삭제</a></h3>
+<div class="paragraph">
+<p>일기 id를 통해 일기를 삭제합니다.</p>
+</div>
+<h4 id="_요청_21" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">DELETE /api/v1/diaries/1 HTTP/1.1
+Authorization: &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. /api/v1/diaries/{diaryId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diaryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_21" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
@@ -1578,7 +2082,11 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
+<<<<<<< HEAD
 Last updated 2023-10-17 23:36:01 +0900
+=======
+Last updated 2023-10-16 12:59:57 +0900
+>>>>>>> main
 </div>
 </div>
 </body>

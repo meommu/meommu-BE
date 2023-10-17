@@ -3,20 +3,26 @@ package com.meommu.meommuapi.kindergarten.controller;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.BDDMockito.*;
+import static org.springframework.http.HttpHeaders.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.meommu.meommuapi.common.util.JsonUtils;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoBasicResponse;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
 import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.kindergarten.exception.DuplicateEmailException;
 import com.meommu.meommuapi.util.ControllerTest;
@@ -31,7 +37,7 @@ class KindergartenControllerTest extends ControllerTest {
 		var signUpRequest = SignUpRequest.builder()
 			.name("멈무유치원")
 			.ownerName("홍길동")
-			.phone("010-0000-0000")
+			.phone("01000000000")
 			.email("meommu@exam.com")
 			.password("Password1!")
 			.passwordConfirmation("Password1!")
@@ -56,13 +62,13 @@ class KindergartenControllerTest extends ControllerTest {
 				requestFields(
 					fieldWithPath("name").type(JsonFieldType.STRING).description("유치원이름")
 						.attributes(
-							getConstraints("constraints", "1~18자 사이여야 합니다.")),
+							getConstraints("constraints", "2~13자 사이여야 합니다.")),
 					fieldWithPath("ownerName").type(JsonFieldType.STRING).description("원장님 성함")
 						.attributes(
-							getConstraints("constraints", "2~18자 사이여야 합니다.")),
+							getConstraints("constraints", "2~8자 사이여야 합니다.")),
 					fieldWithPath("phone").type(JsonFieldType.STRING).description("전화번호")
 						.attributes(
-							getConstraints("constraints", "xxx-xxxx-xxxx 의 형식이어야 합니다.")),
+							getConstraints("constraints", "xxxxxxxxxxx 의 형식이어야 합니다.")),
 					fieldWithPath("email").type(JsonFieldType.STRING).description("이메일")
 						.attributes(
 							getConstraints("constraints", "이메일 형식이어야 합니다.")),
@@ -124,6 +130,100 @@ class KindergartenControllerTest extends ControllerTest {
 				queryParameters(
 					parameterWithName("email").description("중복 확인 이메일")
 						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다."))
+				)
+			)
+		);
+	}
+
+	@DisplayName("회원 정보 조회: 성공 -> 200")
+	@Test
+	void testFindKindergartenInfo() throws Exception {
+		// given
+		var myInfoResponse = MyInfoResponse.builder()
+			.name("멈무유치원")
+			.ownerName("홍길동")
+			.phone("01000000000")
+			.email("meommu@exam.com")
+			.build();
+
+		given(kindergartenService.findMyInfo(any())).willReturn(myInfoResponse);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/info")
+			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("OK"),
+			jsonPath("$.data.name").value("멈무유치원"),
+			jsonPath("$.data.ownerName").value("홍길동"),
+			jsonPath("$.data.phone").value("01000000000"),
+			jsonPath("$.data.email").value("meommu@exam.com")
+		).andDo(
+			MockMvcResultHandlers.print()
+		).andDo(
+			document("kindergartens/info/success",
+				getDocumentRequest(), getDocumentResponse()
+			)
+		);
+	}
+
+	@DisplayName("회원 기본 정보 조회: 성공 -> 200")
+	@Test
+	void testFindKindergartenInfoBasic() throws Exception {
+		// given
+		var myInfoBasicResponse = MyInfoBasicResponse.builder()
+			.id(1L)
+			.email("meommu@exam.com")
+			.build();
+
+		given(kindergartenService.findMyInfoBasic(any())).willReturn(myInfoBasicResponse);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/info-basic")
+			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("OK"),
+			jsonPath("$.data.id").value(1L),
+			jsonPath("$.data.email").value("meommu@exam.com")
+		).andDo(
+			MockMvcResultHandlers.print()
+		).andDo(
+			document("kindergartens/info-basic/success",
+				getDocumentRequest(), getDocumentResponse()
+			)
+		);
+	}
+
+	@DisplayName("탈퇴: 성공 -> 204")
+	@Test
+	void testDeleteDiary() throws Exception {
+		// given
+		doNothing().when(kindergartenService).delete(any(), any());
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			RestDocumentationRequestBuilders.delete("/api/v1/kindergartens/{kindergartenId}", 1L)
+				.header(AUTHORIZATION, "<ACCESS_TOKEN>"));
+
+		// then
+		resultActions.andExpectAll(
+			status().isNoContent()
+		).andDo(
+			MockMvcResultHandlers.print()
+		).andDo(
+			document("kindergartens/delete/success",
+				getDocumentRequest(), getDocumentResponse(),
+				pathParameters(
+					parameterWithName("kindergartenId").description("유치원 id")
 				)
 			)
 		);

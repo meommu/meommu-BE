@@ -6,10 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.exception.AuthorizationException;
+import com.meommu.meommuapi.diary.domain.Diary;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoBasicResponse;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
 import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.kindergarten.exception.DuplicateEmailException;
 import com.meommu.meommuapi.kindergarten.exception.InvalidPasswordConfirmationException;
@@ -32,19 +36,36 @@ public class KindergartenService {
 	@Transactional
 	public void signUp(SignUpRequest signUpRequest) {
 		validate(signUpRequest);
-		Kindergarten kindergarten = Kindergarten.builder()
-			.name(signUpRequest.getName())
-			.ownerName(signUpRequest.getOwnerName())
-			.phone(signUpRequest.getPhone())
-			.email(signUpRequest.getEmail())
-			.password(Password.of(encryptor, signUpRequest.getPassword()))
-			.build();
+		Kindergarten kindergarten = Kindergarten.of(
+			signUpRequest.getName(),
+			signUpRequest.getOwnerName(),
+			signUpRequest.getPhone(),
+			signUpRequest.getEmail(),
+			Password.of(encryptor, signUpRequest.getPassword())
+		);
 		kindergartenRepository.save(kindergarten);
 	}
 
 	public void existsByEmail(EmailRequest emailRequest) {
 		String email = emailRequest.getEmail();
 		validateUniqueEmail(email);
+	}
+
+	public MyInfoResponse findMyInfo(AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		return MyInfoResponse.from(kindergarten);
+	}
+
+	public MyInfoBasicResponse findMyInfoBasic(AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		return MyInfoBasicResponse.from(kindergarten);
+	}
+
+	public void delete(Long kindergartenId, AuthInfo authInfo) {
+		if (kindergartenId != authInfo.getId()) {
+			throw new AuthorizationException();
+		}
+		kindergartenRepository.deleteById(kindergartenId);
 	}
 
 	private void validate(SignUpRequest signUpRequest) {
@@ -63,4 +84,9 @@ public class KindergartenService {
 			throw new DuplicateEmailException();
 		}
 	}
+
+	private Kindergarten getKindergartenById(Long id) {
+		return kindergartenRepository.findById(id).orElseThrow(() -> new KindergartenNotFoundException(id));
+	}
+
 }

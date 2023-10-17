@@ -41,6 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 	"com.meommu.meommuapi.image.controller",
 	"com.meommu.meommuapi.gpt.controller",
 	"com.meommu.meommuapi.guide.controller",
+	"com.meommu.meommuapi.diary.controller",
 })
 public class ApiResponseWrappingAdvisor implements ResponseBodyAdvice<Object> {
 

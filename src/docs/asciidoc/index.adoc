@@ -102,5 +102,8 @@ include::kindergarten.adoc[]
 // 이미지
 include::image.adoc[]
 
-// 일기
+// GPT 가이드
+include::guide.adoc[]
+
+// 일기 가이드
 include::diary.adoc[]
