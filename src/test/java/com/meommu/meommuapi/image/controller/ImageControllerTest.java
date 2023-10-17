@@ -66,24 +66,24 @@ class ImageControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-				status().isOk(),
-				jsonPath("$.code").value("0000"),
-				jsonPath("$.message").value("OK"),
-				jsonPath("$.data.images[0].id").value(1L),
-				jsonPath("$.data.images[0].url").value("https://test1.com"),
-				jsonPath("$.data.images[1].id").value(2L),
-				jsonPath("$.data.images[1].url").value("https://test2.com")
-			).andDo(
-				MockMvcResultHandlers.print()
-			).andDo(
-				document("images/getAll/success",
-					getDocumentRequest(), getDocumentResponse(),
-					queryParameters(
-						parameterWithName("id").description("이미지 id")
-							.attributes(getConstraints("constraints", "\"?id=1&id=2\"와 같이 이미지 id 여러 건을 조회할 수 있습니다."))
-					)
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("OK"),
+			jsonPath("$.data.images[0].id").value(1L),
+			jsonPath("$.data.images[0].url").value("https://test1.com"),
+			jsonPath("$.data.images[1].id").value(2L),
+			jsonPath("$.data.images[1].url").value("https://test2.com")
+		).andDo(
+			MockMvcResultHandlers.print()
+		).andDo(
+			document("images/getAll/success",
+				getDocumentRequest(), getDocumentResponse(),
+				queryParameters(
+					parameterWithName("id").description("이미지 id")
+						.attributes(getConstraints("constraints", "\"?id=1&id=2\"와 같이 이미지 id 여러 건을 조회할 수 있습니다."))
 				)
-			);
+			)
+		);
 	}
 
 	@DisplayName("단건 조회: 성공 -> 200")
@@ -148,12 +148,12 @@ class ImageControllerTest extends ControllerTest {
 			document("images/create/success",
 				getDocumentRequest(), getDocumentResponse(),
 				requestParts(
-					partWithName("images").description("일기 이미지 id 리스트")
-						.attributes(getConstraints("constraints",
-							"이미지 타입은 \"image/jpeg\", \"image/png\", \"image/heic\" 중에 하나여야 합니다.")),
 					partWithName("category").description("이미지 카테고리")
 						.attributes(getConstraints("constraints",
-							"이미지 카테고리는 \"PARENT_PROFILE\", \"KINDERGARTEN_PROFILE\", \"DOG_PROFILE\", \"DIARY_IMAGE\", \"NOTICE_IMAGE\" 중에 하나여야 하며 대소문자를 구분하지 않습니다."))
+							"이미지 카테고리는 \"PARENT_PROFILE\", \"KINDERGARTEN_PROFILE\", \"DOG_PROFILE\", \"DIARY_IMAGE\", \"NOTICE_IMAGE\" 중에 하나여야 하며 대소문자를 구분하지 않습니다.")),
+					partWithName("images").description("일기 이미지 id 리스트")
+						.attributes(getConstraints("constraints",
+							"이미지 타입은 \"image/jpeg\", \"image/png\", \"image/heic\" 중에 하나여야 합니다."))
 				)
 			)
 		);
