@@ -7,13 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.meommu.meommuapi.auth.dto.AuthInfo;
 import com.meommu.meommuapi.auth.exception.AuthorizationException;
-import com.meommu.meommuapi.diary.domain.Diary;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
-import com.meommu.meommuapi.kindergarten.dto.MyInfoBasicResponse;
 import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.kindergarten.exception.DuplicateEmailException;
 import com.meommu.meommuapi.kindergarten.exception.InvalidPasswordConfirmationException;
@@ -56,10 +56,24 @@ public class KindergartenService {
 		return MyInfoResponse.from(kindergarten);
 	}
 
-	public MyInfoBasicResponse findMyInfoBasic(AuthInfo authInfo) {
+	public KindergartenResponse find(Long kindergartenId, AuthInfo authInfo) {
+		if (kindergartenId != authInfo.getId()){
+			throw new AuthorizationException();
+		}
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
-		return MyInfoBasicResponse.from(kindergarten);
+		return KindergartenResponse.from(kindergarten);
 	}
+
+	public void update(Long kindergartenId, KindergartenUpdateRequest myInfoUpdateRequest, AuthInfo authInfo) {
+		if (kindergartenId != authInfo.getId()){
+			throw new AuthorizationException();
+		}
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		kindergarten.updateName(myInfoUpdateRequest.getName());
+		kindergarten.updateOwnerName(myInfoUpdateRequest.getOwnerName());
+		kindergarten.updatePhone(myInfoUpdateRequest.getPhone());
+	}
+
 
 	public void delete(Long kindergartenId, AuthInfo authInfo) {
 		if (kindergartenId != authInfo.getId()) {

@@ -8,11 +8,9 @@ import lombok.Getter;
 @Getter
 public class MyInfoResponse {
 
+	private Long id;
+
 	private String name;
-
-	private String ownerName;
-
-	private String phone;
 
 	private String email;
 
@@ -20,18 +18,16 @@ public class MyInfoResponse {
 	}
 
 	@Builder
-	private MyInfoResponse(String name, String ownerName, String phone, String email) {
+	private MyInfoResponse(Long id, String name, String email) {
+		this.id = id;
 		this.name = name;
-		this.ownerName = ownerName;
-		this.phone = phone;
 		this.email = email;
 	}
 
 	public static MyInfoResponse from(Kindergarten kindergarten) {
 		return MyInfoResponse.builder()
+			.id(kindergarten.getId())
 			.name(kindergarten.getName())
-			.ownerName(kindergarten.getOwnerName())
-			.phone(kindergarten.getPhone())
 			.email(kindergarten.getEmail())
 			.build();
 	}
