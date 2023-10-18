@@ -45,27 +45,39 @@ include::{snippets}/kindergartens/signIn/success/request-fields.adoc[]
 include::{snippets}/kindergartens/signIn/success/http-response.adoc[]
 
 
-=== 회원 로그인 정보 조회
-accessToken을 통해 로그인한 회원의 회원 id, 이메일을 조회합니다.
+=== 로그인 정보 조회
+accessToken을 통해 로그인한 회원의 회원 id, 유치원 이름, 이메일을 조회합니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/kindergartens/info-basic/success/http-request.adoc[]
+include::{snippets}/kindergartens/me/success/http-request.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/kindergartens/info-basic/success/http-response.adoc[]
+include::{snippets}/kindergartens/me/success/http-response.adoc[]
 
 === 회원 정보 조회
-accessToken을 통해 회원 상세 정보를 조회합니다.
+회원 상세 정보를 조회합니다.
 
 [discrete]
 ==== 요청
-include::{snippets}/kindergartens/info/success/http-request.adoc[]
+include::{snippets}/kindergartens/get/success/http-request.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/kindergartens/info/success/http-response.adoc[]
+include::{snippets}/kindergartens/get/success/http-response.adoc[]
+
+
+=== 회원 정보 수정
+회원 상세 정보를 수정합니다. 유치원 이름, 대표자 이름, 전화번호를 수정합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/update/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/update/success/http-response.adoc[]
 
 
 === 회원 탈퇴
