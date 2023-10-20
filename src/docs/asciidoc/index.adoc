@@ -63,6 +63,30 @@ a|[source,json]
 a|[source,json]
 |====
 
+==== 리소스 생성(201, CREATED)
+
+|====
+|응답데이터가 없는 경우|응답데이터가 있는 경우
+
+a|[source,json]
+Body를 제공하지 않습니다.
+
+a|[source,json]
+----
+{
+    "code": "0000", // 정상인 경우 '0000'
+    "message": "OK", // 정상인 경우 'OK'
+    "data": {
+        "name": "홍길동"
+    }
+}
+----
+a|[source,json]
+|====
+
+==== 리소스 삭제(204, NO_CONTENT)
+Body를 제공하지 않습니다.
+
 ==== 실패
 
 |====

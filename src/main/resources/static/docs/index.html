@@ -543,8 +543,10 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_응답형식">1.2. 응답형식</a>
 <ul class="sectlevel3">
 <li><a href="#_정상200_ok">1.2.1. 정상(200, OK)</a></li>
-<li><a href="#_실패">1.2.2. 실패</a></li>
-<li><a href="#_상태코드httpstatus">1.2.3. 상태코드(HttpStatus)</a></li>
+<li><a href="#_리소스_생성201_created">1.2.2. 리소스 생성(201, CREATED)</a></li>
+<li><a href="#_리소스_삭제204_no_content">1.2.3. 리소스 삭제(204, NO_CONTENT)</a></li>
+<li><a href="#_실패">1.2.4. 실패</a></li>
+<li><a href="#_상태코드httpstatus">1.2.5. 상태코드(HttpStatus)</a></li>
 </ul>
 </li>
 </ul>
@@ -702,7 +704,48 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_실패"><a class="link" href="#_실패">1.2.2. 실패</a></h4>
+<h4 id="_리소스_생성201_created"><a class="link" href="#_리소스_생성201_created">1.2.2. 리소스 생성(201, CREATED)</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">응답데이터가 없는 경우</th>
+<th class="tableblock halign-left valign-top">응답데이터가 있는 경우</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json"><span class="error">B</span><span class="error">o</span><span class="error">d</span><span class="error">y</span><span class="error">를</span> <span class="error">제</span><span class="error">공</span><span class="error">하</span><span class="error">지</span> <span class="error">않</span><span class="error">습</span><span class="error">니</span><span class="error">다</span><span class="error">.</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">0000</span><span class="delimiter">&quot;</span></span>, <span class="error">/</span><span class="error">/</span> <span class="error">정</span><span class="error">상</span><span class="error">인</span> <span class="error">경</span><span class="error">우</span> <span class="error">'</span><span class="integer">0</span><span class="integer">0</span><span class="integer">0</span><span class="integer">0</span><span class="error">'</span>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">OK</span><span class="delimiter">&quot;</span></span>, <span class="error">/</span><span class="error">/</span> <span class="error">정</span><span class="error">상</span><span class="error">인</span> <span class="error">경</span><span class="error">우</span> <span class="error">'</span><span class="error">O</span><span class="error">K</span><span class="error">'</span>
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>: {
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">홍길동</span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_리소스_삭제204_no_content"><a class="link" href="#_리소스_삭제204_no_content">1.2.3. 리소스 삭제(204, NO_CONTENT)</a></h4>
+<div class="paragraph">
+<p>Body를 제공하지 않습니다.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_실패"><a class="link" href="#_실패">1.2.4. 실패</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -728,7 +771,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_상태코드httpstatus"><a class="link" href="#_상태코드httpstatus">1.2.3. 상태코드(HttpStatus)</a></h4>
+<h4 id="_상태코드httpstatus"><a class="link" href="#_상태코드httpstatus">1.2.5. 상태코드(HttpStatus)</a></h4>
 <div class="paragraph">
 <p>응답시 다음과 같은 응답상태 헤더, 응답코드 및 응답메시지를 제공합니다.</p>
 </div>
@@ -1793,17 +1836,17 @@ Content-Length: 560
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-10-18&quot;,
+      &quot;date&quot; : &quot;2023-10-20&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-18T11:44:57.895312&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-20T23:59:39.381302&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-10-17&quot;,
+      &quot;date&quot; : &quot;2023-10-19&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-18T11:44:57.895307&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-20T23:59:39.381297&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1857,9 +1900,9 @@ Content-Length: 277
   &quot;message&quot; : &quot;OK&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-10-17&quot;,
+    &quot;date&quot; : &quot;2023-10-19&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-18T11:44:57.884593&quot;,
+    &quot;createdAt&quot; : &quot;2023-10-20T23:59:39.365164&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1883,7 +1926,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-18&quot;,
+  &quot;date&quot; : &quot;2023-10-20&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -1978,7 +2021,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-18&quot;,
+  &quot;date&quot; : &quot;2023-10-20&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2120,7 +2163,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-10-17 23:38:13 +0900
+Last updated 2023-10-20 23:59:22 +0900
 </div>
 </div>
 </body>
