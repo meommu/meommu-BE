@@ -92,7 +92,7 @@ class DiaryControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.diaries[0].id").value(2L),
 			jsonPath("$.data.diaries[0].date").value(LocalDate.now().toString()),
 			jsonPath("$.data.diaries[0].dogName").value("똘이"),
@@ -114,9 +114,9 @@ class DiaryControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
 					parameterWithName("year").description("년")
-						.attributes(getConstraints("constraints", "yyyy의 형식이어야 합니다.")),
+						.attributes(getConstraints("constraints", "yyyy의 형식이어야 합니다. 입력하지 않을 경우 현재 년도로 검색합니다.")),
 					parameterWithName("month").description("월")
-						.attributes(getConstraints("constraints", "MM의 형식이어야 합니다."))
+						.attributes(getConstraints("constraints", "MM의 형식이어야 합니다. 입력하지 않을 경우 현재 월로 검색합니다."))
 				)
 			)
 		);
@@ -138,7 +138,7 @@ class DiaryControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 				status().isOk(),
 				jsonPath("$.code").value("0000"),
-				jsonPath("$.message").value("OK"),
+				jsonPath("$.message").value("정상"),
 				jsonPath("$.data.id").value(1L),
 				jsonPath("$.data.date").value(LocalDate.now().minusDays(1).toString()),
 				jsonPath("$.data..dogName").value("코코"),
@@ -184,7 +184,7 @@ class DiaryControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isCreated(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.savedId").value(1L)
 		).andDo(
 			MockMvcResultHandlers.print()
@@ -233,7 +233,7 @@ class DiaryControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()

@@ -68,7 +68,7 @@ class ImageControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.images[0].id").value(1L),
 			jsonPath("$.data.images[0].url").value("https://test1.com"),
 			jsonPath("$.data.images[1].id").value(2L),
@@ -101,7 +101,7 @@ class ImageControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.id").value(1L),
 			jsonPath("$.data.url").value("https://test1.com")
 		).andDo(
@@ -137,7 +137,7 @@ class ImageControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isCreated(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.images[0].id").value(1L),
 			jsonPath("$.data.images[0].url").value("https://test1.com"),
 			jsonPath("$.data.images[1].id").value(2L),

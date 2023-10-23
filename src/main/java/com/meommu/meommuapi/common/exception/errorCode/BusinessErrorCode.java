@@ -2,7 +2,7 @@ package com.meommu.meommuapi.common.exception.errorCode;
 
 public enum BusinessErrorCode implements ErrorCode {
 	//Common
-	SUCCESS("0000", "OK"),
+	SUCCESS("0000", "정상"),
 
 	//Client
 	BAD_REQUEST("C400", "잘못된 요청입니다. 요청내용을 확인하세요."),
