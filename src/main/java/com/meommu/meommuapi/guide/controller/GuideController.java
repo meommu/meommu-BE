@@ -47,7 +47,6 @@ public class GuideController {
 		return guideService.createGuideDetail(guideId, guideDetailSaveRequest, authInfo);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/api/v1/guides/{guideId}/details/{detailId}")
 	public void deleteGuideDetail(
 		@PathVariable Long guideId,

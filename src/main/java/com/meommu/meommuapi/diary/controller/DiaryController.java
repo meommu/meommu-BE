@@ -62,7 +62,6 @@ public class DiaryController {
 		diaryService.update(diaryId, diaryUpdateRequest, authInfo);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/api/v1/diaries/{diaryId}")
 	public void deleteDiary(
 		@PathVariable Long diaryId,

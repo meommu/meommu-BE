@@ -260,7 +260,7 @@ class DiaryControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("삭제: 성공 -> 204")
+	@DisplayName("삭제: 성공 -> 200")
 	@Test
 	void testDeleteDiary() throws Exception {
 		// given
@@ -273,7 +273,9 @@ class DiaryControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isNoContent()
+			status().isOk(),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
