@@ -45,7 +45,7 @@ a|[source,json]
 ----
 {
     "code": "0000", // 정상인 경우 '0000'
-    "message": "OK", // 정상인 경우 'OK'
+    "message": "정상", // 정상인 경우 '정상'
     "data": null
 }
 ----
@@ -54,7 +54,7 @@ a|[source,json]
 ----
 {
     "code": "0000", // 정상인 경우 '0000'
-    "message": "OK", // 정상인 경우 'OK'
+    "message": "정상", // 정상인 경우 '정상'
     "data": {
         "name": "홍길동"
     }
@@ -75,7 +75,7 @@ a|[source,json]
 ----
 {
     "code": "0000", // 정상인 경우 '0000'
-    "message": "OK", // 정상인 경우 'OK'
+    "message": "정상", // 정상인 경우 '정상'
     "data": {
         "name": "홍길동"
     }
@@ -129,5 +129,8 @@ include::image.adoc[]
 // GPT 가이드
 include::guide.adoc[]
 
-// 일기 가이드
+// 일기
 include::diary.adoc[]
+
+// 공지
+include::notice.adoc[]
