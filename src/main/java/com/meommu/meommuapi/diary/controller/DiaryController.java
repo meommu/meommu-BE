@@ -21,6 +21,8 @@ import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.service.DiaryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class DiaryController {
 
@@ -32,7 +34,7 @@ public class DiaryController {
 
 	@GetMapping("/api/v1/diaries")
 	public DiaryResponses findDiaries(
-		@ModelAttribute DiarySearchCriteria criteria,
+		@Valid @ModelAttribute DiarySearchCriteria criteria,
 		@Auth AuthInfo authInfo) {
 		return diaryService.findDiaries(criteria, authInfo);
 	}
@@ -47,7 +49,7 @@ public class DiaryController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(value = "/api/v1/diaries")
 	public DiarySaveResponse createDairy(
-		@RequestBody DiarySaveRequest diarySaveRequest,
+		@Valid @RequestBody DiarySaveRequest diarySaveRequest,
 		@Auth AuthInfo authInfo) {
 		return diaryService.create(diarySaveRequest, authInfo);
 	}
@@ -55,7 +57,7 @@ public class DiaryController {
 	@PutMapping(value = "/api/v1/diaries/{diaryId}")
 	public void updateDiary(
 		@PathVariable Long diaryId,
-		@RequestBody DiaryUpdateRequest diaryUpdateRequest,
+		@Valid @RequestBody DiaryUpdateRequest diaryUpdateRequest,
 		@Auth AuthInfo authInfo) {
 		diaryService.update(diaryId, diaryUpdateRequest, authInfo);
 	}

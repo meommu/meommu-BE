@@ -47,7 +47,7 @@ class AuthControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.accessToken").value("<ACCESS_TOKEN>")
 		).andDo(
 			MockMvcResultHandlers.print()

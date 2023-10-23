@@ -30,6 +30,8 @@ import com.meommu.meommuapi.image.controller.ImageController;
 import com.meommu.meommuapi.image.service.ImageService;
 import com.meommu.meommuapi.kindergarten.controller.KindergartenController;
 import com.meommu.meommuapi.kindergarten.service.KindergartenService;
+import com.meommu.meommuapi.notice.controller.NoticeController;
+import com.meommu.meommuapi.notice.service.NoticeService;
 import com.meommu.meommuapi.util.documentation.DocumentUtils;
 
 @WebMvcTest({
@@ -38,7 +40,8 @@ import com.meommu.meommuapi.util.documentation.DocumentUtils;
 	ImageController.class,
 	GptController.class,
 	GuideController.class,
-	DiaryController.class
+	DiaryController.class,
+	NoticeController.class,
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)
@@ -70,6 +73,9 @@ public abstract class ControllerTest {
 
 	@MockBean
 	protected DiaryService diaryService;
+
+	@MockBean
+	protected NoticeService noticeService;
 
 	@BeforeEach
 	void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {

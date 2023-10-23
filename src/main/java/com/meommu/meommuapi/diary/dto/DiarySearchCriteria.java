@@ -2,27 +2,25 @@ package com.meommu.meommuapi.diary.dto;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class DiarySearchCriteria {
 
-	@NotBlank(message = "연도는 필수로 입력해야 합니다.")
 	private Integer year;
 
-	@NotBlank(message = "월은 필수로 입력해야 합니다.")
 	private Integer month;
 
 	private DiarySearchCriteria() {
 	}
 
 	@Builder
-	public DiarySearchCriteria(int year, int month) {
-		this.year = year;
-		this.month = month;
+	private DiarySearchCriteria(Integer year, Integer month) {
+		this.year = year == null ? LocalDate.now().getYear() : year;
+		this.month = month == null ? LocalDate.now().getMonth().getValue() : month;
 	}
 }

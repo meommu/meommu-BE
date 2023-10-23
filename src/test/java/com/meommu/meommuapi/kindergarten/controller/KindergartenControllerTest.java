@@ -36,7 +36,7 @@ class KindergartenControllerTest extends ControllerTest {
 		var signUpRequest = SignUpRequest.builder()
 			.name("멈무유치원")
 			.ownerName("홍길동")
-			.phone("01000000000")
+			.phone("010-0000-0000")
 			.email("meommu@exam.com")
 			.password("Password1!")
 			.passwordConfirmation("Password1!")
@@ -67,7 +67,7 @@ class KindergartenControllerTest extends ControllerTest {
 							getConstraints("constraints", "2~8자 사이여야 합니다.")),
 					fieldWithPath("phone").type(JsonFieldType.STRING).description("전화번호")
 						.attributes(
-							getConstraints("constraints", "xxxxxxxxxxx 의 형식이어야 합니다.")),
+							getConstraints("constraints", "xxx-xxxx-xxxx 의 형식이어야 합니다.")),
 					fieldWithPath("email").type(JsonFieldType.STRING).description("이메일")
 						.attributes(
 							getConstraints("constraints", "이메일 형식이어야 합니다.")),
@@ -155,7 +155,7 @@ class KindergartenControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.id").value(1L),
 			jsonPath("$.data.name").value("멈무유치원"),
 			jsonPath("$.data.email").value("meommu@exam.com")
@@ -175,7 +175,7 @@ class KindergartenControllerTest extends ControllerTest {
 		var kindergartenResponse = KindergartenResponse.builder()
 			.name("멈무유치원")
 			.ownerName("홍길동")
-			.phone("01000000000")
+			.phone("010-0000-0000")
 			.email("meommu@exam.com")
 			.build();
 
@@ -190,10 +190,10 @@ class KindergartenControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.name").value("멈무유치원"),
 			jsonPath("$.data.ownerName").value("홍길동"),
-			jsonPath("$.data.phone").value("01000000000"),
+			jsonPath("$.data.phone").value("010-0000-0000"),
 			jsonPath("$.data.email").value("meommu@exam.com")
 		).andDo(
 			MockMvcResultHandlers.print()
@@ -211,7 +211,7 @@ class KindergartenControllerTest extends ControllerTest {
 		var kindergartenUpdateRequest = KindergartenUpdateRequest.builder()
 			.name("멈무유치원")
 			.ownerName("홍길동")
-			.phone("01000000000")
+			.phone("010-0000-0000")
 			.build();
 
 		doNothing().when(kindergartenService).update(any(),any(),any());
@@ -227,7 +227,7 @@ class KindergartenControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.name").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()
@@ -243,7 +243,7 @@ class KindergartenControllerTest extends ControllerTest {
 							getConstraints("constraints", "2~8자 사이여야 합니다.")),
 					fieldWithPath("phone").type(JsonFieldType.STRING).description("전화번호")
 						.attributes(
-							getConstraints("constraints", "xxxxxxxxxxx 의 형식이어야 합니다."))
+							getConstraints("constraints", "xxx-xxxx-xxxx 의 형식이어야 합니다."))
 				)
 			)
 		);

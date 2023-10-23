@@ -31,7 +31,7 @@ import com.meommu.meommuapi.util.ControllerTest;
 @DisplayName("가이드 API")
 class GuideControllerTest extends ControllerTest {
 
-	@DisplayName("[일기] 가이드 목록 조회 요청을 하면 200을 반환한다.")
+	@DisplayName("가이드 전체 조회: 성공 -> 200")
 	@Test
 	void testFindGuides() throws Exception {
 		// given
@@ -57,7 +57,7 @@ class GuideControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.guides[0].id").value(1L),
 			jsonPath("$.data.guides[0].guide").value("산책에 관한 일상"),
 			jsonPath("$.data.guides[1].id").value(2L),
@@ -71,7 +71,7 @@ class GuideControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("[일기] 가이드 디테일 목록 조회 요청을 하면 200을 반환한다.")
+	@DisplayName("디테일 전체 조회: 성공 -> 200")
 	@Test
 	void guideDetailList() throws Exception {
 		// given
@@ -98,7 +98,7 @@ class GuideControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.details[0].id").value(1L),
 			jsonPath("$.data.details[0].detail").value("산책을 오래 했어요."),
 			jsonPath("$.data.details[1].id").value(2L),
@@ -116,7 +116,7 @@ class GuideControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("[일기] 가이드 디테일 생성 요청을 하면 201을 반환한다.")
+	@DisplayName("디테일 생성: 성공 201")
 	@Test
 	void guideDetailAdd() throws Exception {
 		// given
@@ -136,7 +136,7 @@ class GuideControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isCreated(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.savedId").value(1L)
 		).andDo(
 			MockMvcResultHandlers.print()
@@ -153,7 +153,7 @@ class GuideControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("[일기] 가이드 디테일 삭제 요청을 하면 200을 반환한다.")
+	@DisplayName("디테일 삭제: 성공 -> 204")
 	@Test
 	void guideDetailRemove() throws Exception {
 		// given
