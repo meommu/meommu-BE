@@ -2,7 +2,6 @@ package com.meommu.meommuapi.notice.controller;
 
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.BDDMockito.*;
-import static org.springframework.http.HttpHeaders.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -48,36 +47,35 @@ class NoticeControllerTest extends ControllerTest {
 			.build();
 	}
 
-	// @DisplayName("전체 조회: 성공 -> 200")
-	// @Test
-	// void testFindNotices() throws Exception {
-	// 	// given
-	// 	given(noticeService.findNotices()).willReturn(noticeResponses);
-	//
-	// 	// when
-	// 	ResultActions resultActions = mockMvc.perform(get("/api/v1/notices")
-	// 		.header(AUTHORIZATION, "<ACCESS_TOKEN>")
-	// 	);
-	//
-	// 	// then
-	// 	resultActions.andExpectAll(
-	// 		status().isOk(),
-	// 		jsonPath("$.code").value("0000"),
-	// 		jsonPath("$.message").value("정상"),
-	// 		jsonPath("$.data.notices[0].id").value(2L),
-	// 		jsonPath("$.data.notices[0].title").value("공지 2 제목"),
-	// 		jsonPath("$.data.notices[0].content").value("공지 2 내용"),
-	// 		jsonPath("$.data.notices[0].createdAt").isNotEmpty(),
-	// 		jsonPath("$.data.notices[1].id").value(1L),
-	// 		jsonPath("$.data.notices[1].title").value("공지 1 제목"),
-	// 		jsonPath("$.data.notices[1].content").value("공지 1 내용"),
-	// 		jsonPath("$.data.notices[1].createdAt").isNotEmpty()
-	// 	).andDo(
-	// 		MockMvcResultHandlers.print()
-	// 	).andDo(
-	// 		document("notices/getAll/success",
-	// 			getDocumentRequest(), getDocumentResponse()
-	// 		)
-	// 	);
-	// }
+	@DisplayName("전체 조회: 성공 -> 200")
+	@Test
+	void testFindNotices() throws Exception {
+		// given
+		given(noticeService.findNotices()).willReturn(noticeResponses);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/notices")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.notices[0].id").value(2L),
+			jsonPath("$.data.notices[0].title").value("공지 2 제목"),
+			jsonPath("$.data.notices[0].content").value("공지 2 내용"),
+			jsonPath("$.data.notices[0].createdAt").isNotEmpty(),
+			jsonPath("$.data.notices[1].id").value(1L),
+			jsonPath("$.data.notices[1].title").value("공지 1 제목"),
+			jsonPath("$.data.notices[1].content").value("공지 1 내용"),
+			jsonPath("$.data.notices[1].createdAt").isNotEmpty()
+		).andDo(
+			MockMvcResultHandlers.print()
+		).andDo(
+			document("notices/getAll/success",
+				getDocumentRequest(), getDocumentResponse()
+			)
+		);
+	}
 }
