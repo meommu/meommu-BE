@@ -47,7 +47,7 @@ class GptControllerTest extends ControllerTest {
 		resultActions.andExpectAll(
 			status().isCreated(),
 			jsonPath("$.code").value("0000"),
-			jsonPath("$.message").value("OK"),
+			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.content").value("생성된 일기 내용")
 		).andDo(
 			MockMvcResultHandlers.print()
