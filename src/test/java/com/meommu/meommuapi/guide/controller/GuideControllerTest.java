@@ -166,7 +166,9 @@ class GuideControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isNoContent()
+			status().isOk(),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
 		).andDo(
 			document("guide-detail/delete/success",
 				getDocumentRequest(), getDocumentResponse(),

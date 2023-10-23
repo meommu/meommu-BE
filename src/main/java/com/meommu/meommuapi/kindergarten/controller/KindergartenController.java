@@ -33,8 +33,8 @@ public class KindergartenController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/api/v1/kindergartens/signup")
-	public void signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
-		kindergartenService.signUp(signUpRequest);
+	public MyInfoResponse signUp(@Valid @RequestBody SignUpRequest signUpRequest) {
+		return kindergartenService.signUp(signUpRequest);
 	}
 
 	@GetMapping("/api/v1/kindergartens/email")
@@ -60,7 +60,6 @@ public class KindergartenController {
 		kindergartenService.update(kindergartenId, kindergartenUpdateRequest, authInfo);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/api/v1/kindergartens/{kindergartenId}")
 	public void deleteKindergarten(@PathVariable Long kindergartenId, @Auth AuthInfo authInfo) {
 		kindergartenService.delete(kindergartenId, authInfo);

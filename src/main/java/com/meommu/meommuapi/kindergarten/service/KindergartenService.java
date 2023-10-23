@@ -34,7 +34,7 @@ public class KindergartenService {
 	}
 
 	@Transactional
-	public void signUp(SignUpRequest signUpRequest) {
+	public MyInfoResponse signUp(SignUpRequest signUpRequest) {
 		validate(signUpRequest);
 		Kindergarten kindergarten = Kindergarten.of(
 			signUpRequest.getName(),
@@ -44,6 +44,7 @@ public class KindergartenService {
 			Password.of(encryptor, signUpRequest.getPassword())
 		);
 		kindergartenRepository.save(kindergarten);
+		return MyInfoResponse.from(kindergarten);
 	}
 
 	public void existsByEmail(EmailRequest emailRequest) {

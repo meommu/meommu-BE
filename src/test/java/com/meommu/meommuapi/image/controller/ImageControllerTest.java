@@ -172,7 +172,9 @@ class ImageControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isNoContent()
+			status().isOk(),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
@@ -197,7 +199,9 @@ class ImageControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isNoContent()
+			status().isOk(),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(

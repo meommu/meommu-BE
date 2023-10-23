@@ -43,13 +43,11 @@ public class ImageController {
 		return imageService.create(imagesSaveRequest);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/api/v1/images/{imageId}")
 	public void deleteImage(@PathVariable Long imageId) {
 		imageService.deleteById(imageId);
 	}
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/api/v1/images")
 	public void deleteImages(@RequestParam("id") List<Long> imageIds) {
 		imageService.deleteAllById(imageIds);

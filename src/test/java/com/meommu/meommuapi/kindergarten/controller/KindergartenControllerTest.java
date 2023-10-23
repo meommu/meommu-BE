@@ -10,6 +10,8 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -41,8 +43,13 @@ class KindergartenControllerTest extends ControllerTest {
 			.password("Password1!")
 			.passwordConfirmation("Password1!")
 			.build();
-
-		doNothing().when(kindergartenService).signUp(any());
+		var myInfoResponse = MyInfoResponse.builder()
+			.id(1L)
+			.name("멈무유치원")
+			.email("meommu@exam.com")
+			.createdAt(LocalDateTime.now())
+			.build();
+		given(kindergartenService.signUp(any())).willReturn(myInfoResponse);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(post("/api/v1/kindergartens/signup")
@@ -52,7 +59,14 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isCreated()
+			status().isCreated(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.id").value(1L),
+			jsonPath("$.data.name").value("멈무유치원"),
+			jsonPath("$.data.email").value("meommu@exam.com"),
+			jsonPath("$.data.createdAt").isNotEmpty()
+
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
@@ -142,6 +156,7 @@ class KindergartenControllerTest extends ControllerTest {
 			.id(1L)
 			.name("멈무유치원")
 			.email("meommu@exam.com")
+			.createdAt(LocalDateTime.now())
 			.build();
 
 		given(kindergartenService.findMyInfo(any())).willReturn(myInfoResponse);
@@ -158,7 +173,8 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.id").value(1L),
 			jsonPath("$.data.name").value("멈무유치원"),
-			jsonPath("$.data.email").value("meommu@exam.com")
+			jsonPath("$.data.email").value("meommu@exam.com"),
+			jsonPath("$.data.createdAt").isNotEmpty()
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
@@ -249,7 +265,7 @@ class KindergartenControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("탈퇴: 성공 -> 204")
+	@DisplayName("탈퇴: 성공 -> 200")
 	@Test
 	void testDeleteDiary() throws Exception {
 		// given
@@ -262,7 +278,9 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isNoContent()
+			status().isOk(),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
