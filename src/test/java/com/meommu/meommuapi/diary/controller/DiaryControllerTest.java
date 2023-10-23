@@ -113,9 +113,9 @@ class DiaryControllerTest extends ControllerTest {
 			document("diaries/getAll/success",
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
-					parameterWithName("year").description("년")
+					parameterWithName("year").description("년").optional()
 						.attributes(getConstraints("constraints", "yyyy의 형식이어야 합니다. 입력하지 않을 경우 현재 년도로 검색합니다.")),
-					parameterWithName("month").description("월")
+					parameterWithName("month").description("월").optional()
 						.attributes(getConstraints("constraints", "MM의 형식이어야 합니다. 입력하지 않을 경우 현재 월로 검색합니다."))
 				)
 			)
