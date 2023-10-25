@@ -24,7 +24,7 @@ import com.meommu.meommuapi.util.ControllerTest;
 @DisplayName("인증 API")
 class AuthControllerTest extends ControllerTest {
 
-	@DisplayName("로그인: 성공 -> 200")
+	@DisplayName("로그인: 성공 -> 201")
 	@Test
 	void testLogin() throws Exception {
 		// given
@@ -45,7 +45,7 @@ class AuthControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isOk(),
+			status().isCreated(),
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.accessToken").value("<ACCESS_TOKEN>")
