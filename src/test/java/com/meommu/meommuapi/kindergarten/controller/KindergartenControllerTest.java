@@ -100,7 +100,7 @@ class KindergartenControllerTest extends ControllerTest {
 	@Test
 	void testCheckEmailDuplication() throws Exception {
 		// given
-		doNothing().when(kindergartenService).existsByEmail(any());
+		given(kindergartenService.existsByEmail(any())).willReturn(true);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/email?email=meommu@exam.com")
@@ -108,7 +108,10 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isOk()
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").value(true)
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(
@@ -122,11 +125,11 @@ class KindergartenControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("이메일 중복 확인: 중복 -> 400")
+	@DisplayName("이메일 중복 확인: 중복 -> 200")
 	@Test
-	void testCheckEmailDuplicationWhenDuplicated() throws Exception { //TODO 테스트 속도 체크
+	void testCheckEmailDuplicationWhenDuplicated() throws Exception {
 		// given
-		willThrow(new DuplicateEmailException()).given(kindergartenService).existsByEmail(any());
+		given(kindergartenService.existsByEmail(any())).willReturn(false);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/email?email=meommu@exam.com")
@@ -134,7 +137,10 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isBadRequest()
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").value(false)
 		).andDo(
 			MockMvcResultHandlers.print()
 		).andDo(

@@ -842,6 +842,9 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </table>
 <h4 id="_응답" class="discrete">응답</h4>
 <h5 id="_중복이_아닐_경우" class="discrete">중복이 아닐 경우</h5>
+<div class="paragraph">
+<p>true를 반환합니다.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -851,21 +854,24 @@ Content-Length: 62
 {
   &quot;code&quot; : &quot;0000&quot;,
   &quot;message&quot; : &quot;정상&quot;,
-  &quot;data&quot; : null
+  &quot;data&quot; : true
 }</code></pre>
 </div>
 </div>
 <h5 id="_중복일_경우" class="discrete">중복일 경우</h5>
+<div class="paragraph">
+<p>false를 반환합니다.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 400 Bad Request
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 91
+Content-Length: 63
 
 {
-  &quot;code&quot; : &quot;K001&quot;,
-  &quot;message&quot; : &quot;이메일이 중복되었습니다.&quot;,
-  &quot;data&quot; : null
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;정상&quot;,
+  &quot;data&quot; : false
 }</code></pre>
 </div>
 </div>
@@ -969,7 +975,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.861976&quot;
+    &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.091024&quot;
   }
 }</code></pre>
 </div>
@@ -1072,7 +1078,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.834523&quot;
+    &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.066312&quot;
   }
 }</code></pre>
 </div>
@@ -1842,7 +1848,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 563
+Content-Length: 564
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -1850,17 +1856,17 @@ Content-Length: 563
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-10-25&quot;,
+      &quot;date&quot; : &quot;2023-10-26&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.539238&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.744742&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-10-24&quot;,
+      &quot;date&quot; : &quot;2023-10-25&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.53923&quot;,
+      &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.744735&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1914,9 +1920,9 @@ Content-Length: 281
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-10-24&quot;,
+    &quot;date&quot; : &quot;2023-10-25&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.516522&quot;,
+    &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.727181&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1940,7 +1946,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-25&quot;,
+  &quot;date&quot; : &quot;2023-10-26&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2035,7 +2041,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-25&quot;,
+  &quot;date&quot; : &quot;2023-10-26&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2204,7 +2210,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 373
+Content-Length: 374
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -2214,12 +2220,12 @@ Content-Length: 373
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-25T20:03:39.88547&quot;
+      &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.114732&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-24T20:03:39.885454&quot;
+      &quot;createdAt&quot; : &quot;2023-10-25T17:42:19.114716&quot;
     } ]
   }
 }</code></pre>

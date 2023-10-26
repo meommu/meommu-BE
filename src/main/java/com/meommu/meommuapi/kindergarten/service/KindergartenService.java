@@ -47,9 +47,9 @@ public class KindergartenService {
 		return MyInfoResponse.from(kindergarten);
 	}
 
-	public void existsByEmail(EmailRequest emailRequest) {
+	public boolean existsByEmail(EmailRequest emailRequest) {
 		String email = emailRequest.getEmail();
-		validateUniqueEmail(email);
+		return validateUniqueEmail(email);
 	}
 
 	public MyInfoResponse findMyInfo(AuthInfo authInfo) {
@@ -58,7 +58,7 @@ public class KindergartenService {
 	}
 
 	public KindergartenResponse find(Long kindergartenId, AuthInfo authInfo) {
-		if (kindergartenId != authInfo.getId()){
+		if (kindergartenId != authInfo.getId()) {
 			throw new AuthorizationException();
 		}
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
@@ -66,7 +66,7 @@ public class KindergartenService {
 	}
 
 	public void update(Long kindergartenId, KindergartenUpdateRequest myInfoUpdateRequest, AuthInfo authInfo) {
-		if (kindergartenId != authInfo.getId()){
+		if (kindergartenId != authInfo.getId()) {
 			throw new AuthorizationException();
 		}
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
@@ -74,7 +74,6 @@ public class KindergartenService {
 		kindergarten.updateOwnerName(myInfoUpdateRequest.getOwnerName());
 		kindergarten.updatePhone(myInfoUpdateRequest.getPhone());
 	}
-
 
 	public void delete(Long kindergartenId, AuthInfo authInfo) {
 		if (kindergartenId != authInfo.getId()) {
@@ -94,10 +93,11 @@ public class KindergartenService {
 		}
 	}
 
-	private void validateUniqueEmail(String email) {
+	private boolean validateUniqueEmail(String email) {
 		if (kindergartenRepository.existsByEmailValue(email)) {
-			throw new DuplicateEmailException();
+			return false;
 		}
+		return true;
 	}
 
 	private Kindergarten getKindergartenById(Long id) {

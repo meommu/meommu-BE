@@ -38,8 +38,8 @@ public class KindergartenController {
 	}
 
 	@GetMapping("/api/v1/kindergartens/email")
-	public void checkEmailDuplication(@Valid @ModelAttribute EmailRequest emailRequest) {
-		kindergartenService.existsByEmail(emailRequest);
+	public boolean checkEmailDuplication(@Valid @ModelAttribute EmailRequest emailRequest) {
+		return kindergartenService.existsByEmail(emailRequest);
 	}
 
 	@GetMapping("/api/v1/kindergartens/me")
