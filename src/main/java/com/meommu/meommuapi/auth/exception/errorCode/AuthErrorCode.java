@@ -23,6 +23,11 @@ public enum AuthErrorCode implements ErrorCode {
 	}
 
 	@Override
+	public String getName() {
+		return this.name();
+	}
+
+	@Override
 	public String getCode() {
 		return this.code;
 	}

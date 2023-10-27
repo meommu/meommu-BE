@@ -5,6 +5,8 @@ package com.meommu.meommuapi.common.exception.errorCode;
  */
 public interface ErrorCode {
 
+	String getName();
+
 	String getCode();
 
 	String getDescription();
