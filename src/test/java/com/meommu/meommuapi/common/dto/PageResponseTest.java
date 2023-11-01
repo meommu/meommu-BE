@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+@DisplayName("페이지네이션 응답 테스트")
 class PageResponseTest {
 	@DisplayName("페이지네이션 응답의 총 개수 계산")
 	@MethodSource("caseCalculateTotal")
