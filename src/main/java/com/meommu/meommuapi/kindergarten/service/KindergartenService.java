@@ -49,7 +49,7 @@ public class KindergartenService {
 
 	public boolean existsByEmail(EmailRequest emailRequest) {
 		String email = emailRequest.getEmail();
-		return validateUniqueEmail(email);
+		return isEmailUnique(email);
 	}
 
 	public MyInfoResponse findMyInfo(AuthInfo authInfo) {
@@ -93,11 +93,14 @@ public class KindergartenService {
 		}
 	}
 
-	private boolean validateUniqueEmail(String email) {
+	private boolean isEmailUnique(String email) {
+		return !kindergartenRepository.existsByEmailValue(email);
+	}
+
+	private void validateUniqueEmail(String email) {
 		if (kindergartenRepository.existsByEmailValue(email)) {
-			return false;
+			throw new DuplicateEmailException();
 		}
-		return true;
 	}
 
 	private Kindergarten getKindergartenById(Long id) {
