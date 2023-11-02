@@ -11,7 +11,7 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Email {
 
-	private static final Pattern PATTERN = Pattern.compile("^[a-z]{1}[a-z0-9_\\.]+@[a-z\\.]+\\.[a-zA-Z]+$");
+	private static final Pattern PATTERN = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
 
 	@Column(name = "email")
 	private String value;

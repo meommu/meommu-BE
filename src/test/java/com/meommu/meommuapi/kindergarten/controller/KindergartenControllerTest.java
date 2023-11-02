@@ -84,7 +84,7 @@ class KindergartenControllerTest extends ControllerTest {
 							getConstraints("constraints", "xxx-xxxx-xxxx 의 형식이어야 합니다.")),
 					fieldWithPath("email").type(JsonFieldType.STRING).description("이메일")
 						.attributes(
-							getConstraints("constraints", "이메일 형식이어야 합니다.")),
+							getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")),
 					fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호")
 						.attributes(
 							getConstraints("constraints", "8~20자 사이여야 합니다. 숫자와 특수기호가 각각 한 글자 이상 포함되어야 합니다.")),
@@ -119,7 +119,7 @@ class KindergartenControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
 					parameterWithName("email").description("중복 확인 이메일")
-						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다."))
+						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
 				)
 			)
 		);
@@ -148,7 +148,7 @@ class KindergartenControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
 					parameterWithName("email").description("중복 확인 이메일")
-						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다."))
+						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
 				)
 			)
 		);
