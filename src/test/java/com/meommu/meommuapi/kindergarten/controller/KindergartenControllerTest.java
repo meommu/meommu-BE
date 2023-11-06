@@ -68,8 +68,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.data.createdAt").isNotEmpty()
 
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("kindergartens/signUp/success",
 				getDocumentRequest(), getDocumentResponse(),
 				requestFields(
@@ -113,8 +111,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").value(true)
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("kindergartens/email/success",
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
@@ -141,8 +137,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").value(false)
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("kindergartens/email/fail",
 				getDocumentRequest(), getDocumentResponse(),
@@ -182,8 +176,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.data.email").value("meommu@exam.com"),
 			jsonPath("$.data.createdAt").isNotEmpty()
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("kindergartens/me/success",
 				getDocumentRequest(), getDocumentResponse()
 			)
@@ -218,8 +210,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.data.phone").value("010-0000-0000"),
 			jsonPath("$.data.email").value("meommu@exam.com")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("kindergartens/get/success",
 				getDocumentRequest(), getDocumentResponse()
 			)
@@ -251,8 +241,6 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.name").doesNotExist()
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("kindergartens/update/success",
 				getDocumentRequest(), getDocumentResponse(),
@@ -287,8 +275,6 @@ class KindergartenControllerTest extends ControllerTest {
 			status().isOk(),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("kindergartens/delete/success",
 				getDocumentRequest(), getDocumentResponse(),

@@ -108,8 +108,6 @@ class DiaryControllerTest extends ControllerTest {
 			jsonPath("$.data.diaries[1].createdAt").isNotEmpty(),
 			jsonPath("$.data.diaries[1].imageIds").isArray()
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("diaries/getAll/success",
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
@@ -146,8 +144,6 @@ class DiaryControllerTest extends ControllerTest {
 				jsonPath("$.data.content").value("일기 1 내용"),
 				jsonPath("$.data.createdAt").isNotEmpty(),
 				jsonPath("$.data.imageIds").isArray()
-			).andDo(
-				MockMvcResultHandlers.print()
 			).andDo(
 				document("diaries/get/success",
 					getDocumentRequest(), getDocumentResponse(),
@@ -186,8 +182,6 @@ class DiaryControllerTest extends ControllerTest {
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.savedId").value(1L)
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("diaries/create/success",
 				getDocumentRequest(), getDocumentResponse(),
@@ -236,8 +230,6 @@ class DiaryControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("diaries/update/success",
 				getDocumentRequest(), getDocumentResponse(),
 				pathParameters(
@@ -276,8 +268,6 @@ class DiaryControllerTest extends ControllerTest {
 			status().isOk(),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("diaries/delete/success",
 				getDocumentRequest(), getDocumentResponse(),

@@ -71,8 +71,6 @@ class NoticeControllerTest extends ControllerTest {
 			jsonPath("$.data.notices[1].content").value("공지 1 내용"),
 			jsonPath("$.data.notices[1].createdAt").isNotEmpty()
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("notices/getAll/success",
 				getDocumentRequest(), getDocumentResponse()
 			)

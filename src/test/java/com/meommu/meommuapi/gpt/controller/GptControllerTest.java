@@ -50,8 +50,6 @@ class GptControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.content").value("생성된 일기 내용")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("gpt/create/success",
 				getDocumentRequest(), getDocumentResponse(),
 				requestFields(

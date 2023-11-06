@@ -50,8 +50,6 @@ class AuthControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.accessToken").value("<ACCESS_TOKEN>")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("kindergartens/signIn/success",
 				getDocumentRequest(), getDocumentResponse(),
 				requestFields(
