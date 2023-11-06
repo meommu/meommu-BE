@@ -543,10 +543,11 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_응답형식">1.2. 응답형식</a>
 <ul class="sectlevel3">
 <li><a href="#_성공200_201">1.2.1. 성공(200, 201)</a></li>
-<li><a href="#_실패">1.2.2. 실패</a></li>
-<li><a href="#_상태코드httpstatus">1.2.3. 상태코드(HttpStatus)</a></li>
+<li><a href="#_실패400_401_403_404_500">1.2.2. 실패(400, 401, 403, 404, 500)</a></li>
 </ul>
 </li>
+<li><a href="#_http_상태코드">1.3. HTTP 상태코드</a></li>
+<li><a href="#_에러코드">1.4. 에러코드</a></li>
 </ul>
 </li>
 <li><a href="#_유치원">2. 유치원</a>
@@ -665,7 +666,10 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="sect2">
 <h3 id="_응답형식"><a class="link" href="#_응답형식">1.2. 응답형식</a></h3>
 <div class="paragraph">
-<p>프로젝트는 봉투 패턴을 적용해 다음과 같은 응답형식을 제공합니다.</p>
+<p>프로젝트는 봉투 패턴을 적용해 다음과 같이 일정한 응답형식을 제공합니다.</p>
+</div>
+<div class="paragraph">
+<p>code, message, data 필드가 항상 제공됩니다.</p>
 </div>
 <div class="sect3">
 <h4 id="_성공200_201"><a class="link" href="#_성공200_201">1.2.1. 성공(200, 201)</a></h4>
@@ -707,7 +711,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_실패"><a class="link" href="#_실패">1.2.2. 실패</a></h4>
+<h4 id="_실패400_401_403_404_500"><a class="link" href="#_실패400_401_403_404_500">1.2.2. 실패(400, 401, 403, 404, 500)</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -732,69 +736,284 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_상태코드httpstatus"><a class="link" href="#_상태코드httpstatus">1.2.3. 상태코드(HttpStatus)</a></h4>
-<div class="paragraph">
-<p>응답시 다음과 같은 응답상태 헤더, 응답코드 및 응답메시지를 제공합니다.</p>
 </div>
+<div class="sect2">
+<h3 id="_http_상태코드"><a class="link" href="#_http_상태코드">1.3. HTTP 상태코드</a></h3>
 <div class="paragraph">
-<p>특정 도메인과 관련된 코드도 별도로 존재합니다.</p>
+<p>응답의 HTTP 상태코드는 아래와 같습니다.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 30%;">
-<col style="width: 10%;">
-<col style="width: 30%;">
-<col style="width: 30%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">HttpStatus</th>
-<th class="tableblock halign-left valign-top">코드</th>
-<th class="tableblock halign-left valign-top">메시지</th>
-<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">상태 코드</th>
+<th class="tableblock halign-left valign-top">의미</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK(200)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0000</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"정상"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공적으로 요청이 처리</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200 OK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청을 성공적으로 처리함.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CREATED(201)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0000</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"정상"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">성공적으로 리소스가 생성</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>201 Created</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">새 리소스를 성공적으로 생성함.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTERNAL_SERVER_ERROR(500)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>S5XX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"알 수 없는 에러가 발생했습니다. 관리자에게 문의하세요."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">서버 내부 오류</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400 Bad Request</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 요청(요청값 누락, 잘목된 기입)을 보낸 경우.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FORBIDDEN(403)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C403</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"[AccessDenied] 잘못된 접근입니다."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">비인가 접속</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>401 Unauthorized</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">비인증 접속을 한 경우.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BAD_REQUEST(400)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C400</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"잘못된 요청입니다. 요청내용을 확인하세요."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">요청값 누락 혹은 잘못된 기입</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>403 Forbidden</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">비인가 접속을 한 경우. 본인 소유의 리소스만 접근 가능함.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NOT_FOUND(404)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>C404</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"요청한 리소스를 찾을 수 없습니다."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 기입</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>404 Not Found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 요청(이미 삭제된 리소스 접근)을 보내 리소스를 찾을 수 없는 경우.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500 Internal Server Error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">서버 내부 오류가 발생한 경우. 관리자에게 문의해야 함.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_에러코드"><a class="link" href="#_에러코드">1.4. 에러코드</a></h3>
+<div class="paragraph">
+<p>응답의 code 필드에 들어가는 에러코드 리스트입니다.
+특정 도메인과 관련된 코드가 별도로 존재합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>cmd + f 또는 ctrl + f로 검색할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">에러코드</th>
+<th class="tableblock halign-left valign-top">에러코드설명</th>
+<th class="tableblock halign-left valign-top">에러메시지</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SUCCESS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정상</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BAD_REQUEST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 요청입니다. 요청내용을 확인하세요.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C401</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UNAUTHORIZED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">인증되지 않았습니다. 인증을 확인하세요.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C403</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FORBIDDEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">권한이 없습니다. 권한을 확인하세요.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청내용을 찾을 수 없습니다. 요청내용을 확인하세요.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTERNAL_SERVER_ERROR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시스템 내부오류가 발생했습니다. 담당자에게 문의바랍니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S501</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON_PROCESSING_ERROR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시스템 내부오류가 발생했습니다. 담당자에게 문의바랍니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UNSUPPORTED_JWT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지원하지 않는 토큰 형식입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXPIRED_JWT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰 기한이 만료됐습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MALFORMED_JWT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰 값이 유효하지 않습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_SIGNATURE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰의 서명이 잘못되었습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_AUTHORIZATION_HEADER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">인증 헤더를 찾을 수 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_HEADER_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">인증 헤더 포멧이 올바르지 않습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOGIN_FAILED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">아이디 혹은 비밀번호가 올바르지 않습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOT_AUTHORITY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 리소스에 접근 권한이 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DUPLICATED_EMAIL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일이 중복되었습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_EMAIL_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_NAME_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유치원 이름 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_OWNER_NAME_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유치원 대표자 이름 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_PASSWORD_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">비밀번호가 일치하지 않습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_PHONE_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">휴대폰 번호 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_PASSWORD_CONFIRMATION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">비밀번호가 일치하지 않습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KINDERGARTEN_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유치원 정보를 찾을 수 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">G001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPT_SERVER_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPT 서버 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUIDE_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 포멧 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DETAIL_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 디테일 포멧 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUIDE_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 정보를 찾을 수 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DETAIL_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 디테일 정보를 찾을 수 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가이드 id 혹은 가이드 디테일 id가 잘못되었습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id로 이미지를 찾을 수 없음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVALID_IMAGE_TYPE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">올바르지 않은 이미지 타입</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CATEGORY_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일치하는 이미지 카테고리를 찾을 수 없음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_MAX_SIZE_ERROR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 최대 개수 오류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_DELETE_FAIL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 삭제 실패</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_UPLOAD_FAIL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 업로드 실패</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIARY_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 포멧 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DIARY_NOT_FOUND</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당하는 일기를 찾을 수 없습니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOG_NAME_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강아지 이름 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOTICE_TITLE_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공지 제목 포멧 오류입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NOTICE_CONTENT_FORMAT_EXCEPTION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공지 내용 포멧 오류입니다.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -836,7 +1055,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">중복 확인 이메일</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다. ^<span class="\w-\.">@([\w-]</span>\.)+[\w-]{2,4}$</p></td>
 </tr>
 </tbody>
 </table>
@@ -848,7 +1067,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -865,7 +1087,10 @@ Content-Length: 62
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 63
 
 {
@@ -885,7 +1110,7 @@ Content-Length: 63
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/kindergartens/signup HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Content-Length: 191
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
@@ -943,7 +1168,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다. ^<span class="\w-\.">@([\w-]</span>\.)+[\w-]{2,4}$</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
@@ -965,8 +1190,11 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json
-Content-Length: 189
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+Content-Length: 188
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -975,7 +1203,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.091024&quot;
+    &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.53891&quot;
   }
 }</code></pre>
 </div>
@@ -990,7 +1218,7 @@ Content-Length: 189
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/kindergartens/signin HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
@@ -1023,7 +1251,7 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일 형식이어야 합니다. ^<span class="\w-\.">@([\w-]</span>\.)+[\w-]{2,4}$</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
@@ -1038,7 +1266,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 100
 
 {
@@ -1068,7 +1299,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 189
 
 {
@@ -1078,7 +1312,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.066312&quot;
+    &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.509174&quot;
   }
 }</code></pre>
 </div>
@@ -1101,7 +1335,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 189
 
 {
@@ -1126,7 +1363,7 @@ Content-Length: 189
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">PUT /api/v1/kindergartens/1 HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Authorization: &lt;ACCESS_TOKEN&gt;
 Content-Length: 90
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
@@ -1142,7 +1379,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -1189,7 +1429,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -1248,7 +1491,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 199
 
 {
@@ -1302,7 +1548,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 109
 
 {
@@ -1325,7 +1574,7 @@ Content-Length: 109
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/images HTTP/1.1
-Content-Type: multipart/form-data; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
+Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
@@ -1373,7 +1622,10 @@ src/test/resources/testimages/coco.jpeg
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 199
 
 {
@@ -1433,7 +1685,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -1479,7 +1734,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -1507,7 +1765,7 @@ Content-Length: 62
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/gpt HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Authorization: &lt;ACCESS_TOKEN&gt;
 Content-Length: 77
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
@@ -1548,7 +1806,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 105
 
 {
@@ -1578,7 +1839,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 215
 
 {
@@ -1633,7 +1897,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 226
 
 {
@@ -1661,7 +1928,7 @@ Content-Length: 226
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/guides/1/details HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Authorization: &lt;ACCESS_TOKEN&gt;
 Content-Length: 49
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
@@ -1721,7 +1988,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 226
 
 {
@@ -1780,7 +2050,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -1808,7 +2081,7 @@ Content-Length: 62
 <h4 id="_요청_18" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries?year=2023&amp;month=10 HTTP/1.1
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries?year=2023&amp;month=11 HTTP/1.1
 Authorization: &lt;ACCESS_TOKEN&gt;
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
@@ -1847,7 +2120,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 564
 
 {
@@ -1856,17 +2132,17 @@ Content-Length: 564
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-10-26&quot;,
+      &quot;date&quot; : &quot;2023-11-06&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.744742&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.248458&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-10-25&quot;,
+      &quot;date&quot; : &quot;2023-11-05&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.744735&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.248453&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1912,7 +2188,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 281
 
 {
@@ -1920,9 +2199,9 @@ Content-Length: 281
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-10-25&quot;,
+    &quot;date&quot; : &quot;2023-11-05&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-10-26T17:42:18.727181&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.232537&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -1940,13 +2219,13 @@ Content-Length: 281
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">POST /api/v1/diaries HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Authorization: &lt;ACCESS_TOKEN&gt;
 Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-26&quot;,
+  &quot;date&quot; : &quot;2023-11-06&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2013,7 +2292,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 81
 
 {
@@ -2035,13 +2317,13 @@ Content-Length: 81
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">PUT /api/v1/diaries/1 HTTP/1.1
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8
 Authorization: &lt;ACCESS_TOKEN&gt;
 Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-10-26&quot;,
+  &quot;date&quot; : &quot;2023-11-06&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2127,7 +2409,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -2174,7 +2459,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 62
 
 {
@@ -2209,7 +2497,10 @@ Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
 Content-Length: 374
 
 {
@@ -2220,12 +2511,12 @@ Content-Length: 374
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-26T17:42:19.114732&quot;
+      &quot;createdAt&quot; : &quot;2023-11-06T15:18:43.560988&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-10-25T17:42:19.114716&quot;
+      &quot;createdAt&quot; : &quot;2023-11-05T15:18:43.560973&quot;
     } ]
   }
 }</code></pre>
@@ -2238,7 +2529,7 @@ Content-Length: 374
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-10-24 23:41:31 +0900
+Last updated 2023-11-06 15:17:42 +0900
 </div>
 </div>
 </body>

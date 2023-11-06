@@ -74,8 +74,6 @@ class ImageControllerTest extends ControllerTest {
 			jsonPath("$.data.images[1].id").value(2L),
 			jsonPath("$.data.images[1].url").value("https://test2.com")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("images/getAll/success",
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
@@ -104,8 +102,6 @@ class ImageControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.id").value(1L),
 			jsonPath("$.data.url").value("https://test1.com")
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("images/get/success",
 				getDocumentRequest(), getDocumentResponse(),
@@ -143,8 +139,6 @@ class ImageControllerTest extends ControllerTest {
 			jsonPath("$.data.images[1].id").value(2L),
 			jsonPath("$.data.images[1].url").value("https://test2.com")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("images/create/success",
 				getDocumentRequest(), getDocumentResponse(),
 				requestParts(
@@ -176,8 +170,6 @@ class ImageControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("images/delete/success",
 				getDocumentRequest(), getDocumentResponse(),
 				pathParameters(
@@ -202,8 +194,6 @@ class ImageControllerTest extends ControllerTest {
 			status().isOk(),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data").doesNotExist()
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("images/deleteAll/success",
 				getDocumentRequest(), getDocumentResponse(),

@@ -63,8 +63,6 @@ class GuideControllerTest extends ControllerTest {
 			jsonPath("$.data.guides[1].id").value(2L),
 			jsonPath("$.data.guides[1].guide").value("낮잠에 관한 일상")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("guide/getAll/success",
 				getDocumentRequest(), getDocumentResponse()
 			)
@@ -104,8 +102,6 @@ class GuideControllerTest extends ControllerTest {
 			jsonPath("$.data.details[1].id").value(2L),
 			jsonPath("$.data.details[1].detail").value("산책을 조금 했어요.")
 		).andDo(
-			MockMvcResultHandlers.print()
-		).andDo(
 			document("guide-detail/getAll/success",
 				getDocumentRequest(), getDocumentResponse(),
 				pathParameters(
@@ -138,8 +134,6 @@ class GuideControllerTest extends ControllerTest {
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.savedId").value(1L)
-		).andDo(
-			MockMvcResultHandlers.print()
 		).andDo(
 			document("guide-detail/create/success",
 				getDocumentRequest(), getDocumentResponse(),
