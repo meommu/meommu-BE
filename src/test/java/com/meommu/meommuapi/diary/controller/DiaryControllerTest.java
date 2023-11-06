@@ -29,6 +29,8 @@ import com.meommu.meommuapi.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
+import com.meommu.meommuapi.diary.dto.DiarySimpleResponse;
+import com.meommu.meommuapi.diary.dto.DiarySimpleResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.util.ControllerTest;
 
@@ -75,6 +77,54 @@ class DiaryControllerTest extends ControllerTest {
 			.build();
 	}
 
+	@DisplayName("요약 전체 조회: 성공 -> 200")
+	@Test
+	void testFindDiariesSimple() throws Exception {
+		// given
+		DiarySimpleResponse diarySimpleResponse1 = DiarySimpleResponse.builder()
+			.id(1L)
+			.date(LocalDate.now().minusDays(1))
+			.createdAt(LocalDateTime.now())
+			.imageIds(imageIds)
+			.build();
+
+		DiarySimpleResponse diarySimpleResponse2 = DiarySimpleResponse.builder()
+			.id(2L)
+			.date(LocalDate.now())
+			.createdAt(LocalDateTime.now())
+			.imageIds(imageIds)
+			.build();
+		DiarySimpleResponses diarySimpleResponses = DiarySimpleResponses.builder()
+			.diarySimpleResponses(List.of(diarySimpleResponse2, diarySimpleResponse1))
+			.build();
+
+		given(diaryService.findDiariesSimple(any())).willReturn(diarySimpleResponses);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries/date")
+			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.diaries[0].id").value(2L),
+			jsonPath("$.data.diaries[0].date").value(LocalDate.now().toString()),
+			jsonPath("$.data.diaries[0].createdAt").isNotEmpty(),
+			jsonPath("$.data.diaries[0].imageIds").isArray(),
+			jsonPath("$.data.diaries[1].id").value(1L),
+			jsonPath("$.data.diaries[1].date").value(LocalDate.now().minusDays(1).toString()),
+			jsonPath("$.data.diaries[1].createdAt").isNotEmpty(),
+			jsonPath("$.data.diaries[1].imageIds").isArray()
+		).andDo(
+			document("diaries-date/getAll/success",
+				getDocumentRequest(), getDocumentResponse()
+			)
+		);
+	}
+
 	@DisplayName("전체 조회: 성공 -> 200")
 	@Test
 	void testFindDiaries() throws Exception {
@@ -111,10 +161,10 @@ class DiaryControllerTest extends ControllerTest {
 			document("diaries/getAll/success",
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
-					parameterWithName("year").description("년").optional()
-						.attributes(getConstraints("constraints", "yyyy의 형식이어야 합니다. 입력하지 않을 경우 현재 년도로 검색합니다.")),
-					parameterWithName("month").description("월").optional()
-						.attributes(getConstraints("constraints", "MM의 형식이어야 합니다. 입력하지 않을 경우 현재 월로 검색합니다."))
+					parameterWithName("year").description("년")
+						.attributes(getConstraints("constraints", "yyyy의 형식이어야 합니다.")),
+					parameterWithName("month").description("월")
+						.attributes(getConstraints("constraints", "MM의 형식이어야 합니다."))
 				)
 			)
 		);
