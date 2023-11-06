@@ -24,10 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.meommu.meommuapi.util.ControllerTest;
 import com.meommu.meommuapi.util.documentation.CustomResponseFieldsSnippet;
 
-@DisplayName("에러코드 문서화 테스트")
+@DisplayName("에러코드 문서화")
 class EnumControllerTest extends ControllerTest {
-
-	// private static final String ERROR_SNIPPET_FILE = "errorCode-response";
 
 	ObjectMapper objectMapper = new ObjectMapper();
 
@@ -53,7 +51,7 @@ class EnumControllerTest extends ControllerTest {
 		);
 	}
 
-	public static CustomResponseFieldsSnippet customResponseFields(
+	private static CustomResponseFieldsSnippet customResponseFields(
 		String snippetFilePrefix,
 		List<FieldDescriptor> fieldDescriptors) {
 		return new CustomResponseFieldsSnippet(snippetFilePrefix, fieldDescriptors, true);
