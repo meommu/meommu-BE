@@ -13,8 +13,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.meommu.meommuapi.auth.controller.AuthController;
 import com.meommu.meommuapi.auth.service.AuthService;
@@ -22,6 +24,7 @@ import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.common.interceptor.AuthInterceptor;
 import com.meommu.meommuapi.diary.controller.DiaryController;
 import com.meommu.meommuapi.diary.service.DiaryService;
+import com.meommu.meommuapi.enumTest.EnumController;
 import com.meommu.meommuapi.gpt.controller.GptController;
 import com.meommu.meommuapi.gpt.service.GptService;
 import com.meommu.meommuapi.guide.controller.GuideController;
@@ -42,6 +45,7 @@ import com.meommu.meommuapi.util.documentation.DocumentUtils;
 	GuideController.class,
 	DiaryController.class,
 	NoticeController.class,
+	EnumController.class,
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)
@@ -80,7 +84,9 @@ public abstract class ControllerTest {
 	@BeforeEach
 	void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+			.addFilters(new CharacterEncodingFilter("UTF-8", true))
 			.apply(documentationConfiguration(restDocumentation).snippets().withEncoding("UTF-8"))
+			.alwaysDo(MockMvcResultHandlers.print())
 			.build();
 
 		given(authInterceptor.preHandle(any(), any(), any()))
