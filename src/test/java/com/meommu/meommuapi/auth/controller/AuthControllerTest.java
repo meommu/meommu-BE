@@ -24,7 +24,7 @@ import com.meommu.meommuapi.util.ControllerTest;
 @DisplayName("인증 API")
 class AuthControllerTest extends ControllerTest {
 
-	@DisplayName("로그인: 성공 -> 200")
+	@DisplayName("로그인: 성공 -> 201")
 	@Test
 	void testLogin() throws Exception {
 		// given
@@ -45,7 +45,7 @@ class AuthControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-			status().isOk(),
+			status().isCreated(),
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.accessToken").value("<ACCESS_TOKEN>")
@@ -57,7 +57,7 @@ class AuthControllerTest extends ControllerTest {
 				requestFields(
 					fieldWithPath("email").type(JsonFieldType.STRING).description("이메일")
 						.attributes(
-							getConstraints("constraints", "이메일 형식이어야 합니다.")),
+							getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")),
 					fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호")
 						.attributes(
 							getConstraints("constraints", "8~20자 사이여야 합니다. 숫자와 특수기호가 각각 한 글자 이상 포함되어야 합니다."))

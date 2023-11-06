@@ -18,6 +18,11 @@ public enum NoticeErrorCode implements ErrorCode {
 	}
 
 	@Override
+	public String getName() {
+		return this.name();
+	}
+
+	@Override
 	public String getCode() {
 		return this.code;
 	}

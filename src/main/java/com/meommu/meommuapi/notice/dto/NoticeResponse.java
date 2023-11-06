@@ -31,7 +31,10 @@ public class NoticeResponse {
 
 	public static NoticeResponse from(Notice notice) {
 		return  NoticeResponse.builder()
-
+			.id(notice.getId())
+			.title(notice.getTitle())
+			.content(notice.getContent())
+			.createdAt(notice.getCreatedAt())
 			.build();
 	}
 }
