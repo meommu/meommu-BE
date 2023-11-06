@@ -1,6 +1,19 @@
 == 일기
 일기 조회, 생성, 수정, 삭제 기능을 제공합니다.
 
+=== 일기 요약 전체 조회
+일기 요약 정보를 조회합니다. 최신순으로 정렬됩니다.
+이미지 URL은 이미지 API를 통해 id로 조회하면 됩니다.
+
+[discrete]
+==== 요청
+include::{snippets}/diaries-date/getAll/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/diaries-date/getAll/success/http-response.adoc[]
+
+
 === 일기 전체 조회
 일기를 년월별로 조회합니다. 최신순으로 정렬됩니다.
 이미지 URL은 이미지 API를 통해 id로 조회하면 됩니다.
