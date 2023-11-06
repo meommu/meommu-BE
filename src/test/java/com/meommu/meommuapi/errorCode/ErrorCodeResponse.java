@@ -1,4 +1,4 @@
-package com.meommu.meommuapi.enumTest;
+package com.meommu.meommuapi.errorCode;
 
 import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 

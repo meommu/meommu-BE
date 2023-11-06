@@ -1,8 +1,7 @@
-package com.meommu.meommuapi.enumTest;
+package com.meommu.meommuapi.errorCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +20,10 @@ import com.meommu.meommuapi.kindergarten.exception.errorCode.KindergartenErrorCo
 import com.meommu.meommuapi.notice.exception.errorCode.NoticeErrorCode;
 
 @RestController
-public class EnumController {
+public class ErrorCodeController {
 
 	@GetMapping("/error-code")
-	public Map<String, ErrorCodeResponse> findEnums() {
+	public Map<String, ErrorCodeResponse> findErrorCodes() {
 		List<ErrorCode> errorCodes = new ArrayList<>();
 		errorCodes.addAll(Arrays.asList(BusinessErrorCode.values()));
 		errorCodes.addAll(Arrays.asList(AuthErrorCode.values()));

@@ -24,7 +24,7 @@ import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.common.interceptor.AuthInterceptor;
 import com.meommu.meommuapi.diary.controller.DiaryController;
 import com.meommu.meommuapi.diary.service.DiaryService;
-import com.meommu.meommuapi.enumTest.EnumController;
+import com.meommu.meommuapi.errorCode.ErrorCodeController;
 import com.meommu.meommuapi.gpt.controller.GptController;
 import com.meommu.meommuapi.gpt.service.GptService;
 import com.meommu.meommuapi.guide.controller.GuideController;
@@ -45,7 +45,7 @@ import com.meommu.meommuapi.util.documentation.DocumentUtils;
 	GuideController.class,
 	DiaryController.class,
 	NoticeController.class,
-	EnumController.class,
+	ErrorCodeController.class,
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)

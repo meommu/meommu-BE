@@ -1,4 +1,4 @@
-package com.meommu.meommuapi.enumTest;
+package com.meommu.meommuapi.errorCode;
 
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
@@ -25,13 +25,13 @@ import com.meommu.meommuapi.util.ControllerTest;
 import com.meommu.meommuapi.util.documentation.CustomResponseFieldsSnippet;
 
 @DisplayName("에러코드 문서화")
-class EnumControllerTest extends ControllerTest {
+class ErrorCodeControllerTest extends ControllerTest {
 
 	ObjectMapper objectMapper = new ObjectMapper();
 
 	@DisplayName("에러코드 전체 조회: 성공 -> 200")
 	@Test
-	public void testFindAllEnums() throws Exception {
+	public void testFindErrorCodes() throws Exception {
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/error-code")
 		);
