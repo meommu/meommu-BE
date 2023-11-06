@@ -18,6 +18,7 @@ import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
+import com.meommu.meommuapi.diary.dto.DiarySimpleResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.service.DiaryService;
 
@@ -30,6 +31,12 @@ public class DiaryController {
 
 	public DiaryController(DiaryService diaryService) {
 		this.diaryService = diaryService;
+	}
+
+	@GetMapping("/api/v1/diaries/date")
+	public DiarySimpleResponses findDiariesSimple(
+		@Auth AuthInfo authInfo) {
+		return diaryService.findDiariesSimple(authInfo);
 	}
 
 	@GetMapping("/api/v1/diaries")
