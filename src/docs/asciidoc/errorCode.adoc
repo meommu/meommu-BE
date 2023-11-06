@@ -1,0 +1,7 @@
+=== 에러코드
+응답의 code 필드에 들어가는 에러코드 리스트입니다.
+특정 도메인과 관련된 코드가 별도로 존재합니다.
+
+- cmd + f 또는 ctrl + f로 검색할 수 있습니다.
+
+include::{snippets}/error-code/getAll/success/errorCode-response-fields.adoc[]
