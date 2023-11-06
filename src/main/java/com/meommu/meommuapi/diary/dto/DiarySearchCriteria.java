@@ -11,8 +11,10 @@ import lombok.Setter;
 @Setter
 public class DiarySearchCriteria {
 
+	@NotNull(message = "연도는 필수로 입력해야합니다.")
 	private Integer year;
 
+	@NotNull(message = "월은 필수로 입력해야합니다.")
 	private Integer month;
 
 	private DiarySearchCriteria() {
@@ -20,7 +22,7 @@ public class DiarySearchCriteria {
 
 	@Builder
 	private DiarySearchCriteria(Integer year, Integer month) {
-		this.year = year == null ? LocalDate.now().getYear() : year;
-		this.month = month == null ? LocalDate.now().getMonth().getValue() : month;
+		this.year = year;
+		this.month = month;
 	}
 }

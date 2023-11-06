@@ -16,6 +16,7 @@ import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.exception.DiaryNotFoundException;
 import com.meommu.meommuapi.diary.repository.DiaryImageRepository;
@@ -41,11 +42,18 @@ public class DiaryService {
 		this.kindergartenRepository = kindergartenRepository;
 	}
 
+	public DiarySummaryResponses findDiariesSummary(AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDesc(kindergarten);
+		return DiarySummaryResponses.from(diaries);
+	}
+
 	public DiaryResponses findDiaries(DiarySearchCriteria criteria, AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		LocalDate startDate = LocalDate.of(criteria.getYear(), criteria.getMonth(), 1);
 		LocalDate endDate = startDate.plusMonths(1).minusDays(1);
-		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDesc(kindergarten, startDate, endDate);
+		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDesc(kindergarten, startDate,
+			endDate);
 		return DiaryResponses.from(diaries);
 	}
 
@@ -135,4 +143,5 @@ public class DiaryService {
 		diary.getDiaryImages().addAll(diaryImages);
 		diaryImageRepository.saveAll(diaryImages);
 	}
+
 }
