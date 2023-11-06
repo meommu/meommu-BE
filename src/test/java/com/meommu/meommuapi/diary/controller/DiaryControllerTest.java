@@ -22,15 +22,14 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
-import com.meommu.meommuapi.diary.dto.DiarySimpleResponse;
-import com.meommu.meommuapi.diary.dto.DiarySimpleResponses;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponse;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.util.ControllerTest;
 
@@ -79,29 +78,29 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("요약 전체 조회: 성공 -> 200")
 	@Test
-	void testFindDiariesSimple() throws Exception {
+	void testFindDiariesSummary() throws Exception {
 		// given
-		DiarySimpleResponse diarySimpleResponse1 = DiarySimpleResponse.builder()
+		DiarySummaryResponse diarySummaryResponse1 = DiarySummaryResponse.builder()
 			.id(1L)
 			.date(LocalDate.now().minusDays(1))
 			.createdAt(LocalDateTime.now())
 			.imageIds(imageIds)
 			.build();
 
-		DiarySimpleResponse diarySimpleResponse2 = DiarySimpleResponse.builder()
+		DiarySummaryResponse diarySummaryResponse2 = DiarySummaryResponse.builder()
 			.id(2L)
 			.date(LocalDate.now())
 			.createdAt(LocalDateTime.now())
 			.imageIds(imageIds)
 			.build();
-		DiarySimpleResponses diarySimpleResponses = DiarySimpleResponses.builder()
-			.diarySimpleResponses(List.of(diarySimpleResponse2, diarySimpleResponse1))
+		DiarySummaryResponses diarySummaryResponses = DiarySummaryResponses.builder()
+			.diarySimpleResponses(List.of(diarySummaryResponse2, diarySummaryResponse1))
 			.build();
 
-		given(diaryService.findDiariesSimple(any())).willReturn(diarySimpleResponses);
+		given(diaryService.findDiariesSummary(any())).willReturn(diarySummaryResponses);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries/date")
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries/summary")
 			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
 		);
 
@@ -119,7 +118,7 @@ class DiaryControllerTest extends ControllerTest {
 			jsonPath("$.data.diaries[1].createdAt").isNotEmpty(),
 			jsonPath("$.data.diaries[1].imageIds").isArray()
 		).andDo(
-			document("diaries-date/getAll/success",
+			document("diaries/summary/success",
 				getDocumentRequest(), getDocumentResponse()
 			)
 		);

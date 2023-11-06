@@ -7,11 +7,11 @@
 
 [discrete]
 ==== 요청
-include::{snippets}/diaries-date/getAll/success/http-request.adoc[]
+include::{snippets}/diaries/summary/success/http-request.adoc[]
 
 [discrete]
 ==== 응답
-include::{snippets}/diaries-date/getAll/success/http-response.adoc[]
+include::{snippets}/diaries/summary/success/http-response.adoc[]
 
 
 === 일기 전체 조회

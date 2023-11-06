@@ -16,8 +16,7 @@ import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
-import com.meommu.meommuapi.diary.dto.DiarySimpleResponse;
-import com.meommu.meommuapi.diary.dto.DiarySimpleResponses;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.exception.DiaryNotFoundException;
 import com.meommu.meommuapi.diary.repository.DiaryImageRepository;
@@ -43,10 +42,10 @@ public class DiaryService {
 		this.kindergartenRepository = kindergartenRepository;
 	}
 
-	public DiarySimpleResponses findDiariesSimple(AuthInfo authInfo) {
+	public DiarySummaryResponses findDiariesSummary(AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDesc(kindergarten);
-		return DiarySimpleResponses.from(diaries);
+		return DiarySummaryResponses.from(diaries);
 	}
 
 	public DiaryResponses findDiaries(DiarySearchCriteria criteria, AuthInfo authInfo) {

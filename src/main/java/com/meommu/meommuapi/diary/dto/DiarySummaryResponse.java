@@ -10,25 +10,25 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class DiarySimpleResponse {
+public class DiarySummaryResponse {
 	private Long id;
 	private LocalDate date;
 	private LocalDateTime createdAt;
 	private List<Long> imageIds;
 
-	private DiarySimpleResponse() {
+	private DiarySummaryResponse() {
 	}
 
 	@Builder
-	private DiarySimpleResponse(Long id, LocalDate date, LocalDateTime createdAt, List<Long> imageIds) {
+	private DiarySummaryResponse(Long id, LocalDate date, LocalDateTime createdAt, List<Long> imageIds) {
 		this.id = id;
 		this.date = date;
 		this.createdAt = createdAt;
 		this.imageIds = imageIds;
 	}
 
-	public static DiarySimpleResponse from(Diary diary) {
-		return DiarySimpleResponse.builder()
+	public static DiarySummaryResponse from(Diary diary) {
+		return DiarySummaryResponse.builder()
 			.id(diary.getId())
 			.date(diary.getDate())
 			.createdAt(diary.getCreatedAt())
