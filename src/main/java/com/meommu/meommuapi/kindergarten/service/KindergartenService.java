@@ -58,33 +58,34 @@ public class KindergartenService {
 	}
 
 	public KindergartenResponse find(Long kindergartenId, AuthInfo authInfo) {
-		if (kindergartenId != authInfo.getId()) {
-			throw new AuthorizationException();
-		}
-		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		validateOwner(authInfo.getId(), kindergartenId);
+		Kindergarten kindergarten = getKindergartenById(kindergartenId);
 		return KindergartenResponse.from(kindergarten);
 	}
 
-	public void update(Long kindergartenId, KindergartenUpdateRequest myInfoUpdateRequest, AuthInfo authInfo) {
-		if (kindergartenId != authInfo.getId()) {
-			throw new AuthorizationException();
-		}
-		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
-		kindergarten.updateName(myInfoUpdateRequest.getName());
-		kindergarten.updateOwnerName(myInfoUpdateRequest.getOwnerName());
-		kindergarten.updatePhone(myInfoUpdateRequest.getPhone());
+	public void update(Long kindergartenId, KindergartenUpdateRequest kindergartenUpdateRequest, AuthInfo authInfo) {
+		validateOwner(authInfo.getId(), kindergartenId);
+		Kindergarten kindergarten = getKindergartenById(kindergartenId);
+		kindergarten.updateName(kindergartenUpdateRequest.getName());
+		kindergarten.updateOwnerName(kindergartenUpdateRequest.getOwnerName());
+		kindergarten.updatePhone(kindergartenUpdateRequest.getPhone());
 	}
 
 	public void delete(Long kindergartenId, AuthInfo authInfo) {
-		if (kindergartenId != authInfo.getId()) {
-			throw new AuthorizationException();
-		}
+		validateOwner(authInfo.getId(), kindergartenId);
+		Kindergarten kindergarten = getKindergartenById(kindergartenId);
 		kindergartenRepository.deleteById(kindergartenId);
 	}
 
 	private void validate(SignUpRequest signUpRequest) {
 		confirmPassword(signUpRequest.getPassword(), signUpRequest.getPasswordConfirmation());
 		validateUniqueEmail(signUpRequest.getEmail());
+	}
+
+	private void validateOwner(Long authId, Long kindergartenId) {
+		if (authId != kindergartenId) {
+			throw new AuthorizationException();
+		}
 	}
 
 	private void confirmPassword(String password, String passwordConfirmation) {
