@@ -24,9 +24,8 @@ public class Phone {
 	}
 
 	public static Phone from(String value) {
-		String trimValue = value.trim();
-		validate(trimValue);
-		return new Phone(trimValue);
+		validate(value);
+		return new Phone(value);
 	}
 
 	public static void validate(String value) {

@@ -24,9 +24,8 @@ public class OwnerName {
 	}
 
 	public static OwnerName from(String value) {
-		String trimValue = value.trim();
-		validate(trimValue);
-		return new OwnerName(trimValue);
+		validate(value);
+		return new OwnerName(value);
 	}
 
 	public static void validate(String value) {

@@ -24,9 +24,8 @@ public class Email {
 	}
 
 	public static Email from(String value) {
-		String trimValue = value.trim();
-		validate(trimValue);
-		return new Email(trimValue);
+		validate(value);
+		return new Email(value);
 	}
 
 	public static void validate(String value) {
