@@ -58,22 +58,22 @@ public class KindergartenService {
 	}
 
 	public KindergartenResponse find(Long kindergartenId, AuthInfo authInfo) {
+		validateOwner(authInfo.getId(), kindergartenId);
 		Kindergarten kindergarten = getKindergartenById(kindergartenId);
-		validateOwner(authInfo, kindergarten);
 		return KindergartenResponse.from(kindergarten);
 	}
 
-	public void update(Long kindergartenId, KindergartenUpdateRequest myInfoUpdateRequest, AuthInfo authInfo) {
+	public void update(Long kindergartenId, KindergartenUpdateRequest kindergartenUpdateRequest, AuthInfo authInfo) {
+		validateOwner(authInfo.getId(), kindergartenId);
 		Kindergarten kindergarten = getKindergartenById(kindergartenId);
-		validateOwner(authInfo, kindergarten);
-		kindergarten.updateName(myInfoUpdateRequest.getName());
-		kindergarten.updateOwnerName(myInfoUpdateRequest.getOwnerName());
-		kindergarten.updatePhone(myInfoUpdateRequest.getPhone());
+		kindergarten.updateName(kindergartenUpdateRequest.getName());
+		kindergarten.updateOwnerName(kindergartenUpdateRequest.getOwnerName());
+		kindergarten.updatePhone(kindergartenUpdateRequest.getPhone());
 	}
 
 	public void delete(Long kindergartenId, AuthInfo authInfo) {
+		validateOwner(authInfo.getId(), kindergartenId);
 		Kindergarten kindergarten = getKindergartenById(kindergartenId);
-		validateOwner(authInfo, kindergarten);
 		kindergartenRepository.deleteById(kindergartenId);
 	}
 
@@ -82,8 +82,8 @@ public class KindergartenService {
 		validateUniqueEmail(signUpRequest.getEmail());
 	}
 
-	private void validateOwner(AuthInfo authInfo, Kindergarten kindergarten) {
-		if (authInfo.getId() != kindergarten.getId()) {
+	private void validateOwner(Long authId, Long kindergartenId) {
+		if (authId != kindergartenId) {
 			throw new AuthorizationException();
 		}
 	}
