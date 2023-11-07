@@ -33,7 +33,7 @@ class KindergartenServiceTest extends ServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		kindergarten = kindergarten.builder()
+		kindergarten = Kindergarten.builder()
 			.name("멈무유치원")
 			.ownerName("김철수")
 			.phone("010-0000-0000")
