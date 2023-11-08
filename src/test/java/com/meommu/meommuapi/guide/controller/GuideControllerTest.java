@@ -50,7 +50,7 @@ class GuideControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/guides")
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -89,7 +89,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.get("/api/v1/guides/{guideId}/details", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -123,7 +123,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/guides/{guideId}/details", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 				.content(JsonUtils.toJson(guideDetailSaveRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -156,7 +156,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.delete("/api/v1/guides/{guideId}/details/{detailId}", 1L, 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>"));
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
 
 		// then
 		resultActions.andExpectAll(

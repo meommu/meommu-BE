@@ -39,7 +39,7 @@ class GptControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(post("/api/v1/gpt")
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 			.content(JsonUtils.toJson(gptGenerateRequest))
 			.contentType(MediaType.APPLICATION_JSON_VALUE));
 

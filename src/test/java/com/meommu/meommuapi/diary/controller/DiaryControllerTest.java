@@ -101,7 +101,7 @@ class DiaryControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries/summary")
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -132,7 +132,7 @@ class DiaryControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries")
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 			.param("year", String.valueOf(LocalDate.now().getYear()))
 			.param("month", String.valueOf(LocalDate.now().getMonthValue()))
 		);
@@ -178,7 +178,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.get("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -220,7 +220,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/diaries")
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 				.content(JsonUtils.toJson(diarySaveRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -267,7 +267,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			put("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 				.content(JsonUtils.toJson(diaryUpdateRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -310,7 +310,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.delete("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>"));
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
 
 		// then
 		resultActions.andExpectAll(

@@ -18,14 +18,12 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.meommu.meommuapi.common.util.JsonUtils;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
-import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
 import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
-import com.meommu.meommuapi.kindergarten.exception.DuplicateEmailException;
 import com.meommu.meommuapi.util.ControllerTest;
 
 @DisplayName("유치원 API")
@@ -115,7 +113,8 @@ class KindergartenControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
 					parameterWithName("email").description("중복 확인 이메일")
-						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+						.attributes(
+							getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
 				)
 			)
 		);
@@ -142,7 +141,8 @@ class KindergartenControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				queryParameters(
 					parameterWithName("email").description("중복 확인 이메일")
-						.attributes(getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+						.attributes(
+							getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
 				)
 			)
 		);
@@ -163,7 +163,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/me")
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -196,8 +196,8 @@ class KindergartenControllerTest extends ControllerTest {
 		given(kindergartenService.find(any(), any())).willReturn(kindergartenResponse);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/{kindergartenId}",1L)
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/{kindergartenId}", 1L)
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 		);
 
 		// then
@@ -226,11 +226,11 @@ class KindergartenControllerTest extends ControllerTest {
 			.phone("010-0000-0000")
 			.build();
 
-		doNothing().when(kindergartenService).update(any(),any(),any());
+		doNothing().when(kindergartenService).update(any(), any(), any());
 
 		// when
-		ResultActions resultActions = mockMvc.perform(put("/api/v1/kindergartens/{kindergartenId}",1L)
-			.header(AUTHORIZATION, "<ACCESS_TOKEN>")
+		ResultActions resultActions = mockMvc.perform(put("/api/v1/kindergartens/{kindergartenId}", 1L)
+			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
 			.content(JsonUtils.toJson(kindergartenUpdateRequest))
 			.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -268,7 +268,7 @@ class KindergartenControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.delete("/api/v1/kindergartens/{kindergartenId}", 1L)
-				.header(AUTHORIZATION, "<ACCESS_TOKEN>"));
+				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
 
 		// then
 		resultActions.andExpectAll(
