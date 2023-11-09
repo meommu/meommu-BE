@@ -127,7 +127,6 @@ public class Diary extends BaseTimeEntity {
 
 	private void addDiaryImage(DiaryImage diaryImage) {
 		if (diaryImage != null) {
-			diaryImage.setDiary(this);
 			this.diaryImages.add(diaryImage);
 		}
 	}

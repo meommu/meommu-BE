@@ -23,12 +23,13 @@ public class Content {
 	}
 
 	public static Content from(String value) {
-		validate(value);
-		return new Content(value);
+		String trimValue = value.trim();
+		validate(trimValue);
+		return new Content(trimValue);
 	}
 
 	private static void validate(String value) {
-		if (value.length() > LIMIT_LENGTH || value.length() == 0) {
+		if (value == null || value.length() > LIMIT_LENGTH || value.length() == 0) {
 			throw new InvalidContentFormatException();
 		}
 	}
