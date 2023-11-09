@@ -1,5 +1,7 @@
 package com.meommu.meommuapi.diary.dto;
 
+import static com.meommu.meommuapi.common.config.Constant.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import lombok.Getter;
 
 @Getter
 public class DiaryUpdateRequest {
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = FORMAT_LOCAL_DATE, timezone = "Asia/Seoul")
 	private LocalDate date;
 
 	private String dogName;
