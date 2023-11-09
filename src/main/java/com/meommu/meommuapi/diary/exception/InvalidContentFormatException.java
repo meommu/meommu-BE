@@ -6,6 +6,6 @@ import com.meommu.meommuapi.diary.exception.errorCode.DiaryErrorCode;
 public class InvalidContentFormatException extends BadRequestException {
 
 	public InvalidContentFormatException() {
-		super(DiaryErrorCode.DIARY_FORMAT_EXCEPTION);
+		super(DiaryErrorCode.CONTENT_FORMAT_EXCEPTION);
 	}
 }
