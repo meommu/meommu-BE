@@ -60,7 +60,7 @@ public class DiaryService {
 	public DiaryResponse findDiary(Long diaryId, AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		Diary diary = getDiaryById(diaryId);
-		validatePermission(diary, kindergarten);
+		validateOwner(diary, kindergarten);
 		return DiaryResponse.from(diary);
 	}
 
@@ -75,16 +75,15 @@ public class DiaryService {
 	public void update(Long diaryId, DiaryUpdateRequest request, AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		Diary diary = getDiaryById(diaryId);
-		validatePermission(diary, kindergarten);
-		updateDiaryFields(diary, request);
-		updateDiaryImages(diary, request.getImageIds());
+		validateOwner(diary, kindergarten);
+		updateDiaryFields(request, diary);
 	}
 
 	@Transactional
 	public void delete(Long diaryId, AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		Diary diary = getDiaryById(diaryId);
-		validatePermission(diary, kindergarten);
+		validateOwner(diary, kindergarten);
 		diaryRepository.deleteById(diaryId);
 	}
 
@@ -96,7 +95,7 @@ public class DiaryService {
 		return diaryRepository.findById(id).orElseThrow(() -> new DiaryNotFoundException(id));
 	}
 
-	private void validatePermission(Diary diary, Kindergarten kindergarten) {
+	private void validateOwner(Diary diary, Kindergarten kindergarten) {
 		if (!diary.getKindergarten().equals(kindergarten)) {
 			throw new AuthorizationException();
 		}
@@ -111,37 +110,34 @@ public class DiaryService {
 			kindergarten
 		);
 
-		List<DiaryImage> diaryImages = request.getImageIds().stream()
-			.map(imageId -> {
-				DiaryImage diaryImage = DiaryImage.of(imageId);
-				diaryImage.setDiary(diary);
-				return diaryImage;
-			})
-			.collect(Collectors.toList());
+		List<DiaryImage> diaryImages = createDiaryImagesFromImageIds(request.getImageIds(), diary);
 
 		diaryRepository.save(diary);
 		diaryImageRepository.saveAll(diaryImages);
 		return diary;
 	}
 
-	private void updateDiaryFields(Diary diary, DiaryUpdateRequest request) {
+	private void updateDiaryFields(DiaryUpdateRequest request, Diary diary) {
 		diary.updateTitle(request.getTitle());
 		diary.updateContent(request.getContent());
 		diary.updateDate(request.getDate());
+
+		List<DiaryImage> diaryImages = createDiaryImagesFromImageIds(request.getImageIds(), diary);
+
+		diary.updateImages(diaryImages);
+		diaryImageRepository.saveAll(diaryImages);
 	}
 
-	private void updateDiaryImages(Diary diary, List<Long> updatedImageIds) {
-		List<DiaryImage> diaryImages = updatedImageIds.stream()
+	private List<DiaryImage> createDiaryImagesFromImageIds(List<Long> imageIds, Diary diary) {
+		return imageIds.stream()
 			.map(imageId -> {
-				DiaryImage diaryImage = DiaryImage.of(imageId);
-				diaryImage.setDiary(diary);
+				DiaryImage diaryImage = DiaryImage.builder()
+					.imageId(imageId)
+					.diary(diary)
+					.build();
 				return diaryImage;
 			})
 			.collect(Collectors.toList());
-
-		diary.getDiaryImages().clear();
-		diary.getDiaryImages().addAll(diaryImages);
-		diaryImageRepository.saveAll(diaryImages);
 	}
 
 }

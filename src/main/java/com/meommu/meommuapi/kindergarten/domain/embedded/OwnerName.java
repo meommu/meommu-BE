@@ -24,12 +24,13 @@ public class OwnerName {
 	}
 
 	public static OwnerName from(String value) {
-		validate(value);
-		return new OwnerName(value);
+		String trimValue = value.trim();
+		validate(trimValue);
+		return new OwnerName(trimValue);
 	}
 
 	public static void validate(String value) {
-		if (!(value.length() >= LIMIT_MIN_LENGTH && value.length() <= LIMIT_MAX_LENGTH)) {
+		if (value == null || !(value.length() >= LIMIT_MIN_LENGTH && value.length() <= LIMIT_MAX_LENGTH)) {
 			throw new InvalidOwnerNameFormatException();
 		}
 	}

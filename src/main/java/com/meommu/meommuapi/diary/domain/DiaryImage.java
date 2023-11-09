@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
 
 @Entity
 public class DiaryImage extends BaseTimeEntity {
@@ -26,12 +27,10 @@ public class DiaryImage extends BaseTimeEntity {
 	protected DiaryImage() {
 	}
 
-	private DiaryImage(Long imageId) {
+	@Builder
+	private DiaryImage(Long imageId, Diary diary) {
 		this.imageId = imageId;
-	}
-
-	public static DiaryImage of(Long imageId) {
-		return new DiaryImage(imageId);
+		this.diary = diary;
 	}
 
 	public Long getId() {
@@ -44,13 +43,5 @@ public class DiaryImage extends BaseTimeEntity {
 
 	public Diary getDiary() {
 		return diary;
-	}
-
-	public void setDiary(Diary diary) {
-		if (this.diary != null) {
-			this.diary.getImages().remove(this);
-		}
-		this.diary = diary;
-		diary.getDiaryImages().add(this);
 	}
 }

@@ -4,9 +4,11 @@ import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 public enum DiaryErrorCode implements ErrorCode {
 
-	DIARY_FORMAT_EXCEPTION("D001", "일기 포멧 오류입니다."),
-	DIARY_NOT_FOUND("D002", "해당하는 일기를 찾을 수 없습니다."),
-	DOG_NAME_FORMAT_EXCEPTION("D003", "강아지 이름 오류입니다.");
+	TITLE_FORMAT_EXCEPTION("D001", "일기 제목 형식 오류입니다."),
+	CONTENT_FORMAT_EXCEPTION("D002", "일기 내용 형식 오류입니다."),
+	DOG_NAME_FORMAT_EXCEPTION("D003", "강아지 이름 형식 오류입니다."),
+	DIARY_NOT_FOUND("D004", "해당하는 일기를 찾을 수 없습니다."),
+	;
 
 	private final String code;
 
