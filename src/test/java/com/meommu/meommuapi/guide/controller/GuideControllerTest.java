@@ -1,5 +1,6 @@
 package com.meommu.meommuapi.guide.controller;
 
+import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.*;
@@ -50,7 +51,7 @@ class GuideControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/guides")
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -89,7 +90,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.get("/api/v1/guides/{guideId}/details", 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -123,7 +124,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/guides/{guideId}/details", 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 				.content(JsonUtils.toJson(guideDetailSaveRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -156,7 +157,7 @@ class GuideControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.delete("/api/v1/guides/{guideId}/details/{detailId}", 1L, 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER));
 
 		// then
 		resultActions.andExpectAll(

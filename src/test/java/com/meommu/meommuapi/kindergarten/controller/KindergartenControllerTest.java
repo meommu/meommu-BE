@@ -1,5 +1,6 @@
 package com.meommu.meommuapi.kindergarten.controller;
 
+import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.BDDMockito.*;
@@ -163,7 +164,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/me")
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -197,7 +198,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/{kindergartenId}", 1L)
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -230,7 +231,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(put("/api/v1/kindergartens/{kindergartenId}", 1L)
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 			.content(JsonUtils.toJson(kindergartenUpdateRequest))
 			.contentType(MediaType.APPLICATION_JSON)
 		);

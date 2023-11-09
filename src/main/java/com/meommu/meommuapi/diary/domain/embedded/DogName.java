@@ -30,7 +30,7 @@ public class DogName {
 	}
 
 	private static void validate(String value) {
-		if (value.length() > LIMIT_LENGTH || value.length() == 0) {
+		if (value == null || value.length() > LIMIT_LENGTH || value.length() == 0) {
 			throw new InvalidDogNameFormatException();
 		}
 	}

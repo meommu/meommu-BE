@@ -26,11 +26,11 @@ public class Name {
 	public static Name from(String value) {
 		String trimValue = value.trim();
 		validate(trimValue);
-		return new Name(trimValue);
+		return new Name(value);
 	}
 
 	public static void validate(String value) {
-		if (!(value.length() >= LIMIT_MIN_LENGTH && value.length() <= LIMIT_MAX_LENGTH)) {
+		if (value == null || !(value.length() >= LIMIT_MIN_LENGTH && value.length() <= LIMIT_MAX_LENGTH)) {
 			throw new InvalidNameFormatException();
 		}
 	}

@@ -1,5 +1,6 @@
 package com.meommu.meommuapi.auth.controller;
 
+import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -20,6 +21,7 @@ import com.meommu.meommuapi.auth.dto.LoginRequest;
 import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
+import com.meommu.meommuapi.util.documentation.DocumentConstant;
 
 @DisplayName("인증 API")
 class AuthControllerTest extends ControllerTest {

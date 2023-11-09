@@ -1,5 +1,6 @@
 package com.meommu.meommuapi.diary.controller;
 
+import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -32,6 +33,7 @@ import com.meommu.meommuapi.diary.dto.DiarySummaryResponse;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.util.ControllerTest;
+import com.meommu.meommuapi.util.documentation.DocumentConstant;
 
 @DisplayName("일기 API")
 class DiaryControllerTest extends ControllerTest {
@@ -101,7 +103,7 @@ class DiaryControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries/summary")
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -132,7 +134,7 @@ class DiaryControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/api/v1/diaries")
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 			.param("year", String.valueOf(LocalDate.now().getYear()))
 			.param("month", String.valueOf(LocalDate.now().getMonthValue()))
 		);
@@ -178,7 +180,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.get("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
 		// then
@@ -220,7 +222,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/diaries")
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 				.content(JsonUtils.toJson(diarySaveRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -267,7 +269,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			put("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 				.content(JsonUtils.toJson(diaryUpdateRequest))
 				.contentType(MediaType.APPLICATION_JSON)
 		);
@@ -310,7 +312,7 @@ class DiaryControllerTest extends ControllerTest {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			RestDocumentationRequestBuilders.delete("/api/v1/diaries/{diaryId}", 1L)
-				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER));
 
 		// then
 		resultActions.andExpectAll(
