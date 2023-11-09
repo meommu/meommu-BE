@@ -1,5 +1,6 @@
 package com.meommu.meommuapi.gpt.controller;
 
+import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -39,7 +40,7 @@ class GptControllerTest extends ControllerTest {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(post("/api/v1/gpt")
-			.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>")
+			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 			.content(JsonUtils.toJson(gptGenerateRequest))
 			.contentType(MediaType.APPLICATION_JSON_VALUE));
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
@@ -29,7 +30,7 @@ class KindergartenTest {
 
 	@DisplayName("회원을 생성할 수 있다.")
 	@Test
-	void createMember() {
+	void createKindergarten() {
 		// when
 		var kindergarten = Kindergarten.of(
 			"멈무유치원",
@@ -50,6 +51,7 @@ class KindergartenTest {
 
 	@DisplayName("잘못된 이메일 형식이 입력되면 예외가 발생한다.")
 	@ParameterizedTest
+	@EmptySource
 	@ValueSource(strings = {"invalidexam.com", " valid@exam.com", "valid@exam .com"})
 	void createKindergarten_exception_invalidEmailFormat(String invalidEmail) {
 		// when & then
@@ -66,6 +68,7 @@ class KindergartenTest {
 
 	@DisplayName("잘못된 비밀번호 형식이 입력되면 예외가 발생한다.")
 	@ParameterizedTest
+	@EmptySource
 	@ValueSource(strings = {"Password1", "password!", "password", " Password", "P1!",
 		"PasswordPasswordPasswordPassword1!"})
 	void createKindergarten_exception_invalidPasswordFormat(String invalidPassword) {
@@ -83,7 +86,8 @@ class KindergartenTest {
 
 	@DisplayName("잘못된 유치원 이름 형식이 입력되면 예외가 발생한다.")
 	@ParameterizedTest
-	@ValueSource(strings = {"김수한무거북이와두루미삼천갑자동방삭", "김", " ", ""})
+	@EmptySource
+	@ValueSource(strings = {"김수한무거북이와두루미삼천갑자동방삭", "김", " ",})
 	void createKindergarten_exception_invalidNameFormat(String invalidName) {
 		// when & then
 		assertThatThrownBy(
@@ -99,7 +103,8 @@ class KindergartenTest {
 
 	@DisplayName("잘못된 유치원 대표자 이름 형식이 입력되면 예외가 발생한다.")
 	@ParameterizedTest
-	@ValueSource(strings = {"김수한무거북이와두루미삼천갑자동방삭", "김", " ", ""})
+	@EmptySource
+	@ValueSource(strings = {"김수한무거북이와두루미삼천갑자동방삭", "김", " "})
 	void createKindergarten_exception_invalidOwnerNameFormat(String invalidOwnerName) {
 		// when & then
 		assertThatThrownBy(
@@ -115,6 +120,7 @@ class KindergartenTest {
 
 	@DisplayName("잘못된 전화번호 형식이 입력되면 예외가 발생한다.")
 	@ParameterizedTest
+	@EmptySource
 	@ValueSource(strings = {"0000-0000-0000", "01000000000", "invalidValue", " 010-0000-0000"})
 	void createKindergarten_exception_invalidPhoneFormat(String invalidPhone) {
 		// when & then
