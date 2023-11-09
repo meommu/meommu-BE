@@ -117,7 +117,18 @@ public class Diary extends BaseTimeEntity {
 		this.date = date;
 	}
 
-	public void updateImages(List<DiaryImage> diaryImages) {
-		this.diaryImages = diaryImages;
+	public void updateImages(List<DiaryImage> newDiaryImages) {
+		this.diaryImages.clear();
+
+		for (DiaryImage newDiaryImage : newDiaryImages) {
+			addDiaryImage(newDiaryImage);
+		}
+	}
+
+	private void addDiaryImage(DiaryImage diaryImage) {
+		if (diaryImage != null) {
+			diaryImage.setDiary(this);
+			this.diaryImages.add(diaryImage);
+		}
 	}
 }
