@@ -76,7 +76,7 @@ public class DiaryService {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		Diary diary = getDiaryById(diaryId);
 		validateOwner(diary, kindergarten);
-		updateDiaryFields(diary, request);
+		updateDiaryFields(request, diary);
 	}
 
 	@Transactional
