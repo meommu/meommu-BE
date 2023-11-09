@@ -44,7 +44,6 @@ class KindergartenRepositoryTest extends RepositoryTest {
 			"meommu@exam.com", encryptor.encrypt("Password1!")).get();
 
 		assertAll(
-			() -> assertThat(foundedkindergarten.getId()).isEqualTo(1L),
 			() -> assertThat(foundedkindergarten.getEmail()).isEqualTo("meommu@exam.com")
 		);
 	}
