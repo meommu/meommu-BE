@@ -1,5 +1,7 @@
 package com.meommu.meommuapi.diary.dto;
 
+import com.meommu.meommuapi.diary.domain.Diary;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,7 +17,7 @@ public class DiarySaveResponse {
 		this.savedId = savedId;
 	}
 
-	public static DiarySaveResponse from(Long savedId) {
-		return new DiarySaveResponse(savedId);
+	public static DiarySaveResponse from(Diary diary) {
+		return new DiarySaveResponse(diary.getId());
 	}
 }

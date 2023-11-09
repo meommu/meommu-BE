@@ -216,7 +216,9 @@ class DiaryControllerTest extends ControllerTest {
 			.content("일기 내용")
 			.imageIds(imageIds)
 			.build();
-		DiarySaveResponse diarySaveResponse = DiarySaveResponse.from(1L);
+		DiarySaveResponse diarySaveResponse = DiarySaveResponse.builder()
+			.savedId(1L)
+			.build();
 		given(diaryService.create(any(), any())).willReturn(diarySaveResponse);
 
 		// when

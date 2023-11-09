@@ -68,7 +68,7 @@ public class DiaryService {
 	public DiarySaveResponse create(DiarySaveRequest request, AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		Diary diary = createDiaryFromRequest(request, kindergarten);
-		return DiarySaveResponse.from(diary.getId());
+		return DiarySaveResponse.from(diary);
 	}
 
 	@Transactional
