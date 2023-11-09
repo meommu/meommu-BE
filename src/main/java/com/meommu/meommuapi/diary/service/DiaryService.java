@@ -131,8 +131,10 @@ public class DiaryService {
 	private List<DiaryImage> createDiaryImagesFromImageIds(List<Long> imageIds, Diary diary) {
 		return imageIds.stream()
 			.map(imageId -> {
-				DiaryImage diaryImage = DiaryImage.of(imageId);
-				diaryImage.setDiary(diary);
+				DiaryImage diaryImage = DiaryImage.builder()
+					.imageId(imageId)
+					.diary(diary)
+					.build();
 				return diaryImage;
 			})
 			.collect(Collectors.toList());
