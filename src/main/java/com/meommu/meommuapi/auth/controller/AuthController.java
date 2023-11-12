@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.dto.LoginRequest;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
 import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.auth.service.AuthService;
 
@@ -23,7 +23,7 @@ public class AuthController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/api/v1/kindergartens/signin")
-	public TokenResponse login(@Valid @RequestBody LoginRequest loginRequest) {
-		return authService.signin(loginRequest);
+	public TokenResponse signIn(@Valid @RequestBody SignInRequest signInRequest) {
+		return authService.signIn(signInRequest);
 	}
 }
