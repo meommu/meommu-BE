@@ -10,7 +10,7 @@ import com.meommu.meommuapi.image.exception.InvalidImageTypeExeption;
 
 public class ImageValidator {
 
-	private static List<String> validContentTypes = List.of("image/jpeg", "image/png", "image/heic");
+	private static List<String> validContentTypes = List.of("image/jpeg", "image/png", "image/heic", "image/jpg");
 
 	public static void validate(List<MultipartFile> images, String category) {
 		validateImageType(images);
