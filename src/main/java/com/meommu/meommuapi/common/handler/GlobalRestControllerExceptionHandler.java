@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import com.meommu.meommuapi.common.dto.ApiResponse;
 import com.meommu.meommuapi.common.dto.ApiResponseGenerator;
@@ -87,7 +88,8 @@ public class GlobalRestControllerExceptionHandler {
 		MethodArgumentTypeMismatchException.class,
 		HttpMessageNotReadableException.class,
 		HttpMediaTypeNotSupportedException.class,
-		HttpMediaTypeNotAcceptableException.class
+		HttpMediaTypeNotAcceptableException.class,
+		MaxUploadSizeExceededException.class
 	})
 	protected ApiResponse<Void> handle(Exception exception) {
 		log.info("[BadRequest] {}", exception.getMessage(), exception);
