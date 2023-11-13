@@ -6,6 +6,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
 
 security:
   jwt:
