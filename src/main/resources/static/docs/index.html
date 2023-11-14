@@ -880,7 +880,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A007</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LOGIN_FAILED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SIGN_IN_FAILED</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">아이디 혹은 비밀번호가 올바르지 않습니다.</p></td>
 </tr>
 <tr>
@@ -987,6 +987,11 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <td class="tableblock halign-left valign-top"><p class="tableblock">I006</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_UPLOAD_FAIL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">이미지 업로드 실패</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IMAGE_ARGUMENT_ERROR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지는 필수로 업로드해야합니다.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">D001</p></td>
@@ -1200,7 +1205,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 189
+Content-Length: 188
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -1209,7 +1214,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-09T14:42:07.036687&quot;
+    &quot;createdAt&quot; : &quot;2023-11-14T15:48:37.63461&quot;
   }
 }</code></pre>
 </div>
@@ -1318,7 +1323,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-09T14:42:07.011819&quot;
+    &quot;createdAt&quot; : &quot;2023-11-14T15:48:37.608243&quot;
   }
 }</code></pre>
 </div>
@@ -1620,7 +1625,7 @@ src/test/resources/testimages/coco.jpeg
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>images</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">일기 이미지 id 리스트</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic" 중에 하나여야 합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic", "image/jpg" 중에 하나여야 합니다.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2108,13 +2113,13 @@ Content-Length: 364
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-09&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-09T14:42:06.545645&quot;,
+      &quot;date&quot; : &quot;2023-11-14&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T15:48:36.915925&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-08&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-09T14:42:06.545636&quot;,
+      &quot;date&quot; : &quot;2023-11-13&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T15:48:36.915914&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     } ]
   }
@@ -2182,17 +2187,17 @@ Content-Length: 564
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-09&quot;,
+      &quot;date&quot; : &quot;2023-11-14&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-09T14:42:06.557112&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T15:48:36.926434&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-08&quot;,
+      &quot;date&quot; : &quot;2023-11-13&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-09T14:42:06.557107&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T15:48:36.926428&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2249,9 +2254,9 @@ Content-Length: 281
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-11-08&quot;,
+    &quot;date&quot; : &quot;2023-11-13&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-09T14:42:06.529817&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-14T15:48:36.901544&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2275,7 +2280,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-09&quot;,
+  &quot;date&quot; : &quot;2023-11-14&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2373,7 +2378,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-09&quot;,
+  &quot;date&quot; : &quot;2023-11-14&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2561,12 +2566,12 @@ Content-Length: 374
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-09T14:42:07.601139&quot;
+      &quot;createdAt&quot; : &quot;2023-11-14T15:48:37.708533&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-08T14:42:07.601125&quot;
+      &quot;createdAt&quot; : &quot;2023-11-13T15:48:37.708513&quot;
     } ]
   }
 }</code></pre>

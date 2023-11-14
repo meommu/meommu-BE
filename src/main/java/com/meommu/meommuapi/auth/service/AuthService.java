@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.meommu.meommuapi.auth.dto.SignInRequest;
 import com.meommu.meommuapi.auth.dto.TokenResponse;
-import com.meommu.meommuapi.auth.exception.LoginFailedException;
+import com.meommu.meommuapi.auth.exception.SignInFailedException;
 import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
@@ -28,7 +28,7 @@ public class AuthService {
 
 	public TokenResponse signIn(SignInRequest signInRequest) {
 		Kindergarten kindergarten = kindergartenRepository.findByEmailValueAndPasswordValue(signInRequest.getEmail(),
-			encryptor.encrypt(signInRequest.getPassword())).orElseThrow(() -> new LoginFailedException());
+			encryptor.encrypt(signInRequest.getPassword())).orElseThrow(() -> new SignInFailedException());
 		String accessToken = jwtTokenProvider.createAccessToken(kindergarten.getId());
 		return TokenResponse.from(accessToken);
 	}
