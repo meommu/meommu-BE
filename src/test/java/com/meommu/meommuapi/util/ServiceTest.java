@@ -5,6 +5,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.meommu.meommuapi.auth.service.AuthService;
+import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.diary.repository.DiaryImageRepository;
 import com.meommu.meommuapi.diary.repository.DiaryRepository;
 import com.meommu.meommuapi.diary.service.DiaryService;
@@ -21,6 +23,9 @@ public abstract class ServiceTest {
 	@InjectMocks
 	protected DiaryService diaryService;
 
+	@InjectMocks
+	protected AuthService authService;
+
 	@Mock
 	protected KindergartenRepository kindergartenRepository;
 
@@ -32,4 +37,8 @@ public abstract class ServiceTest {
 
 	@Mock
 	protected Encryptor encryptor;
+
+	@Mock
+	protected JwtTokenProvider jwtTokenProvider;
+
 }

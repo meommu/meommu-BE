@@ -2,13 +2,12 @@ package com.meommu.meommuapi.auth.service;
 
 import org.springframework.stereotype.Service;
 
-import com.meommu.meommuapi.auth.dto.LoginRequest;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
 import com.meommu.meommuapi.auth.dto.TokenResponse;
-import com.meommu.meommuapi.auth.exception.LoginFailedException;
+import com.meommu.meommuapi.auth.exception.SignInFailedException;
 import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
-import com.meommu.meommuapi.kindergarten.exception.KindergartenNotFoundException;
 import com.meommu.meommuapi.kindergarten.repository.KindergartenRepository;
 
 @Service
@@ -27,9 +26,9 @@ public class AuthService {
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
-	public TokenResponse signin(LoginRequest loginRequest) {
-		Kindergarten kindergarten = kindergartenRepository.findByEmailValueAndPasswordValue(loginRequest.getEmail(),
-			encryptor.encrypt(loginRequest.getPassword())).orElseThrow(() -> new LoginFailedException());
+	public TokenResponse signIn(SignInRequest signInRequest) {
+		Kindergarten kindergarten = kindergartenRepository.findByEmailValueAndPasswordValue(signInRequest.getEmail(),
+			encryptor.encrypt(signInRequest.getPassword())).orElseThrow(() -> new SignInFailedException());
 		String accessToken = jwtTokenProvider.createAccessToken(kindergarten.getId());
 		return TokenResponse.from(accessToken);
 	}

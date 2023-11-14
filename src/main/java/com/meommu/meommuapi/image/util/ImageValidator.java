@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.meommu.meommuapi.image.exception.CategoryNotFoundException;
+import com.meommu.meommuapi.image.exception.ImageArgumentException;
 import com.meommu.meommuapi.image.exception.InvalidImageCountException;
 import com.meommu.meommuapi.image.exception.InvalidImageTypeExeption;
 
@@ -13,9 +14,18 @@ public class ImageValidator {
 	private static List<String> validContentTypes = List.of("image/jpeg", "image/png", "image/heic", "image/jpg");
 
 	public static void validate(List<MultipartFile> images, String category) {
+		validateEmpty(images);
 		validateImageType(images);
 		validateCategory(category);
 		validateImageCount(images, category);
+	}
+
+	private static void validateEmpty(List<MultipartFile> images) {
+		for (MultipartFile image : images) {
+			if (image.isEmpty()) {
+				throw new ImageArgumentException();
+			}
+		}
 	}
 
 	private static void validateImageType(List<MultipartFile> images) {

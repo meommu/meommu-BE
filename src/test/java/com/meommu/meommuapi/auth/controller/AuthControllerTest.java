@@ -1,6 +1,5 @@
 package com.meommu.meommuapi.auth.controller;
 
-import static com.meommu.meommuapi.util.documentation.DocumentConstant.*;
 import static com.meommu.meommuapi.util.documentation.DocumentFormatGenerator.*;
 import static com.meommu.meommuapi.util.documentation.DocumentUtils.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -15,33 +14,31 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import com.meommu.meommuapi.auth.dto.LoginRequest;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
 import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
-import com.meommu.meommuapi.util.documentation.DocumentConstant;
 
 @DisplayName("인증 API")
 class AuthControllerTest extends ControllerTest {
 
 	@DisplayName("로그인: 성공 -> 201")
 	@Test
-	void testLogin() throws Exception {
+	void testSignIn() throws Exception {
 		// given
-		var logInRequest = LoginRequest.builder()
+		var signInRequest = SignInRequest.builder()
 			.email("meommu@exam.com")
 			.password("Password1!")
 			.build();
 		var tokenResponse = TokenResponse.builder()
 			.accessToken("<ACCESS_TOKEN>")
 			.build();
-		given(authService.signin(any())).willReturn(tokenResponse);
+		given(authService.signIn(any())).willReturn(tokenResponse);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(post("/api/v1/kindergartens/signin")
-			.content(JsonUtils.toJson(logInRequest))
+			.content(JsonUtils.toJson(signInRequest))
 			.contentType(MediaType.APPLICATION_JSON)
 		);
 

@@ -10,6 +10,7 @@ public enum ImageErrorCode implements ErrorCode {
 	IMAGE_MAX_SIZE_ERROR("I004", "이미지 최대 개수 오류"),
 	IMAGE_DELETE_FAIL("I005", "이미지 삭제 실패"),
 	IMAGE_UPLOAD_FAIL("I006", "이미지 업로드 실패"),
+	IMAGE_ARGUMENT_ERROR("I007", "이미지는 필수로 업로드해야합니다."),
 	;
 
 	private final String code;
