@@ -1219,7 +1219,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:40:02.082293&quot;
+    &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.373674&quot;
   }
 }</code></pre>
 </div>
@@ -1328,7 +1328,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:40:02.053612&quot;
+    &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.355908&quot;
   }
 }</code></pre>
 </div>
@@ -1630,7 +1630,7 @@ src/test/resources/testimages/coco.jpeg
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>images</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">일기 이미지 id 리스트</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic", "image/jpg" 중에 하나여야 합니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic", "image/jpg" 중에 하나여야 합니다. 한 요청시 보낼 수 있는 이미지 최대 용량은 300MB입니다.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2110,7 +2110,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 364
+Content-Length: 363
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -2119,12 +2119,12 @@ Content-Length: 364
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
       &quot;date&quot; : &quot;2023-11-14&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:40:01.270505&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.56197&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     }, {
       &quot;id&quot; : 1,
       &quot;date&quot; : &quot;2023-11-13&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:40:01.270496&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.561959&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     } ]
   }
@@ -2194,7 +2194,7 @@ Content-Length: 563
       &quot;id&quot; : 2,
       &quot;date&quot; : &quot;2023-11-14&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:40:01.280965&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.57904&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
@@ -2202,7 +2202,7 @@ Content-Length: 563
       &quot;id&quot; : 1,
       &quot;date&quot; : &quot;2023-11-13&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:40:01.28096&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.579034&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2261,7 +2261,7 @@ Content-Length: 281
     &quot;id&quot; : 1,
     &quot;date&quot; : &quot;2023-11-13&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:40:01.255281&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.547488&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2571,12 +2571,12 @@ Content-Length: 374
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:40:02.180393&quot;
+      &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.439703&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-13T16:40:02.180362&quot;
+      &quot;createdAt&quot; : &quot;2023-11-13T16:53:10.439687&quot;
     } ]
   }
 }</code></pre>
