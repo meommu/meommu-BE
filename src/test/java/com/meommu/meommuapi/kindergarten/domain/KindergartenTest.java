@@ -70,7 +70,7 @@ class KindergartenTest {
 	@ParameterizedTest
 	@EmptySource
 	@ValueSource(strings = {"Password1", "password!", "password", " Password", "P1!",
-		"PasswordPasswordPasswordPassword1!"})
+		"PasswordPasswordPasswordPassword1!", "0000000!"})
 	void createKindergarten_exception_invalidPasswordFormat(String invalidPassword) {
 		// when & then
 		assertThatThrownBy(

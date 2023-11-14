@@ -11,7 +11,7 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Phone {
 
-	private static final Pattern PATTERN = Pattern.compile("\\d{3}-\\d{4}-\\d{4}");
+	private static final Pattern PATTERN = Pattern.compile("^\\d{3}-\\d{3,4}-\\d{4}");
 
 	@Column(name = "phone")
 	private String value;

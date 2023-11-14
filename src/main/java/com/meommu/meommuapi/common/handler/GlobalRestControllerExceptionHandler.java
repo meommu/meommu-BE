@@ -61,17 +61,11 @@ public class GlobalRestControllerExceptionHandler {
 		return ApiResponseGenerator.fail(INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getDescription());
 	}
 
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler(ConversionFailedException.class)
-	protected ApiResponse<Void> handle(ConversionFailedException exception) {
-		Throwable cause = exception.getCause();
-		if (cause instanceof IllegalArgumentException illegalArgumentException) {
-			return this.handle(illegalArgumentException);
-		}
-
-		log.error("[InternalServerError][ConversionFailed] {}", exception.getMessage(), exception);
-
-		return ApiResponseGenerator.fail(INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getDescription());
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ApiResponse<Void> handleMaxSizeException(MaxUploadSizeExceededException exception) {
+		log.info("[FileSizeError] {}", exception.getMessage());
+		return ApiResponseGenerator.fail(FILE_UPLOAD_ERROR.getCode(), FILE_UPLOAD_ERROR.getDescription());
 	}
 
 	@ResponseStatus(HttpStatus.FORBIDDEN)
@@ -88,8 +82,7 @@ public class GlobalRestControllerExceptionHandler {
 		MethodArgumentTypeMismatchException.class,
 		HttpMessageNotReadableException.class,
 		HttpMediaTypeNotSupportedException.class,
-		HttpMediaTypeNotAcceptableException.class,
-		MaxUploadSizeExceededException.class
+		HttpMediaTypeNotAcceptableException.class
 	})
 	protected ApiResponse<Void> handle(Exception exception) {
 		log.info("[BadRequest] {}", exception.getMessage(), exception);
