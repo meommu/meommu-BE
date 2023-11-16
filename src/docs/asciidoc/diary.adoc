@@ -78,3 +78,28 @@ include::{snippets}/diaries/delete/success/path-parameters.adoc[]
 [discrete]
 ==== 응답
 include::{snippets}/diaries/delete/success/http-response.adoc[]
+
+
+=== 일기 공유
+일기 id를 통해 일기 공유용 UUID를 조회합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/diaries/getUUID/success/http-request.adoc[]
+include::{snippets}/diaries/getUUID/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/diaries/getUUID/success/http-response.adoc[]
+
+=== 공유된 일기 조회
+일기 UUID를 통해 일기를 조회합니다. 인증 헤더가 필요하지 않습니다.
+
+[discrete]
+==== 요청
+include::{snippets}/diaries/getShared/success/http-request.adoc[]
+include::{snippets}/diaries/getShared/success/path-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/diaries/getShared/success/http-response.adoc[]
