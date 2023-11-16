@@ -17,6 +17,7 @@ import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.exception.DiaryNotFoundException;
 import com.meommu.meommuapi.diary.repository.DiaryImageRepository;
@@ -85,6 +86,18 @@ public class DiaryService {
 		Diary diary = getDiaryById(diaryId);
 		validateOwner(diary, kindergarten);
 		diaryRepository.deleteById(diaryId);
+	}
+
+	public DiaryUUIDResponse findDiaryUUID(Long dairyId, AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
+		Diary diary = getDiaryById(dairyId);
+		validateOwner(diary, kindergarten);
+		return DiaryUUIDResponse.from(diary);
+	}
+
+	public DiaryResponse findSharedDiary(String uuid) {
+		Diary diary = diaryRepository.findByUuid(uuid).orElseThrow(() -> new DiaryNotFoundException());
+		return DiaryResponse.from(diary);
 	}
 
 	private Kindergarten getKindergartenById(Long id) {
