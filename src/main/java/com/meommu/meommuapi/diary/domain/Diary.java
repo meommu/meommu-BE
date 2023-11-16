@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 import com.meommu.meommuapi.diary.domain.embedded.Content;
@@ -34,6 +35,9 @@ public class Diary extends BaseTimeEntity {
 	private DogName dogName;
 
 	@NotNull
+	private String uuid;
+
+	@NotNull
 	private Title title;
 
 	@NotNull
@@ -59,6 +63,7 @@ public class Diary extends BaseTimeEntity {
 		this.content = Content.from(content);
 		this.date = date;
 		this.kindergarten = kindergarten;
+		this.uuid = UUID.randomUUID().toString();
 	}
 
 	public static Diary of(String dogName, String title, String content, LocalDate date, Kindergarten kindergarten) {
@@ -105,6 +110,10 @@ public class Diary extends BaseTimeEntity {
 		return imageIds;
 	}
 
+	public String getUUID() {
+		return this.uuid;
+	}
+
 	public void updateTitle(String value) {
 		this.title = Title.from(value);
 	}
@@ -123,6 +132,10 @@ public class Diary extends BaseTimeEntity {
 		for (DiaryImage newDiaryImage : newDiaryImages) {
 			addDiaryImage(newDiaryImage);
 		}
+	}
+
+	public void updateUUID() {
+		this.uuid = UUID.randomUUID().toString();
 	}
 
 	private void addDiaryImage(DiaryImage diaryImage) {
