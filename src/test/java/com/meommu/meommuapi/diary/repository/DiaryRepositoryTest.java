@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -77,6 +79,18 @@ class DiaryRepositoryTest extends RepositoryTest {
 		assertAll(
 			() -> assertThat(diaries.get(0).getTitle()).isEqualTo("일기2 제목"),
 			() -> assertThat(diaries.get(0).getContent()).isEqualTo("일기2 내용")
+		);
+	}
+
+	@DisplayName("UUID로 일기를 조회할 수 있다.")
+	@Test
+	void findByUuid() {
+		Diary diary = diaryRepository.findByUuid(diary1.getUUID()).get();
+
+		// then
+		assertAll(
+			() -> assertThat(diary.getTitle()).isEqualTo("일기1 제목"),
+			() -> assertThat(diary.getContent()).isEqualTo("일기1 내용")
 		);
 	}
 

@@ -1,8 +1,8 @@
 package com.meommu.meommuapi.diary.repository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,4 +16,6 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 	List<Diary> findByKindergartenAndDateBetweenOrderByDateDesc(Kindergarten kindergarten, LocalDate startDate, LocalDate endDate);
 
 	List<Diary> findByKindergartenOrderByDateDesc(Kindergarten kindergarten);
+
+	Optional<Diary> findByUuid(String uuid);
 }

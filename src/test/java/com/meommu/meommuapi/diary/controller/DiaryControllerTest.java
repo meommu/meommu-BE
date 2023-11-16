@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +32,7 @@ import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponse;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.util.ControllerTest;
 import com.meommu.meommuapi.util.documentation.DocumentConstant;
@@ -80,7 +82,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("요약 전체 조회: 성공 -> 200")
 	@Test
-	void testFindDiariesSummary() throws Exception {
+	void findDiariesSummary() throws Exception {
 		// given
 		DiarySummaryResponse diarySummaryResponse1 = DiarySummaryResponse.builder()
 			.id(1L)
@@ -128,7 +130,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("전체 조회: 성공 -> 200")
 	@Test
-	void testFindDiaries() throws Exception {
+	void findDiaries() throws Exception {
 		// given
 		given(diaryService.findDiaries(any(), any())).willReturn(diaryResponses);
 
@@ -173,7 +175,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("조회: 성공 -> 200")
 	@Test
-	void testFindDiary() throws Exception {
+	void findDiary() throws Exception {
 		// given
 		given(diaryService.findDiary(any(), any())).willReturn(diaryResponse1);
 
@@ -185,29 +187,29 @@ class DiaryControllerTest extends ControllerTest {
 
 		// then
 		resultActions.andExpectAll(
-				status().isOk(),
-				jsonPath("$.code").value("0000"),
-				jsonPath("$.message").value("정상"),
-				jsonPath("$.data.id").value(1L),
-				jsonPath("$.data.date").value(LocalDate.now().minusDays(1).toString()),
-				jsonPath("$.data..dogName").value("코코"),
-				jsonPath("$.data.title").value("일기 1 제목"),
-				jsonPath("$.data.content").value("일기 1 내용"),
-				jsonPath("$.data.createdAt").isNotEmpty(),
-				jsonPath("$.data.imageIds").isArray()
-			).andDo(
-				document("diaries/get/success",
-					getDocumentRequest(), getDocumentResponse(),
-					pathParameters(
-						parameterWithName("diaryId").description("일기 id")
-					)
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.id").value(1L),
+			jsonPath("$.data.date").value(LocalDate.now().minusDays(1).toString()),
+			jsonPath("$.data..dogName").value("코코"),
+			jsonPath("$.data.title").value("일기 1 제목"),
+			jsonPath("$.data.content").value("일기 1 내용"),
+			jsonPath("$.data.createdAt").isNotEmpty(),
+			jsonPath("$.data.imageIds").isArray()
+		).andDo(
+			document("diaries/get/success",
+				getDocumentRequest(), getDocumentResponse(),
+				pathParameters(
+					parameterWithName("diaryId").description("일기 id")
 				)
-			);
+			)
+		);
 	}
 
 	@DisplayName("생성: 성공 -> 201")
 	@Test
-	void testCreateDiary() throws Exception {
+	void createDiary() throws Exception {
 		// given
 		DiarySaveRequest diarySaveRequest = DiarySaveRequest.builder()
 			.date(LocalDate.now())
@@ -257,7 +259,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("수정: 성공 -> 200")
 	@Test
-	void testUpdateDiary() throws Exception {
+	void updateDiary() throws Exception {
 		// given
 		DiaryUpdateRequest diaryUpdateRequest = DiaryUpdateRequest.builder()
 			.date(LocalDate.now())
@@ -307,7 +309,7 @@ class DiaryControllerTest extends ControllerTest {
 
 	@DisplayName("삭제: 성공 -> 200")
 	@Test
-	void testDeleteDiary() throws Exception {
+	void deleteDiary() throws Exception {
 		// given
 		doNothing().when(diaryService).delete(any(), any());
 
@@ -326,6 +328,71 @@ class DiaryControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				pathParameters(
 					parameterWithName("diaryId").description("일기 id")
+				)
+			)
+		);
+	}
+
+	@DisplayName("공유 UUID 조회: 성공 -> 200")
+	@Test
+	void findDiaryUUID() throws Exception {
+		// given
+		String uuid = UUID.randomUUID().toString();
+		DiaryUUIDResponse response = DiaryUUIDResponse.builder()
+			.uuid(uuid).build();
+
+		given(diaryService.findDiaryUUID(any(), any())).willReturn(response);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			RestDocumentationRequestBuilders.get("/api/v1/diaries/{diaryId}/share-uuid", 1L)
+				.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.uuid").value(uuid)
+		).andDo(
+			document("diaries/getUUID/success",
+				getDocumentRequest(), getDocumentResponse(),
+				pathParameters(
+					parameterWithName("diaryId").description("일기 id")
+				)
+			)
+		);
+	}
+
+	@DisplayName("공유된 일기 조회: 성공 -> 200")
+	@Test
+	void findSharedDiary() throws Exception {
+		// given
+		given(diaryService.findSharedDiary(any())).willReturn(diaryResponse1);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			RestDocumentationRequestBuilders.get("/api/v1/diaries/shared/{uuid}", 1L)
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.id").value(1L),
+			jsonPath("$.data.date").value(LocalDate.now().minusDays(1).toString()),
+			jsonPath("$.data..dogName").value("코코"),
+			jsonPath("$.data.title").value("일기 1 제목"),
+			jsonPath("$.data.content").value("일기 1 내용"),
+			jsonPath("$.data.createdAt").isNotEmpty(),
+			jsonPath("$.data.imageIds").isArray()
+		).andDo(
+			document("diaries/getShared/success",
+				getDocumentRequest(), getDocumentResponse(),
+				pathParameters(
+					parameterWithName("uuid").description("공유된 일기의 uuid")
 				)
 			)
 		);
