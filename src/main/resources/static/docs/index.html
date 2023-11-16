@@ -587,6 +587,8 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_일기_생성">5.4. 일기 생성</a></li>
 <li><a href="#_일기_수정">5.5. 일기 수정</a></li>
 <li><a href="#_일기_삭제">5.6. 일기 삭제</a></li>
+<li><a href="#_일기_공유">5.7. 일기 공유</a></li>
+<li><a href="#_공유된_일기_조회">5.8. 공유된 일기 조회</a></li>
 </ul>
 </li>
 <li><a href="#_공지">6. 공지</a>
@@ -1219,7 +1221,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.373674&quot;
+    &quot;createdAt&quot; : &quot;2023-11-16T17:22:28.573934&quot;
   }
 }</code></pre>
 </div>
@@ -1328,7 +1330,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.355908&quot;
+    &quot;createdAt&quot; : &quot;2023-11-16T17:22:28.544218&quot;
   }
 }</code></pre>
 </div>
@@ -2110,7 +2112,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 363
+Content-Length: 364
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -2118,13 +2120,13 @@ Content-Length: 363
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-14&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.56197&quot;,
+      &quot;date&quot; : &quot;2023-11-16&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.623214&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-13&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.561959&quot;,
+      &quot;date&quot; : &quot;2023-11-15&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.623206&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     } ]
   }
@@ -2184,7 +2186,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 563
+Content-Length: 564
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -2192,17 +2194,17 @@ Content-Length: 563
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-14&quot;,
+      &quot;date&quot; : &quot;2023-11-16&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.57904&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.580669&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-13&quot;,
+      &quot;date&quot; : &quot;2023-11-15&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.579034&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.580652&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2259,9 +2261,9 @@ Content-Length: 281
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-11-13&quot;,
+    &quot;date&quot; : &quot;2023-11-15&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-14T16:53:09.547488&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.669571&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2285,7 +2287,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-14&quot;,
+  &quot;date&quot; : &quot;2023-11-16&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2383,7 +2385,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-14&quot;,
+  &quot;date&quot; : &quot;2023-11-16&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2533,6 +2535,115 @@ Content-Length: 62
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_일기_공유"><a class="link" href="#_일기_공유">5.7. 일기 공유</a></h3>
+<div class="paragraph">
+<p>일기 id를 통해 일기 공유용 UUID를 조회합니다.</p>
+</div>
+<h4 id="_요청_24" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries/1/share-uuid HTTP/1.1
+Authorization: Bearer &lt;ACCESS_TOKEN&gt;
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. /api/v1/diaries/{diaryId}/share-uuid</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>diaryId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일기 id</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_24" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+Content-Length: 115
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;정상&quot;,
+  &quot;data&quot; : {
+    &quot;uuid&quot; : &quot;79b36df4-cbc1-4426-9e06-2d19cc63b639&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_공유된_일기_조회"><a class="link" href="#_공유된_일기_조회">5.8. 공유된 일기 조회</a></h3>
+<div class="paragraph">
+<p>일기 UUID를 통해 일기를 조회합니다. 인증 헤더가 필요하지 않습니다.</p>
+</div>
+<h4 id="_요청_25" class="discrete">요청</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries/shared/1 HTTP/1.1
+Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. /api/v1/diaries/shared/{uuid}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uuid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공유된 일기의 uuid</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_응답_25" class="discrete">응답</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+Content-Length: 280
+
+{
+  &quot;code&quot; : &quot;0000&quot;,
+  &quot;message&quot; : &quot;정상&quot;,
+  &quot;data&quot; : {
+    &quot;id&quot; : 1,
+    &quot;date&quot; : &quot;2023-11-15&quot;,
+    &quot;dogName&quot; : &quot;코코&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-16T17:22:27.69023&quot;,
+    &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
+    &quot;title&quot; : &quot;일기 1 제목&quot;,
+    &quot;content&quot; : &quot;일기 1 내용&quot;
+  }
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2546,14 +2657,14 @@ Content-Length: 62
 <div class="paragraph">
 <p>전체 공지를 조회합니다. 최신순으로 정렬됩니다. 별도의 인증이 필요 없습니다.</p>
 </div>
-<h4 id="_요청_24" class="discrete">요청</h4>
+<h4 id="_요청_26" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/notices HTTP/1.1
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
 </div>
-<h4 id="_응답_24" class="discrete">응답</h4>
+<h4 id="_응답_26" class="discrete">응답</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
@@ -2571,12 +2682,12 @@ Content-Length: 374
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-14T16:53:10.439703&quot;
+      &quot;createdAt&quot; : &quot;2023-11-16T17:22:28.676242&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-13T16:53:10.439687&quot;
+      &quot;createdAt&quot; : &quot;2023-11-15T17:22:28.676225&quot;
     } ]
   }
 }</code></pre>

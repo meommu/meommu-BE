@@ -8,6 +8,7 @@ import static org.mockito.BDDMockito.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,8 +24,10 @@ import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.exception.DiaryNotFoundException;
+import com.meommu.meommuapi.diary.exception.errorCode.DiaryErrorCode;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.kindergarten.exception.KindergartenNotFoundException;
@@ -372,4 +375,94 @@ class DiaryServiceTest extends ServiceTest {
 			.hasMessageContaining("해당 리소스에 접근 권한이 없습니다.");
 	}
 
+	@DisplayName("일기 공유용 UUID를 조회한다.")
+	@Test
+	void findDiaryUUID() {
+		// given
+		var authInfo = new AuthInfo(1L);
+		given(kindergartenRepository.findById(any())).willReturn(Optional.ofNullable(kindergarten));
+		given(diaryRepository.findById(any())).willReturn(Optional.ofNullable(diary1));
+
+		// when
+		DiaryUUIDResponse response = diaryService.findDiaryUUID(1L, authInfo);
+
+		// then
+		assertThat(response.getUuid()).isInstanceOf(String.class);
+	}
+
+	@DisplayName("권한이 없는 일기 id로 일기 공유용 UUID를 조회시 실패한다.")
+	@Test
+	void findDiaryUUID_exception_invalidId() {
+		// given
+		var authInfo = new AuthInfo(1L);
+		var newKindergarten = Kindergarten.builder()
+			.name("개똥유치원")
+			.ownerName("김개똥")
+			.phone("010-0000-0000")
+			.email("ddong@exam.com")
+			.password(Password.of(encryptor, "Password1!"))
+			.build();
+
+		var newDiary = Diary.builder()
+			.dogName("코코")
+			.title("일기1 제목")
+			.content("일기1 내용")
+			.date(LocalDate.now().minusDays(1))
+			.kindergarten(newKindergarten)
+			.build();
+
+		given(kindergartenRepository.findById(any())).willReturn(Optional.ofNullable(kindergarten));
+		given(diaryRepository.findById(any())).willReturn(Optional.ofNullable(newDiary));
+
+		// when & then
+		assertThatThrownBy(() -> diaryService.findDiaryUUID(1L, authInfo))
+			.isInstanceOf(AuthorizationException.class)
+			.hasMessageContaining(AuthErrorCode.NOT_AUTHORITY.getDescription());
+	}
+
+	@DisplayName("존재하지 않는 일기 id로 일기 공유용 UUID를 조회시 실패한다.")
+	@Test
+	void findDiaryUUID_exception_diaryNotFound() {
+		// given
+		var authInfo = new AuthInfo(1L);
+		given(kindergartenRepository.findById(any())).willReturn(Optional.ofNullable(kindergarten));
+
+		// when & then
+		assertThatThrownBy(() -> diaryService.findDiaryUUID(1L, authInfo))
+			.isInstanceOf(DiaryNotFoundException.class)
+			.hasMessageContaining("일기(id = 1)를 찾을 수 없습니다.");
+	}
+
+	//
+	@DisplayName("일기 UUID로 일기를 조회한다.")
+	@Test
+	void findSharedDiary() {
+		// given
+		var uuid = UUID.randomUUID().toString();
+		given(diaryRepository.findByUuid(any())).willReturn(Optional.ofNullable(diary1));
+
+		// when
+		DiaryResponse diaryResponse = diaryService.findSharedDiary(uuid);
+
+		// then
+		assertAll(
+			() -> assertThat(diaryResponse.getTitle()).isEqualTo("일기1 제목"),
+			() -> assertThat(diaryResponse.getContent()).isEqualTo("일기1 내용"),
+			() -> assertThat(diaryResponse.getDogName()).isEqualTo("코코"),
+			() -> assertThat(diaryResponse.getDate()).isInstanceOf(LocalDate.class),
+			() -> assertThat(diaryResponse.getImageIds()).isEqualTo(List.of(1L, 2L))
+		);
+	}
+
+	@DisplayName("존재하지 않는 일기 UUID로 일기를 조회시 실패한다.")
+	@Test
+	void findSharedDiary_exception_diaryNotFound() {
+		// given
+		var uuid = UUID.randomUUID().toString();
+
+		// when & then
+		assertThatThrownBy(() -> diaryService.findSharedDiary(uuid))
+			.isInstanceOf(DiaryNotFoundException.class)
+			.hasMessageContaining(DiaryErrorCode.DIARY_NOT_FOUND.getDescription());
+	}
 }

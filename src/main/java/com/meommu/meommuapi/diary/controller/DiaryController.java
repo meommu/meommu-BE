@@ -19,6 +19,7 @@ import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
 import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.service.DiaryService;
 
@@ -74,5 +75,17 @@ public class DiaryController {
 		@PathVariable Long diaryId,
 		@Auth AuthInfo authInfo) {
 		diaryService.delete(diaryId, authInfo);
+	}
+
+	@GetMapping("/api/v1/diaries/{dairyId}/share-uuid")
+	public DiaryUUIDResponse findDiaryUUID(
+		@PathVariable Long dairyId,
+		@Auth AuthInfo authInfo) {
+		return diaryService.findDiaryUUID(dairyId, authInfo);
+	}
+
+	@GetMapping("/api/v1/diaries/shared/{uuid}")
+	public DiaryResponse findSharedDiary(@PathVariable String uuid) {
+		return diaryService.findSharedDiary(uuid);
 	}
 }
