@@ -35,6 +35,8 @@ import com.meommu.meommuapi.kindergarten.controller.KindergartenController;
 import com.meommu.meommuapi.kindergarten.service.KindergartenService;
 import com.meommu.meommuapi.notice.controller.NoticeController;
 import com.meommu.meommuapi.notice.service.NoticeService;
+import com.meommu.meommuapi.proxy.controller.ProxyController;
+import com.meommu.meommuapi.proxy.service.ProxyService;
 import com.meommu.meommuapi.util.documentation.DocumentUtils;
 
 @WebMvcTest({
@@ -46,6 +48,7 @@ import com.meommu.meommuapi.util.documentation.DocumentUtils;
 	DiaryController.class,
 	NoticeController.class,
 	ErrorCodeController.class,
+	ProxyController.class,
 })
 @Import(DocumentUtils.class)
 @ExtendWith(RestDocumentationExtension.class)
@@ -80,6 +83,9 @@ public abstract class ControllerTest {
 
 	@MockBean
 	protected NoticeService noticeService;
+
+	@MockBean
+	protected ProxyService proxyService;
 
 	@BeforeEach
 	void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
