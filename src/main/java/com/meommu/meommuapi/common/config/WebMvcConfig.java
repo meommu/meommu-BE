@@ -41,7 +41,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/api/v1/images/**")
 			.excludePathPatterns("/api/v1/notices/**")
 			.excludePathPatterns("/api/v1/diaries/shared/**")
-			.excludePathPatterns("/html2canvas/proxy.json/**")
+			.excludePathPatterns("/api/v1/proxy/**")
 			.excludePathPatterns("/docs/index.html");
 	}
 

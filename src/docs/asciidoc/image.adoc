@@ -66,3 +66,15 @@ include::{snippets}/images/delete/success/path-parameters.adoc[]
 include::{snippets}/images/delete/success/http-response.adoc[]
 
 
+=== 이미지 프록시 조회
+프록시를 이용하여 이미지를 byte로 변환합니다.
+Html2Canvas를 통한 이미지 캡쳐를 위해 사용됩니다.
+
+[discrete]
+==== 요청
+include::{snippets}/proxy/html2canvas/success/http-request.adoc[]
+include::{snippets}/proxy/html2canvas/success/query-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/proxy/html2canvas/success/http-response.adoc[]
