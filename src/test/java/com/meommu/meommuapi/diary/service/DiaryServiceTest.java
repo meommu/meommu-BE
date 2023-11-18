@@ -110,7 +110,7 @@ class DiaryServiceTest extends ServiceTest {
 		// given
 		var authInfo = new AuthInfo(1L);
 		given(kindergartenRepository.findById(any())).willReturn(Optional.ofNullable(kindergarten));
-		given(diaryRepository.findByKindergartenOrderByDateDesc(any())).willReturn(List.of(diary2, diary1));
+		given(diaryRepository.findByKindergartenOrderByDateDescCreatedAtDesc(any())).willReturn(List.of(diary2, diary1));
 
 		// when
 		DiarySummaryResponses diariesSummary = diaryService.findDiariesSummary(authInfo);
@@ -132,7 +132,7 @@ class DiaryServiceTest extends ServiceTest {
 			.month(LocalDate.now().getMonth().getValue())
 			.build();
 		given(kindergartenRepository.findById(any())).willReturn(Optional.ofNullable(kindergarten));
-		given(diaryRepository.findByKindergartenAndDateBetweenOrderByDateDesc(any(), any(), any())).willReturn(
+		given(diaryRepository.findByKindergartenAndDateBetweenOrderByDateDescCreatedAtDesc(any(), any(), any())).willReturn(
 			List.of(diary2, diary1));
 
 		// when

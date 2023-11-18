@@ -13,9 +13,9 @@ import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
-	List<Diary> findByKindergartenAndDateBetweenOrderByDateDesc(Kindergarten kindergarten, LocalDate startDate, LocalDate endDate);
+	List<Diary> findByKindergartenAndDateBetweenOrderByDateDescCreatedAtDesc(Kindergarten kindergarten, LocalDate startDate, LocalDate endDate);
 
-	List<Diary> findByKindergartenOrderByDateDesc(Kindergarten kindergarten);
+	List<Diary> findByKindergartenOrderByDateDescCreatedAtDesc(Kindergarten kindergarten);
 
 	Optional<Diary> findByUuid(String uuid);
 }

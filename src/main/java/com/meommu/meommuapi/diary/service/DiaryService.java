@@ -45,7 +45,7 @@ public class DiaryService {
 
 	public DiarySummaryResponses findDiariesSummary(AuthInfo authInfo) {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
-		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDesc(kindergarten);
+		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDescCreatedAtDesc(kindergarten);
 		return DiarySummaryResponses.from(diaries);
 	}
 
@@ -53,7 +53,7 @@ public class DiaryService {
 		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		LocalDate startDate = LocalDate.of(criteria.getYear(), criteria.getMonth(), 1);
 		LocalDate endDate = startDate.plusMonths(1).minusDays(1);
-		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDesc(kindergarten, startDate,
+		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDescCreatedAtDesc(kindergarten, startDate,
 			endDate);
 		return DiaryResponses.from(diaries);
 	}

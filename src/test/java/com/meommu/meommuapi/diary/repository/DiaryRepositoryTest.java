@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -60,7 +58,7 @@ class DiaryRepositoryTest extends RepositoryTest {
 		//when
 		LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1);
 		LocalDate endDate = startDate.plusMonths(1).minusDays(1);
-		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDesc(
+		List<Diary> diaries = diaryRepository.findByKindergartenAndDateBetweenOrderByDateDescCreatedAtDesc(
 			kindergarten, startDate, endDate);
 
 		// then
@@ -73,7 +71,7 @@ class DiaryRepositoryTest extends RepositoryTest {
 	@DisplayName("회원의 일기를 최신순으로 조회할 수 있다.")
 	@Test
 	void findByKindergartenOrderByDateDesc() {
-		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDesc(kindergarten);
+		List<Diary> diaries = diaryRepository.findByKindergartenOrderByDateDescCreatedAtDesc(kindergarten);
 
 		// then
 		assertAll(
