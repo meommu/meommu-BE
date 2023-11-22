@@ -12,4 +12,6 @@ public interface KindergartenRepository extends JpaRepository<Kindergarten, Long
 	boolean existsByEmailValue(String email);
 
 	Optional<Kindergarten> findByEmailValueAndPasswordValue(String email, String password);
+
+	Optional<Kindergarten> findByEmailValue(String email);
 }
