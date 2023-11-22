@@ -35,24 +35,19 @@ public class GuideDetail extends BaseTimeEntity {
 	@JoinColumn(name = "guide_id")
 	private Guide guide;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "kindergarten_id")
-	private Kindergarten kindergarten;
-
 	@NotNull
 	private boolean deleted = Boolean.FALSE;
 
 	protected GuideDetail() {
 	}
 
-	private GuideDetail(String content, Guide gptGuide, Kindergarten kindergarten) {
+	private GuideDetail(String content, Guide gptGuide) {
 		this.content = Content.from(content);
 		this.guide = gptGuide;
-		this.kindergarten = kindergarten;
 	}
 
-	public static GuideDetail of(String content, Guide guide, Kindergarten kindergarten) {
-		return new GuideDetail(content, guide, kindergarten);
+	public static GuideDetail of(String content, Guide guide) {
+		return new GuideDetail(content, guide);
 	}
 
 	public Long getId() {
@@ -65,10 +60,6 @@ public class GuideDetail extends BaseTimeEntity {
 
 	public Guide getGuide() {
 		return guide;
-	}
-
-	public Kindergarten getKindergarten() {
-		return kindergarten;
 	}
 
 	public void updateContent(String value) {

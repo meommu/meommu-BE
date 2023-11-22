@@ -30,57 +30,44 @@ public class GuideService {
 
 	private final GuideDetailRepository guideDetailRepository;
 
-	private final KindergartenRepository kindergartenRepository;
-
 	public GuideService(
 		GuideRepository guideRepository,
-		GuideDetailRepository guideDetailRepository,
-		KindergartenRepository kindergartenRepository
-	) {
+		GuideDetailRepository guideDetailRepository) {
 		this.guideRepository = guideRepository;
 		this.guideDetailRepository = guideDetailRepository;
-		this.kindergartenRepository = kindergartenRepository;
 	}
 
 	public GuideResponses findGuides() {
 		return GuideResponses.from(guideRepository.findAll());
 	}
 
-	public GuideDetailResponses findGuideDetails(Long guideId, AuthInfo authInfo) {
-		List<GuideDetail> guideDetails = guideDetailRepository.findAllByGuideIdAndKindergartenId(
-			guideId, authInfo.getId());
+	public GuideDetailResponses findGuideDetails(Long guideId) {
+		List<GuideDetail> guideDetails = guideDetailRepository.findAllByGuideId(guideId);
 		return GuideDetailResponses.from(guideDetails);
 	}
 
 	@Transactional
 	public GuideDetailSaveResponse createGuideDetail(
 		Long guideId,
-		GuideDetailSaveRequest guideDetailSaveRequest,
-		AuthInfo authInfo
+		GuideDetailSaveRequest guideDetailSaveRequest
 	) {
 		Guide guide = getGuideById(guideId);
-		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
-		GuideDetail guideDetail = GuideDetail.of(guideDetailSaveRequest.getDetail(), guide, kindergarten);
+		GuideDetail guideDetail = GuideDetail.of(guideDetailSaveRequest.getDetail(), guide);
 		guideDetailRepository.save(guideDetail);
 		return GuideDetailSaveResponse.from(guideDetail.getId());
 	}
 
 	@Transactional
-	public void deleteGuideDetail(Long guideId, Long detailId, AuthInfo authInfo) {
+	public void deleteGuideDetail(Long guideId, Long detailId) {
 		Guide guide = getGuideById(guideId);
 		GuideDetail guideDetail = getGuideDetailById(detailId);
-		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
-		validatePermission(guide, guideDetail, kindergarten);
+		validatePermission(guide, guideDetail);
 		guideDetailRepository.delete(guideDetail);
 	}
 
-	private void validatePermission(Guide guide, GuideDetail guideDetail, Kindergarten kindergarten) {
+	private void validatePermission(Guide guide, GuideDetail guideDetail) {
 		if (!guideDetail.getGuide().equals(guide)) {
 			throw new InvalidIdException();
-		}
-
-		if (!guideDetail.getKindergarten().equals(kindergarten)) {
-			throw new AuthorizationException();
 		}
 	}
 
@@ -90,10 +77,6 @@ public class GuideService {
 
 	private GuideDetail getGuideDetailById(Long id) {
 		return guideDetailRepository.findById(id).orElseThrow(() -> new GuideDetailNotFoundException(id));
-	}
-
-	private Kindergarten getKindergartenById(Long id) {
-		return kindergartenRepository.findById(id).orElseThrow(() -> new KindergartenNotFoundException(id));
 	}
 
 }

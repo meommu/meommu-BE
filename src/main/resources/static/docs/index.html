@@ -1240,7 +1240,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-22T14:11:22.413207&quot;
+    &quot;createdAt&quot; : &quot;2023-11-22T16:15:09.140126&quot;
   }
 }</code></pre>
 </div>
@@ -1349,7 +1349,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-22T14:11:22.440453&quot;
+    &quot;createdAt&quot; : &quot;2023-11-22T16:15:09.187275&quot;
   }
 }</code></pre>
 </div>
@@ -1845,7 +1845,7 @@ src/test/resources/testimages/coco.jpeg
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>images</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">일기 이미지 id 리스트</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic", "image/jpg" 중에 하나여야 합니다. 한 요청시 보낼 수 있는 이미지 최대 용량은 300MB입니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 타입은 "image/jpeg", "image/png", "image/heic", "image/jpg" 중에 하나여야 합니다. 한 요청시 보낼 수 있는 이미지 한 장의 최대 용량은 30MB입니다. 한 요청의 이미지 총 용량은 150MB를 넘을 수 없습니다.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2125,7 +2125,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 215
+Content-Length: 355
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -2133,10 +2133,12 @@ Content-Length: 215
   &quot;data&quot; : {
     &quot;guides&quot; : [ {
       &quot;id&quot; : 1,
-      &quot;guide&quot; : &quot;산책에 관한 일상&quot;
+      &quot;guide&quot; : &quot;산책에 관한 일상&quot;,
+      &quot;description&quot; : &quot;산책할 때는 어떤 일이 있었나요?&quot;
     }, {
       &quot;id&quot; : 2,
-      &quot;guide&quot; : &quot;낮잠에 관한 일상&quot;
+      &quot;guide&quot; : &quot;낮잠에 관한 일상&quot;,
+      &quot;description&quot; : &quot;낮잠잘 때는 어떤 일이 있었나요?&quot;
     } ]
   }
 }</code></pre>
@@ -2385,12 +2387,12 @@ Content-Length: 364
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
       &quot;date&quot; : &quot;2023-11-22&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.470044&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.162671&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     }, {
       &quot;id&quot; : 1,
       &quot;date&quot; : &quot;2023-11-21&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.470036&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.162662&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     } ]
   }
@@ -2460,7 +2462,7 @@ Content-Length: 563
       &quot;id&quot; : 2,
       &quot;date&quot; : &quot;2023-11-22&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.42319&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.115882&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
@@ -2468,7 +2470,7 @@ Content-Length: 563
       &quot;id&quot; : 1,
       &quot;date&quot; : &quot;2023-11-21&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.423174&quot;,
+      &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.11587&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2527,7 +2529,7 @@ Content-Length: 281
     &quot;id&quot; : 1,
     &quot;date&quot; : &quot;2023-11-21&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.515767&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.211667&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2845,7 +2847,7 @@ Content-Length: 115
   &quot;code&quot; : &quot;0000&quot;,
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
-    &quot;uuid&quot; : &quot;73e1444f-63a2-4e04-886d-516ce0377267&quot;
+    &quot;uuid&quot; : &quot;99f54e4d-7b2e-4075-9ed4-cc4ae62d9087&quot;
   }
 }</code></pre>
 </div>
@@ -2899,7 +2901,7 @@ Content-Length: 280
     &quot;id&quot; : 1,
     &quot;date&quot; : &quot;2023-11-21&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-22T14:11:21.53938&quot;,
+    &quot;createdAt&quot; : &quot;2023-11-22T16:15:08.23603&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2946,12 +2948,12 @@ Content-Length: 374
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-22T14:11:22.580345&quot;
+      &quot;createdAt&quot; : &quot;2023-11-22T16:15:09.359968&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-21T14:11:22.580331&quot;
+      &quot;createdAt&quot; : &quot;2023-11-21T16:15:09.359955&quot;
     } ]
   }
 }</code></pre>
