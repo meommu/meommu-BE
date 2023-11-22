@@ -34,15 +34,17 @@ class GuideControllerTest extends ControllerTest {
 
 	@DisplayName("가이드 전체 조회: 성공 -> 200")
 	@Test
-	void testFindGuides() throws Exception {
+	void findGuides() throws Exception {
 		// given
 		GuideResponse guideResponse1 = GuideResponse.builder()
 			.id(1L)
 			.guide("산책에 관한 일상")
+			.description("산책할 때는 어떤 일이 있었나요?")
 			.build();
 		GuideResponse guideResponse2 = GuideResponse.builder()
 			.id(2L)
 			.guide("낮잠에 관한 일상")
+			.description("낮잠잘 때는 어떤 일이 있었나요?")
 			.build();
 		GuideResponses guideResponses = GuideResponses.builder()
 			.guides(List.of(guideResponse1, guideResponse2))
@@ -61,8 +63,10 @@ class GuideControllerTest extends ControllerTest {
 			jsonPath("$.message").value("정상"),
 			jsonPath("$.data.guides[0].id").value(1L),
 			jsonPath("$.data.guides[0].guide").value("산책에 관한 일상"),
+			jsonPath("$.data.guides[0].description").value("산책할 때는 어떤 일이 있었나요?"),
 			jsonPath("$.data.guides[1].id").value(2L),
-			jsonPath("$.data.guides[1].guide").value("낮잠에 관한 일상")
+			jsonPath("$.data.guides[1].guide").value("낮잠에 관한 일상"),
+			jsonPath("$.data.guides[1].description").value("낮잠잘 때는 어떤 일이 있었나요?")
 		).andDo(
 			document("guide/getAll/success",
 				getDocumentRequest(), getDocumentResponse()
@@ -85,7 +89,7 @@ class GuideControllerTest extends ControllerTest {
 		GuideDetailResponses guideDetailResponses = GuideDetailResponses.builder()
 			.details(List.of(guideDetailResponse1, guideDetailResponse2))
 			.build();
-		given(guideService.findGuideDetails(any(), any())).willReturn(guideDetailResponses);
+		given(guideService.findGuideDetails(any())).willReturn(guideDetailResponses);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
@@ -113,13 +117,13 @@ class GuideControllerTest extends ControllerTest {
 		);
 	}
 
-	@DisplayName("디테일 생성: 성공 201")
+	@DisplayName("디테일 생성: 성공 -> 201")
 	@Test
 	void guideDetailAdd() throws Exception {
 		// given
 		GuideDetailSaveResponse guideDetailSaveResponse = GuideDetailSaveResponse.builder().savedId(1L).build();
 		GuideDetailSaveRequest guideDetailSaveRequest = GuideDetailSaveRequest.builder().detail("산책하다 꽃을 봤어요.").build();
-		given(guideService.createGuideDetail(any(), any(), any())).willReturn(guideDetailSaveResponse);
+		given(guideService.createGuideDetail(any(), any())).willReturn(guideDetailSaveResponse);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
@@ -152,7 +156,7 @@ class GuideControllerTest extends ControllerTest {
 	@Test
 	void guideDetailRemove() throws Exception {
 		// given
-		doNothing().when(guideService).deleteGuideDetail(any(), any(), any());
+		doNothing().when(guideService).deleteGuideDetail(any(), any());
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
