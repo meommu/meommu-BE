@@ -15,6 +15,7 @@ include::{snippets}/kindergartens/email/success/query-parameters.adoc[]
 ===== 중복이 아닐 경우
 true를 반환합니다.
 include::{snippets}/kindergartens/email/success/http-response.adoc[]
+
 [discrete]
 ===== 중복일 경우
 false를 반환합니다.
@@ -93,3 +94,48 @@ include::{snippets}/kindergartens/delete/success/path-parameters.adoc[]
 [discrete]
 ==== 응답
 include::{snippets}/kindergartens/delete/success/http-response.adoc[]
+
+
+=== 비밀번호 찾기 - 이메일 전송
+비밀번호를 수정하기 위해 인증 코드를 이메일로 전송합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/email-code-request/success/http-request.adoc[]
+include::{snippets}/kindergartens/email-code-request/success/query-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/email-code-request/success/http-response.adoc[]
+
+
+=== 비밀번호 찾기 - 인증 코드 확인
+비밀번호를 수정하기 위해 이메일로 전송된 인증 코드를 확인합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/email-code-verification/success/http-request.adoc[]
+include::{snippets}/kindergartens/email-code-verification/success/query-parameters.adoc[]
+
+[discrete]
+==== 응답
+[discrete]
+===== 일치할 경우
+include::{snippets}/kindergartens/email-code-verification/success/http-response.adoc[]
+
+[discrete]
+===== 불일치할 경우
+include::{snippets}/kindergartens/email-code-verification/fail/http-response.adoc[]
+
+
+=== 비밀번호 찾기 - 수정
+비밀번호를 수정합니다. 인증 코드 확인이 완료된 이메일 대상으로 수정 기능을 제공합니다. 별도의 인증 과정이 생략되었습니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/update-password/success/http-request.adoc[]
+include::{snippets}/kindergartens/update-password/success/query-parameters.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/update-password/success/http-response.adoc[]

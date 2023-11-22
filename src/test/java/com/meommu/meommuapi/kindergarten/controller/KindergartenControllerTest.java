@@ -21,6 +21,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.meommu.meommuapi.common.util.JsonUtils;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
@@ -32,7 +33,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("회원가입: 성공 -> 201")
 	@Test
-	void testSignUp() throws Exception {
+	void signUp() throws Exception {
 		// given
 		var signUpRequest = SignUpRequest.builder()
 			.name("멈무유치원")
@@ -84,7 +85,7 @@ class KindergartenControllerTest extends ControllerTest {
 							getConstraints("constraints", "이메일 형식이어야 합니다. ^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")),
 					fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호")
 						.attributes(
-							getConstraints("constraints", "8~20자 사이여야 합니다. 숫자와 특수기호가 각각 한 글자 이상 포함되어야 합니다.")),
+							getConstraints("constraints", "8~20자 사이여야 합니다. 알파벳, 숫자와 특수기호가 각각 한 글자 이상 포함되어야 합니다.")),
 					fieldWithPath("passwordConfirmation").type(JsonFieldType.STRING).description("비밀번호 확인")
 						.attributes(
 							getConstraints("constraints", "password와 값이 같아야합니다."))
@@ -95,7 +96,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("이메일 중복 확인: 성공 -> 200")
 	@Test
-	void testCheckEmailDuplication() throws Exception {
+	void checkEmailDuplication() throws Exception {
 		// given
 		given(kindergartenService.existsByEmail(any())).willReturn(true);
 
@@ -123,7 +124,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("이메일 중복 확인: 중복 -> 200")
 	@Test
-	void testCheckEmailDuplicationWhenDuplicated() throws Exception {
+	void checkEmailDuplicationWhenDuplicated() throws Exception {
 		// given
 		given(kindergartenService.existsByEmail(any())).willReturn(false);
 
@@ -151,7 +152,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("토큰에서 회원 정보 추출: 성공 -> 200")
 	@Test
-	void testFindMyInfo() throws Exception {
+	void findMyInfo() throws Exception {
 		// given
 		var myInfoResponse = MyInfoResponse.builder()
 			.id(1L)
@@ -185,7 +186,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("조회: 성공 -> 200")
 	@Test
-	void testFindKindergarten() throws Exception {
+	void findKindergarten() throws Exception {
 		// given
 		var kindergartenResponse = KindergartenResponse.builder()
 			.name("멈무유치원")
@@ -219,7 +220,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("수정: 성공 -> 200")
 	@Test
-	void testUpdateKindergarten() throws Exception {
+	void updateKindergarten() throws Exception {
 		// given
 		var kindergartenUpdateRequest = KindergartenUpdateRequest.builder()
 			.name("멈무유치원")
@@ -262,7 +263,7 @@ class KindergartenControllerTest extends ControllerTest {
 
 	@DisplayName("탈퇴: 성공 -> 200")
 	@Test
-	void testDeleteDiary() throws Exception {
+	void deleteDiary() throws Exception {
 		// given
 		doNothing().when(kindergartenService).delete(any(), any());
 
@@ -281,6 +282,134 @@ class KindergartenControllerTest extends ControllerTest {
 				getDocumentRequest(), getDocumentResponse(),
 				pathParameters(
 					parameterWithName("kindergartenId").description("유치원 id")
+				)
+			)
+		);
+	}
+
+	@DisplayName("비밀번호 찾기 이메일 전송: 성공 -> 200")
+	@Test
+	void sendCodeToEmail() throws Exception {
+		// given
+		doNothing().when(kindergartenService).sendCodeToEmail(any());
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			post("/api/v1/kindergartens/email/verification-request?email=meommu@email.com")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
+		).andDo(
+			document("kindergartens/email-code-request/success",
+				getDocumentRequest(), getDocumentResponse(),
+				queryParameters(
+					parameterWithName("email").description("비밀번호를 수정하고자 하는 이메일")
+				)
+			)
+		);
+	}
+
+	@DisplayName("비밀번호 찾기 이메일 코드 확인: 일치 -> 200")
+	@Test
+	void verificationCode() throws Exception {
+		// given
+		given(kindergartenService.verifiedCode(any(), any())).willReturn(true);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			get("/api/v1/kindergartens/email/verification?email=meommu@email.com&code=123456")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").value(true)
+		).andDo(
+			document("kindergartens/email-code-verification/success",
+				getDocumentRequest(), getDocumentResponse(),
+				queryParameters(
+					parameterWithName("email").description("비밀번호를 수정하고자 하는 이메일"),
+					parameterWithName("code").description("이메일로 받은 코드")
+						.attributes(
+							getConstraints("constraints", "6글자의 숫자 입니다."))
+				)
+			)
+		);
+	}
+
+	@DisplayName("비밀번호 찾기 이메일 코드 확인: 불일치 -> 200")
+	@Test
+	void verificationCodeWhenNotVerified() throws Exception {
+		// given
+		given(kindergartenService.verifiedCode(any(), any())).willReturn(false);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			get("/api/v1/kindergartens/email/verification?email=meommu@email.com&code=123456")
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").value(false)
+		).andDo(
+			document("kindergartens/email-code-verification/fail",
+				getDocumentRequest(), getDocumentResponse(),
+				queryParameters(
+					parameterWithName("email").description("비밀번호를 수정하고자 하는 이메일"),
+					parameterWithName("code").description("이메일로 받은 코드")
+						.attributes(
+							getConstraints("constraints", "6글자의 숫자 입니다."))
+				)
+			)
+		);
+	}
+
+	@DisplayName("비밀번호 수정: 성공 -> 200")
+	@Test
+	void updatePassword() throws Exception {
+		// given
+		var request = KindergartenPasswordUpdateRequest.builder()
+			.password("Password1!")
+			.passwordConfirmation("Password1!")
+			.build();
+
+		doNothing().when(kindergartenService).updatePassword(any(), any());
+
+		// when
+		ResultActions resultActions = mockMvc.perform(patch("/api/v1/kindergartens/password?email=meommu@email.com")
+			.content(JsonUtils.toJson(request))
+			.contentType(MediaType.APPLICATION_JSON)
+		);
+
+		// then
+		resultActions.andExpectAll(
+			status().isOk(),
+			jsonPath("$.code").value("0000"),
+			jsonPath("$.message").value("정상"),
+			jsonPath("$.data").doesNotExist()
+		).andDo(
+			document("kindergartens/update-password/success",
+				getDocumentRequest(), getDocumentResponse(),
+				queryParameters(
+					parameterWithName("email").description("비밀번호를 수정하고자 하는 이메일")
+				),
+				requestFields(
+					fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호")
+						.attributes(
+							getConstraints("constraints", "8~20자 사이여야 합니다. 알파벳, 숫자와 특수기호가 각각 한 글자 이상 포함되어야 합니다.")),
+					fieldWithPath("passwordConfirmation").type(JsonFieldType.STRING).description("비밀번호 확인")
+						.attributes(
+							getConstraints("constraints", "password와 값이 같아야합니다."))
 				)
 			)
 		);

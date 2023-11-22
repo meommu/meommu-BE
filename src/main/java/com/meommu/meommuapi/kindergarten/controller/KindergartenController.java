@@ -1,19 +1,23 @@
 package com.meommu.meommuapi.kindergarten.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.meommu.meommuapi.auth.dto.AuthInfo;
 import com.meommu.meommuapi.auth.token.Auth;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
@@ -63,5 +67,23 @@ public class KindergartenController {
 	@DeleteMapping("/api/v1/kindergartens/{kindergartenId}")
 	public void deleteKindergarten(@PathVariable Long kindergartenId, @Auth AuthInfo authInfo) {
 		kindergartenService.delete(kindergartenId, authInfo);
+	}
+
+	@PostMapping("/api/v1/kindergartens/email/verification-request")
+	public void sendCodeToEmail(@RequestParam("email") String email) {
+		kindergartenService.sendCodeToEmail(email);
+	}
+
+	@GetMapping("/api/v1/kindergartens/email/verification")
+	public boolean verificationCode(@RequestParam("email") String email, @RequestParam("code") String code) {
+		return kindergartenService.verifiedCode(email, code);
+	}
+
+	@PatchMapping("/api/v1/kindergartens/password")
+	public void updatePassword(
+		@RequestParam("email") String email,
+		@Valid @RequestBody KindergartenPasswordUpdateRequest kindergartenPasswordUpdateRequest
+	) {
+		kindergartenService.updatePassword(email, kindergartenPasswordUpdateRequest);
 	}
 }
