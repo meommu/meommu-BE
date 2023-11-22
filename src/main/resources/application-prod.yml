@@ -5,11 +5,11 @@ spring:
     password: ${RDS_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
   servlet:
     multipart:
-      max-file-size: 300MB
-      max-request-size: 300MB
+      max-file-size: 30MB
+      max-request-size: 150MB
   mail:
     host: smtp.gmail.com
     port: 587

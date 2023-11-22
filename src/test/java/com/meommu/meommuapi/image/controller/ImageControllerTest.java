@@ -147,7 +147,7 @@ class ImageControllerTest extends ControllerTest {
 							"이미지 카테고리는 \"PARENT_PROFILE\", \"KINDERGARTEN_PROFILE\", \"DOG_PROFILE\", \"DIARY_IMAGE\", \"NOTICE_IMAGE\" 중에 하나여야 하며 대소문자를 구분하지 않습니다.")),
 					partWithName("images").description("일기 이미지 id 리스트")
 						.attributes(getConstraints("constraints",
-							"이미지 타입은 \"image/jpeg\", \"image/png\", \"image/heic\", \"image/jpg\" 중에 하나여야 합니다. 한 요청시 보낼 수 있는 이미지 최대 용량은 300MB입니다."))
+							"이미지 타입은 \"image/jpeg\", \"image/png\", \"image/heic\", \"image/jpg\" 중에 하나여야 합니다. 한 요청시 보낼 수 있는 이미지 한 장의 최대 용량은 30MB입니다. 한 요청의 이미지 총 용량은 150MB를 넘을 수 없습니다."))
 				)
 			)
 		);
