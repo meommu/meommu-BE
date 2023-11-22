@@ -56,7 +56,7 @@ class GptControllerTest extends ControllerTest {
 				requestFields(
 					fieldWithPath("details").type(JsonFieldType.STRING).description("일기 생성을 위한 디테일")
 						.attributes(
-							getConstraints("constraints", "일기 디테일은 최소 1개이상 존재해야하며, 디테일들은 콤마(,)로 구분되어야 합니다."))
+							getConstraints("constraints", "일기 디테일은 최소 1개이상 존재해야하며, 디테일들은 파이프(|)로 구분되어야 합니다."))
 				)
 			)
 		);
