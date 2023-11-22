@@ -32,26 +32,22 @@ public class GuideController {
 	}
 
 	@GetMapping("/api/v1/guides/{guideId}/details")
-	public GuideDetailResponses findGuideDetails(
-		@PathVariable Long guideId,
-		@Auth AuthInfo authInfo) {
-		return guideService.findGuideDetails(guideId, authInfo);
+	public GuideDetailResponses findGuideDetails(@PathVariable Long guideId) {
+		return guideService.findGuideDetails(guideId);
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/api/v1/guides/{guideId}/details")
 	public GuideDetailSaveResponse createGuideDetails(
 		@PathVariable Long guideId,
-		@RequestBody GuideDetailSaveRequest guideDetailSaveRequest,
-		@Auth AuthInfo authInfo) {
-		return guideService.createGuideDetail(guideId, guideDetailSaveRequest, authInfo);
+		@RequestBody GuideDetailSaveRequest request) {
+		return guideService.createGuideDetail(guideId, request);
 	}
 
 	@DeleteMapping("/api/v1/guides/{guideId}/details/{detailId}")
 	public void deleteGuideDetail(
 		@PathVariable Long guideId,
-		@PathVariable Long detailId,
-		@Auth AuthInfo authInfo) {
-		guideService.deleteGuideDetail(guideId, detailId, authInfo);
+		@PathVariable Long detailId) {
+		guideService.deleteGuideDetail(guideId, detailId);
 	}
 }
