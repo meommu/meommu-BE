@@ -25,6 +25,9 @@ public class Guide extends BaseTimeEntity {
 	private Content content;
 
 	@NotNull
+	private String description;
+
+	@NotNull
 	private boolean deleted = Boolean.FALSE;
 
 	protected Guide() {
@@ -44,6 +47,10 @@ public class Guide extends BaseTimeEntity {
 
 	public String getContent() {
 		return content.getValue();
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	public void updateContent(String value) {
