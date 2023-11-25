@@ -126,6 +126,10 @@ public class Diary extends BaseTimeEntity {
 		this.date = date;
 	}
 
+	public void updateDogName(String dogName) {
+		this.dogName = DogName.from(dogName);
+	}
+
 	public void updateImages(List<DiaryImage> newDiaryImages) {
 		this.diaryImages.clear();
 
@@ -143,4 +147,5 @@ public class Diary extends BaseTimeEntity {
 			this.diaryImages.add(diaryImage);
 		}
 	}
+
 }

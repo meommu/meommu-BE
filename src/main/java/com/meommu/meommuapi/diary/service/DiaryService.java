@@ -134,6 +134,7 @@ public class DiaryService {
 		diary.updateTitle(request.getTitle());
 		diary.updateContent(request.getContent());
 		diary.updateDate(request.getDate());
+		diary.updateDogName(request.getDogName());
 
 		List<DiaryImage> diaryImages = createDiaryImagesFromImageIds(request.getImageIds(), diary);
 
