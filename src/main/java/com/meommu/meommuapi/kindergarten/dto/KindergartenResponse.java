@@ -8,6 +8,8 @@ import lombok.Getter;
 @Getter
 public class KindergartenResponse {
 
+	private Long id;
+
 	private String name;
 
 	private String ownerName;
@@ -20,7 +22,8 @@ public class KindergartenResponse {
 	}
 
 	@Builder
-	private KindergartenResponse(String name, String ownerName, String phone, String email) {
+	private KindergartenResponse(Long id, String name, String ownerName, String phone, String email) {
+		this.id = id;
 		this.name = name;
 		this.ownerName = ownerName;
 		this.phone = phone;
@@ -29,6 +32,7 @@ public class KindergartenResponse {
 
 	public static KindergartenResponse from(Kindergarten kindergarten) {
 		return KindergartenResponse.builder()
+			.id(kindergarten.getId())
 			.name(kindergarten.getName())
 			.ownerName(kindergarten.getOwnerName())
 			.phone(kindergarten.getPhone())
