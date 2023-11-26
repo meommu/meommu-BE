@@ -31,7 +31,7 @@ class GptControllerTest extends ControllerTest {
 	void testCreateGptContent() throws Exception {
 		// given
 		GptGenerateRequest gptGenerateRequest = GptGenerateRequest.builder()
-			.details("수영장에서 친구랑 놀기, 맛있는 간식 먹기")
+			.details("수영장에서 친구랑 놀기|맛있는 간식 먹기")
 			.build();
 		GptGenerateResponse gptGenerateResponse = GptGenerateResponse.builder()
 			.content("생성된 일기 내용")
