@@ -189,6 +189,7 @@ class KindergartenControllerTest extends ControllerTest {
 	void findKindergarten() throws Exception {
 		// given
 		var kindergartenResponse = KindergartenResponse.builder()
+			.id(1L)
 			.name("멈무유치원")
 			.ownerName("홍길동")
 			.phone("010-0000-0000")
@@ -207,6 +208,7 @@ class KindergartenControllerTest extends ControllerTest {
 			status().isOk(),
 			jsonPath("$.code").value("0000"),
 			jsonPath("$.message").value("정상"),
+			jsonPath("$.data.id").value(1L),
 			jsonPath("$.data.name").value("멈무유치원"),
 			jsonPath("$.data.ownerName").value("홍길동"),
 			jsonPath("$.data.phone").value("010-0000-0000"),
