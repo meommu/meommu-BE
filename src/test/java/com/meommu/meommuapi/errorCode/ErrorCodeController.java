@@ -18,6 +18,7 @@ import com.meommu.meommuapi.guide.exception.errorCode.GuideErrorCode;
 import com.meommu.meommuapi.image.exception.errorCode.ImageErrorCode;
 import com.meommu.meommuapi.kindergarten.exception.errorCode.KindergartenErrorCode;
 import com.meommu.meommuapi.notice.exception.errorCode.NoticeErrorCode;
+import com.meommu.meommuapi.proxy.exception.errorCode.ProxyErrorCode;
 
 @RestController
 public class ErrorCodeController {
@@ -33,6 +34,7 @@ public class ErrorCodeController {
 		errorCodes.addAll(Arrays.asList(ImageErrorCode.values()));
 		errorCodes.addAll(Arrays.asList(DiaryErrorCode.values()));
 		errorCodes.addAll(Arrays.asList(NoticeErrorCode.values()));
+		errorCodes.addAll(Arrays.asList(ProxyErrorCode.values()));
 
 		Map<String, ErrorCodeResponse> map = new LinkedHashMap<>();
 
