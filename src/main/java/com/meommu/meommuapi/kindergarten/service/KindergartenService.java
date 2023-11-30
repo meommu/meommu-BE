@@ -82,25 +82,22 @@ public class KindergartenService {
 		return MyInfoResponse.from(kindergarten);
 	}
 
-	public KindergartenResponse find(Long kindergartenId, AuthInfo authInfo) {
-		validateOwner(authInfo.getId(), kindergartenId);
-		Kindergarten kindergarten = getKindergartenById(kindergartenId);
+	public KindergartenResponse find(AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		return KindergartenResponse.from(kindergarten);
 	}
 
 	@Transactional
-	public void update(Long kindergartenId, KindergartenUpdateRequest kindergartenUpdateRequest, AuthInfo authInfo) {
-		validateOwner(authInfo.getId(), kindergartenId);
-		Kindergarten kindergarten = getKindergartenById(kindergartenId);
+	public void update(KindergartenUpdateRequest kindergartenUpdateRequest, AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		kindergarten.updateName(kindergartenUpdateRequest.getName());
 		kindergarten.updateOwnerName(kindergartenUpdateRequest.getOwnerName());
 		kindergarten.updatePhone(kindergartenUpdateRequest.getPhone());
 	}
 
 	@Transactional
-	public void delete(Long kindergartenId, AuthInfo authInfo) {
-		validateOwner(authInfo.getId(), kindergartenId);
-		Kindergarten kindergarten = getKindergartenById(kindergartenId);
+	public void delete(AuthInfo authInfo) {
+		Kindergarten kindergarten = getKindergartenById(authInfo.getId());
 		kindergartenRepository.delete(kindergarten);
 	}
 

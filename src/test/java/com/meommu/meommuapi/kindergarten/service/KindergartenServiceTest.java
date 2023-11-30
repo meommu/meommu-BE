@@ -154,32 +154,6 @@ class KindergartenServiceTest extends ServiceTest {
 			.hasMessageContaining("유치원(id = 99999999)를 찾을 수 없습니다.");
 	}
 
-	@DisplayName("회원 id로 회원의 정보를 조회한다.")
-	@Test
-	void find() {
-		// given
-		var authInfo = new AuthInfo(1L);
-		given(kindergartenRepository.findById(any())).willReturn(Optional.of(kindergarten));
-
-		// when
-		KindergartenResponse kindergartenResponse = kindergartenService.find(1L, authInfo);
-
-		// then
-		assertThat(kindergartenResponse.getEmail()).isEqualTo("meommu@exam.com");
-	}
-
-	@DisplayName("잘못된 회원 id로 회원의 정보를 조회시 실패한다.")
-	@Test
-	void find_exception_invalidId() {
-		// given
-		var authInfo = new AuthInfo(99999999L);
-
-		// when & then
-		assertThatThrownBy(() -> kindergartenService.find(1L, authInfo))
-			.isInstanceOf(AuthorizationException.class)
-			.hasMessageContaining(AuthErrorCode.NOT_AUTHORITY.getDescription());
-	}
-
 	@DisplayName("회원 정보를 수정한다.")
 	@Test
 	void update() {
@@ -193,8 +167,8 @@ class KindergartenServiceTest extends ServiceTest {
 		given(kindergartenRepository.findById(any())).willReturn(Optional.of(kindergarten));
 
 		// when
-		kindergartenService.update(1L, kindergartenUpdateRequest, authInfo);
-		KindergartenResponse updatedKindergartenResponse = kindergartenService.find(1L, authInfo);
+		kindergartenService.update(kindergartenUpdateRequest, authInfo);
+		KindergartenResponse updatedKindergartenResponse = kindergartenService.find(authInfo);
 
 		// then
 		assertAll(
@@ -202,23 +176,6 @@ class KindergartenServiceTest extends ServiceTest {
 			() -> assertThat(updatedKindergartenResponse.getOwnerName()).isEqualTo("수정된 김철수"),
 			() -> assertThat(updatedKindergartenResponse.getPhone()).isEqualTo("010-9999-9999")
 		);
-	}
-
-	@DisplayName("잘못된 id로 회원 정보 수정시 실패한다.")
-	@Test
-	void update_exception_invalidId() {
-		// given
-		var authInfo = new AuthInfo(99999999L);
-		var kindergartenUpdateRequest = KindergartenUpdateRequest.builder()
-			.name("수정된 멈무유치원")
-			.ownerName("수정된 김철수")
-			.phone("010-9999-9999")
-			.build();
-
-		// when & then
-		assertThatThrownBy(() -> kindergartenService.update(1L, kindergartenUpdateRequest, authInfo))
-			.isInstanceOf(AuthorizationException.class)
-			.hasMessageContaining(AuthErrorCode.NOT_AUTHORITY.getDescription());
 	}
 
 	@DisplayName("회원 탈퇴한다.")
@@ -230,18 +187,6 @@ class KindergartenServiceTest extends ServiceTest {
 
 		// when & then
 		assertThatNoException()
-			.isThrownBy(() -> kindergartenService.delete(1L, authInfo));
-	}
-
-	@DisplayName("잘못된 id로 회원 탈퇴시 실패한다.")
-	@Test
-	void delete_exception_invalidId() {
-		// given
-		var authInfo = new AuthInfo(99999999L);
-
-		// when & then
-		assertThatThrownBy(() -> kindergartenService.delete(1L, authInfo))
-			.isInstanceOf(AuthorizationException.class)
-			.hasMessageContaining(AuthErrorCode.NOT_AUTHORITY.getDescription());
+			.isThrownBy(() -> kindergartenService.delete(authInfo));
 	}
 }

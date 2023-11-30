@@ -51,22 +51,21 @@ public class KindergartenController {
 		return kindergartenService.findMyInfo(authInfo);
 	}
 
-	@GetMapping("/api/v1/kindergartens/{kindergartenId}")
-	public KindergartenResponse findKindergarten(@PathVariable Long kindergartenId, @Auth AuthInfo authInfo) {
-		return kindergartenService.find(kindergartenId, authInfo);
+	@GetMapping("/api/v1/kindergartens/info")
+	public KindergartenResponse findKindergarten(@Auth AuthInfo authInfo) {
+		return kindergartenService.find(authInfo);
 	}
 
-	@PutMapping("/api/v1/kindergartens/{kindergartenId}")
+	@PutMapping("/api/v1/kindergartens/info")
 	public void updateKindergarten(
-		@PathVariable Long kindergartenId,
 		@Valid @RequestBody KindergartenUpdateRequest kindergartenUpdateRequest,
 		@Auth AuthInfo authInfo) {
-		kindergartenService.update(kindergartenId, kindergartenUpdateRequest, authInfo);
+		kindergartenService.update(kindergartenUpdateRequest, authInfo);
 	}
 
-	@DeleteMapping("/api/v1/kindergartens/{kindergartenId}")
-	public void deleteKindergarten(@PathVariable Long kindergartenId, @Auth AuthInfo authInfo) {
-		kindergartenService.delete(kindergartenId, authInfo);
+	@DeleteMapping("/api/v1/kindergartens")
+	public void deleteKindergarten(@Auth AuthInfo authInfo) {
+		kindergartenService.delete(authInfo);
 	}
 
 	@PostMapping("/api/v1/kindergartens/email/verification-request")

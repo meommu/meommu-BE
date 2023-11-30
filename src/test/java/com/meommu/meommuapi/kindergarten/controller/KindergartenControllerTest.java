@@ -196,10 +196,10 @@ class KindergartenControllerTest extends ControllerTest {
 			.email("meommu@exam.com")
 			.build();
 
-		given(kindergartenService.find(any(), any())).willReturn(kindergartenResponse);
+		given(kindergartenService.find(any())).willReturn(kindergartenResponse);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/{kindergartenId}", 1L)
+		ResultActions resultActions = mockMvc.perform(get("/api/v1/kindergartens/info")
 			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 		);
 
@@ -230,10 +230,10 @@ class KindergartenControllerTest extends ControllerTest {
 			.phone("010-0000-0000")
 			.build();
 
-		doNothing().when(kindergartenService).update(any(), any(), any());
+		doNothing().when(kindergartenService).update(any(), any());
 
 		// when
-		ResultActions resultActions = mockMvc.perform(put("/api/v1/kindergartens/{kindergartenId}", 1L)
+		ResultActions resultActions = mockMvc.perform(put("/api/v1/kindergartens/info")
 			.header(AUTHORIZATION, ACCESS_TOKEN_WITH_BEARER)
 			.content(JsonUtils.toJson(kindergartenUpdateRequest))
 			.contentType(MediaType.APPLICATION_JSON)
@@ -267,11 +267,11 @@ class KindergartenControllerTest extends ControllerTest {
 	@Test
 	void deleteDiary() throws Exception {
 		// given
-		doNothing().when(kindergartenService).delete(any(), any());
+		doNothing().when(kindergartenService).delete(any());
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
-			RestDocumentationRequestBuilders.delete("/api/v1/kindergartens/{kindergartenId}", 1L)
+			RestDocumentationRequestBuilders.delete("/api/v1/kindergartens")
 				.header(AUTHORIZATION, "bearer <ACCESS_TOKEN>"));
 
 		// then
@@ -281,10 +281,7 @@ class KindergartenControllerTest extends ControllerTest {
 			jsonPath("$.data").doesNotExist()
 		).andDo(
 			document("kindergartens/delete/success",
-				getDocumentRequest(), getDocumentResponse(),
-				pathParameters(
-					parameterWithName("kindergartenId").description("유치원 id")
-				)
+				getDocumentRequest(), getDocumentResponse()
 			)
 		);
 	}
