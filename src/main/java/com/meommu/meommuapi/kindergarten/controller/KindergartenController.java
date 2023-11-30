@@ -56,7 +56,7 @@ public class KindergartenController {
 		return kindergartenService.find(authInfo);
 	}
 
-	@PutMapping("/api/v1/kindergartens/info")
+	@PatchMapping("/api/v1/kindergartens/info")
 	public void updateKindergarten(
 		@Valid @RequestBody KindergartenUpdateRequest kindergartenUpdateRequest,
 		@Auth AuthInfo authInfo) {
