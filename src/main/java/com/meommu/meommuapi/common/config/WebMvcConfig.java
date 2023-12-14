@@ -30,6 +30,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addMapping("/**")
 			.allowedOrigins("/html2canvas/proxy.json/**")
 			.allowedOrigins("*")
+			.allowedHeaders("*")
+			.allowCredentials(false)
 			.allowedMethods(
 				HttpMethod.GET.name(),
 				HttpMethod.HEAD.name(),
