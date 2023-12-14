@@ -631,11 +631,6 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <td class="tableblock halign-left valign-top"><p class="tableblock">API 문서 제공</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">베타(beta)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="" class="bare"></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">API 문서 미제공</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">운영(prod)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="" class="bare"></a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">API 문서 미제공</p></td>
@@ -1246,7 +1241,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-30T14:45:32.276434&quot;
+    &quot;createdAt&quot; : &quot;2023-12-14T15:30:31.227725&quot;
   }
 }</code></pre>
 </div>
@@ -1346,7 +1341,7 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 189
+Content-Length: 187
 
 {
   &quot;code&quot; : &quot;0000&quot;,
@@ -1355,7 +1350,7 @@ Content-Length: 189
     &quot;id&quot; : 1,
     &quot;name&quot; : &quot;멈무유치원&quot;,
     &quot;email&quot; : &quot;meommu@exam.com&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-30T14:45:32.304882&quot;
+    &quot;createdAt&quot; : &quot;2023-12-14T15:30:31.2559&quot;
   }
 }</code></pre>
 </div>
@@ -2507,13 +2502,13 @@ Content-Length: 364
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-30&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.258497&quot;,
+      &quot;date&quot; : &quot;2023-12-14&quot;,
+      &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.221181&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-29&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.258488&quot;,
+      &quot;date&quot; : &quot;2023-12-13&quot;,
+      &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.221172&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ]
     } ]
   }
@@ -2530,7 +2525,7 @@ Content-Length: 364
 <h4 id="_요청_24" class="discrete">요청</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries?year=2023&amp;month=11 HTTP/1.1
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /api/v1/diaries?year=2023&amp;month=12 HTTP/1.1
 Authorization: Bearer &lt;ACCESS_TOKEN&gt;
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app</code></pre>
 </div>
@@ -2581,17 +2576,17 @@ Content-Length: 564
   &quot;data&quot; : {
     &quot;diaries&quot; : [ {
       &quot;id&quot; : 2,
-      &quot;date&quot; : &quot;2023-11-30&quot;,
+      &quot;date&quot; : &quot;2023-12-14&quot;,
       &quot;dogName&quot; : &quot;똘이&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.211626&quot;,
+      &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.163027&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 2 제목&quot;,
       &quot;content&quot; : &quot;일기 2 내용&quot;
     }, {
       &quot;id&quot; : 1,
-      &quot;date&quot; : &quot;2023-11-29&quot;,
+      &quot;date&quot; : &quot;2023-12-13&quot;,
       &quot;dogName&quot; : &quot;코코&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.211613&quot;,
+      &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.163008&quot;,
       &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
       &quot;title&quot; : &quot;일기 1 제목&quot;,
       &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2641,16 +2636,16 @@ Vary: Origin
 Vary: Access-Control-Request-Method
 Vary: Access-Control-Request-Headers
 Content-Type: application/json;charset=UTF-8
-Content-Length: 281
+Content-Length: 280
 
 {
   &quot;code&quot; : &quot;0000&quot;,
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-11-29&quot;,
+    &quot;date&quot; : &quot;2023-12-13&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.306681&quot;,
+    &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.26957&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -2674,7 +2669,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-30&quot;,
+  &quot;date&quot; : &quot;2023-12-14&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2772,7 +2767,7 @@ Content-Length: 148
 Host: port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app
 
 {
-  &quot;date&quot; : &quot;2023-11-30&quot;,
+  &quot;date&quot; : &quot;2023-12-14&quot;,
   &quot;dogName&quot; : &quot;사랑이&quot;,
   &quot;title&quot; : &quot;일기 제목&quot;,
   &quot;content&quot; : &quot;일기 내용&quot;,
@@ -2968,7 +2963,7 @@ Content-Length: 115
   &quot;code&quot; : &quot;0000&quot;,
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
-    &quot;uuid&quot; : &quot;b304602b-5808-4dc7-b290-92e8ed77371d&quot;
+    &quot;uuid&quot; : &quot;9abfae00-8a28-4e84-8f7d-835794ba9c7c&quot;
   }
 }</code></pre>
 </div>
@@ -3020,9 +3015,9 @@ Content-Length: 281
   &quot;message&quot; : &quot;정상&quot;,
   &quot;data&quot; : {
     &quot;id&quot; : 1,
-    &quot;date&quot; : &quot;2023-11-29&quot;,
+    &quot;date&quot; : &quot;2023-12-13&quot;,
     &quot;dogName&quot; : &quot;코코&quot;,
-    &quot;createdAt&quot; : &quot;2023-11-30T14:45:31.331942&quot;,
+    &quot;createdAt&quot; : &quot;2023-12-14T15:30:30.291922&quot;,
     &quot;imageIds&quot; : [ 1, 2, 3, 4, 5 ],
     &quot;title&quot; : &quot;일기 1 제목&quot;,
     &quot;content&quot; : &quot;일기 1 내용&quot;
@@ -3069,12 +3064,12 @@ Content-Length: 373
       &quot;id&quot; : 2,
       &quot;title&quot; : &quot;공지 2 제목&quot;,
       &quot;content&quot; : &quot;공지 2 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-30T14:45:32.43085&quot;
+      &quot;createdAt&quot; : &quot;2023-12-14T15:30:31.388546&quot;
     }, {
       &quot;id&quot; : 1,
       &quot;title&quot; : &quot;공지 1 제목&quot;,
       &quot;content&quot; : &quot;공지 1 내용&quot;,
-      &quot;createdAt&quot; : &quot;2023-11-29T14:45:32.430834&quot;
+      &quot;createdAt&quot; : &quot;2023-12-13T15:30:31.38853&quot;
     } ]
   }
 }</code></pre>
@@ -3087,7 +3082,7 @@ Content-Length: 373
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-11-07 17:16:20 +0900
+Last updated 2023-12-14 15:30:03 +0900
 </div>
 </div>
 </body>

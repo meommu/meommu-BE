@@ -1,0 +1,45 @@
+name: Deploy develop to CloudType
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions: write-all
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v2
+
+      - name: Create application-prod.yml by secrets
+        run: |
+          cd ./src/main/resources
+          touch ./application-prod.yml
+          echo "${{ secrets.YML_DEV }}" > ./application-prod.yml
+        shell: bash
+
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: meomu/meommu-api
+          stage: main
+          yaml: |
+            name: meommu-api
+            app: java@17
+            options:
+              ports: 8080
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}

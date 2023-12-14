@@ -1,13 +1,10 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
-permissions:
-  contents: read
+permissions: write-all
 
 jobs:
   build:
@@ -23,6 +20,16 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Create application-prod.yml by secrets
+        run: |
+          cd ./src/main/resources
+          touch ./application-prod.yml
+          echo "${{ secrets.YML_PROD }}" > ./application-prod.yml
+        shell: bash
+
+      - name: Create Mysql Docker Container
+        run: sudo docker run -d -p 3305:3306 --env MYSQL_DATABASE="test" --env MYSQL_ROOT_PASSWORD="test" mysql:8.0.31
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0

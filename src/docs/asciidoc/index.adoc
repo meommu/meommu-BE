@@ -19,7 +19,6 @@ v0.1
 |====
 |환경         |DNS |비고
 |개발(dev)    | link:[https://port-0-meommu-api-jvvy2blm5wku9j.sel5.cloudtype.app] |API 문서 제공
-|베타(beta)   | link:[] |API 문서 미제공
 |운영(prod)   | link:[] |API 문서 미제공
 |====
 
