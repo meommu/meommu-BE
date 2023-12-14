@@ -28,8 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-			.allowedOrigins("/html2canvas/proxy.json/**")
-			.allowedOrigins("*")
+			.allowedOrigins("/html2canvas/proxy.json/**", "*")
 			.allowedHeaders("*")
 			.allowCredentials(false)
 			.allowedMethods(
