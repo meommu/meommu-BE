@@ -46,8 +46,8 @@ jobs:
         run: chmod +x gradlew
 
       # 빌드
-      - name: Build with Gradle (without Test)
-        run: ./gradlew clean build -x test --stacktrace
+      - name: Build with Gradle
+        run: ./gradlew clean build --stacktrace
 
       # docker hub 로그인
       - name: Docker Hub Login
