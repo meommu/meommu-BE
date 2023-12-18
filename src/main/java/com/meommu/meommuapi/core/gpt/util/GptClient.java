@@ -1,0 +1,18 @@
+package com.meommu.meommuapi.core.gpt.util;
+
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.service.annotation.PostExchange;
+
+import com.meommu.meommuapi.core.gpt.dto.GptRequest;
+import com.meommu.meommuapi.core.gpt.dto.GptRequestStream;
+import com.meommu.meommuapi.core.gpt.dto.GptResponse;
+
+import reactor.core.publisher.Flux;
+
+public interface GptClient {
+	@PostExchange("/v1/chat/completions")
+	GptResponse chat(@RequestBody GptRequest gptRequest);
+
+	@PostExchange("/v1/chat/completions")
+	Flux<String> chatStream(@RequestBody GptRequestStream gptRequest);
+}
