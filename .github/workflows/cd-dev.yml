@@ -15,12 +15,8 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v2
 
-      - name: Create application-prod.yml by secrets
-        run: |
-          cd ./src/main/resources
-          touch ./application-prod.yml
-          echo "${{ secrets.YML_DEV }}" > ./application-prod.yml
-        shell: bash
+      - name: Set up Environment
+        run: echo "${{ secrets.DEV_ENV_PROPERTIES }}" > ./.env
 
       - name: Connect deploy key
         uses: cloudtype-github-actions/connect@v1
