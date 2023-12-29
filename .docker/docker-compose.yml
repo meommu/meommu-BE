@@ -5,7 +5,6 @@ services:
     container_name: meommu-db
     image: mariadb
     environment:
-      MYSQL_DATABASE: meommu
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       TZ: Asia/Seoul
