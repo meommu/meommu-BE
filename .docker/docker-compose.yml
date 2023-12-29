@@ -12,8 +12,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./docker-volume/mariadb/mysql:/var/lib/mysql # migration
-      - ./docker-volume/mariadb/conf.d:/etc/mysql/conf.d # migration
+      - ./docker-volume/mariadb/data:/var/lib/mysql # migration
+      - ./docker-volume/mariadb/config:/etc/mysql/conf.d # migration
     restart: always
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     networks:
