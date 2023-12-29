@@ -1,7 +1,7 @@
 # ./deploy.sh
 if [ $(docker ps | grep -c "meommu-db") -eq 0 ]; then
   echo "### Starting database ###"
-  docker-compose up -d db
+  docker-compose up -d meommu-db
 else
   echo "db is already running"
 fi
