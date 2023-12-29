@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
           source: "./.env"
-          target: "/home/jdi0222"
+          target: "/home/jdi0222/"
 
       # Gradle 캐싱
       - name: Gradle Caching
