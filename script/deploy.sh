@@ -1,4 +1,12 @@
 # ./deploy.sh
+if [ $(docker ps | grep -c "meommu-db") -eq 0 ]; then
+  echo "### Starting database ###"
+  docker-compose up -d db
+else
+  echo "db is already running"
+fi
+
+echo
 
 IS_GREEN=$(docker ps | grep green)
 DEFAULT_CONF=" /etc/nginx/nginx.conf"

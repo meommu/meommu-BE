@@ -21,12 +21,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Create application-prod.yml by secrets
-        run: |
-          cd ./src/main/resources
-          touch ./application-prod.yml
-          echo "${{ secrets.YML_PROD }}" > ./application-prod.yml
-        shell: bash
+      - name: Set up Environment
+        run: echo "${{ secrets.PROD_ENV_PROPERTIES }}" > ./.env
 
       - name: Create Mysql Docker Container
         run: sudo docker run -d -p 3305:3306 --env MYSQL_DATABASE="test" --env MYSQL_ROOT_PASSWORD="test" mysql:8.0.31

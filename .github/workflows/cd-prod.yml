@@ -33,13 +33,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # 환경 변수 설정 파일 생성
-      - name: Create application-prod.yml by secrets
-        run: |
-          cd ./src/main/resources
-          touch ./application-prod.yml
-          echo "${{ secrets.YML_PROD }}" > ./application-prod.yml
-        shell: bash
+      # 환경 변수 설정
+      - name: Set up Environment
+        run: echo "${{ secrets.PROD_ENV_PROPERTIES }}" > ./.env
 
       # Gradlew 권한 설정
       - name: Grant Execute Permisson for Gradlew
