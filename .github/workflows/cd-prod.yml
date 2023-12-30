@@ -8,7 +8,7 @@ on:
 permissions: write-all
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -60,11 +60,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build --stacktrace
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       # docker hub 로그인
       - name: Docker Hub Login
         uses: docker/login-action@v2
