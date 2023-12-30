@@ -4,13 +4,14 @@ services:
   meommu-db:
     container_name: meommu-db
     image: mariadb
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: meommu
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       TZ: Asia/Seoul
-    ports:
-      - "3306:3306"
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     volumes:
       - ./docker-volume/mariadb/data:/var/lib/mysql # migration
       - ./docker-volume/mariadb/config:/etc/mysql/conf.d # migration
