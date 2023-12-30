@@ -12,3 +12,5 @@ services:
     image: jdi0222/meommu
     ports:
       - 8082:8080
+    environment:
+      ACTIVE_PROFILE: ${ACTIVE_PROFILE}
