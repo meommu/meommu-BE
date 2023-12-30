@@ -1,24 +1,6 @@
 version: '3'
 
 services:
-  meommu-db:
-    container_name: meommu-db
-    image: mariadb
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: meommu
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      TZ: Asia/Seoul
-    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
-    volumes:
-      - ./docker-volume/mariadb/data:/var/lib/mysql # migration
-      - ./docker-volume/mariadb/config:/etc/mysql/conf.d # migration
-    restart: always
-    networks:
-      - meommu_network
-
   blue:
     container_name: blue
     image: jdi0222/meommu
@@ -37,10 +19,6 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
       S3_END_POINT: ${S3_END_POINT}
       GPT_API_KEY: ${GPT_API_KEY}
-    depends_on:
-      - meommu-db
-    networks:
-      - meommu_network
 
   green:
     container_name: green
@@ -60,11 +38,3 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
       S3_END_POINT: ${S3_END_POINT}
       GPT_API_KEY: ${GPT_API_KEY}
-    depends_on:
-      - meommu-db
-    networks:
-      - meommu_network
-
-networks:
-  meommu_network:
-    driver: bridge
