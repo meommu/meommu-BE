@@ -3,7 +3,7 @@
 IS_GREEN=$(docker ps | grep green)
 DEFAULT_CONF=" /etc/nginx/nginx.conf"
 
-if [ -z $IS_GREEN  ];then # BLUE is running
+if [ -z "$IS_GREEN" ];then # BLUE is running
 
   echo "### BLUE => GREEN ###"
 
