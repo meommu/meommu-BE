@@ -8,6 +8,7 @@ if [ -z "$IS_GREEN" ];then # BLUE is running
   echo "### BLUE => GREEN ###"
 
   echo "1. get green image"
+  docker-compose down --volumes
   docker-compose pull green
 
   echo "2. green container up"
@@ -35,6 +36,7 @@ else # GREEN is running
   echo "### GREEN => BLUE ###"
 
   echo "1. get blue image"
+  docker-compose down --volumes
   docker-compose pull blue
 
   echo "2. blue container up"
