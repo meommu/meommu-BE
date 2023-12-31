@@ -111,4 +111,3 @@ jobs:
             chmod 777 ./deploy.sh
             ./deploy.sh
             docker image prune -f
-            docker logs -f jdi0222/meommu
