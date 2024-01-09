@@ -33,7 +33,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 		validateAuthorizationHeader(request);
 
-		jwtTokenProvider.validateToken(JwtTokenExtractor.extractAccessToken(request));
+		jwtTokenProvider.validateAccessToken(JwtTokenExtractor.extractAccessToken(request));
 
 		return true;
 	}
