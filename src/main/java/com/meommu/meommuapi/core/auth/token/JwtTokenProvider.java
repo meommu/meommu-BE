@@ -29,22 +29,36 @@ public class JwtTokenProvider {
 
 	private final Key signingKey;
 
-	private final long validityInMilliseconds;
+	private final long validityAccessInMilliseconds;
+
+	private final long validityRefreshInMilliseconds;
 
 	public JwtTokenProvider(
 		@Value("${security.jwt.token.secret-key}") String signingKey,
-		@Value("${security.jwt.token.expire-length.access}") long validityInMilliseconds
+		@Value("${security.jwt.token.expire-length.access}") long validityAccessInMilliseconds,
+		@Value("${security.jwt.token.expire-length.refresh}") long validityRefreshInMilliseconds
 	) {
 		byte[] keyBytes = signingKey.getBytes(StandardCharsets.UTF_8);
 		this.signingKey = Keys.hmacShaKeyFor(keyBytes);
-		this.validityInMilliseconds = validityInMilliseconds;
+		this.validityAccessInMilliseconds = validityAccessInMilliseconds;
+		this.validityRefreshInMilliseconds = validityRefreshInMilliseconds;
 	}
 
 	public String createAccessToken(Long id) {
 		Date now = new Date();
-		Date validity = new Date(now.getTime() + validityInMilliseconds);
+		Date validity = new Date(now.getTime() + validityAccessInMilliseconds);
 		return Jwts.builder()
 			.claim(AUTHORIZATION_ID, id)
+			.setIssuedAt(now)
+			.setExpiration(validity)
+			.signWith(signingKey)
+			.compact();
+	}
+
+	public String createRefreshToken(Long id) {
+		Date now = new Date();
+		Date validity = new Date(now.getTime() + validityRefreshInMilliseconds);
+		return Jwts.builder()
 			.setIssuedAt(now)
 			.setExpiration(validity)
 			.signWith(signingKey)
@@ -63,7 +77,7 @@ public class JwtTokenProvider {
 		}
 	}
 
-	public void validateToken(String token) {
+	public void validateAccessToken(String token) {
 		try {
 			Jwts.parserBuilder()
 				.setSigningKey(signingKey)
@@ -79,5 +93,28 @@ public class JwtTokenProvider {
 			log.info("Invalid JWT token : {}", token);
 			throw new JwtException(MALFORMED_JWT);
 		}
+	}
+
+	public void validateRefreshToken(String token) {
+		try {
+			Jwts.parserBuilder()
+				.setSigningKey(signingKey)
+				.build()
+				.parseClaimsJws(token);
+		} catch (UnsupportedJwtException e) {
+			log.info("Unsupported JWT token : {}", token);
+			throw new JwtException(UNSUPPORTED_JWT);
+		} catch (ExpiredJwtException e) {
+			log.info("Expired JWT token : {}", token);
+			throw new JwtException(EXPIRED_JWT);
+		} catch (MalformedJwtException e) {
+			log.info("Invalid JWT token : {}", token);
+			throw new JwtException(MALFORMED_JWT);
+		}
+	}
+
+	public Long getExpiration(String token) {
+		Claims claims = Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
+		return claims.getExpiration().getTime();
 	}
 }

@@ -48,6 +48,31 @@ include::{snippets}/kindergartens/signIn/success/request-fields.adoc[]
 include::{snippets}/kindergartens/signIn/success/http-response.adoc[]
 
 
+=== 로그아웃
+로그아웃을 진행합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/signOut/success/http-request.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/signOut/success/http-response.adoc[]
+
+
+=== 토큰 재발급
+Access Token과 Refresh Token의 재발급을 진행합니다.
+
+[discrete]
+==== 요청
+include::{snippets}/kindergartens/reissue/success/http-request.adoc[]
+include::{snippets}/kindergartens/reissue/success/request-fields.adoc[]
+
+[discrete]
+==== 응답
+include::{snippets}/kindergartens/reissue/success/http-response.adoc[]
+
+
 === 로그인 정보 조회
 accessToken을 통해 로그인한 회원의 회원 id, 유치원 이름, 이메일을 조회합니다.
 
@@ -58,6 +83,7 @@ include::{snippets}/kindergartens/me/success/http-request.adoc[]
 [discrete]
 ==== 응답
 include::{snippets}/kindergartens/me/success/http-response.adoc[]
+
 
 === 회원 정보 조회
 회원 상세 정보를 조회합니다.
