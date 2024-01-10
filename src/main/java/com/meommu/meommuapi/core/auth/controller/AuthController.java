@@ -1,14 +1,18 @@
 package com.meommu.meommuapi.core.auth.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.meommu.meommuapi.core.auth.dto.AuthInfo;
+import com.meommu.meommuapi.core.auth.dto.ReissueRequest;
 import com.meommu.meommuapi.core.auth.dto.SignInRequest;
 import com.meommu.meommuapi.core.auth.dto.TokenResponse;
 import com.meommu.meommuapi.core.auth.service.AuthService;
+import com.meommu.meommuapi.core.auth.token.Auth;
 
 import jakarta.validation.Valid;
 
@@ -25,5 +29,16 @@ public class AuthController {
 	@PostMapping("/api/v1/kindergartens/signin")
 	public TokenResponse signIn(@Valid @RequestBody SignInRequest signInRequest) {
 		return authService.signIn(signInRequest);
+	}
+
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/api/v1/kindergartens/reissue")
+	public TokenResponse reissue(@Auth AuthInfo authInfo, @Valid @RequestBody ReissueRequest reissueRequest) {
+		return authService.reissue(authInfo, reissueRequest);
+	}
+
+	@DeleteMapping("/api/v1/kindergartens/signout")
+	public void signOut(@Auth AuthInfo authInfo) {
+		authService.signOut(authInfo);
 	}
 }
