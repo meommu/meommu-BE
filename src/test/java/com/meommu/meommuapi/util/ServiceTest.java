@@ -13,6 +13,7 @@ import com.meommu.meommuapi.core.diary.service.DiaryService;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
 import com.meommu.meommuapi.core.kindergarten.service.KindergartenService;
+import com.meommu.meommuapi.global.infra.redis.util.RedisUtils;
 
 @ExtendWith(MockitoExtension.class)
 public abstract class ServiceTest {
@@ -40,5 +41,8 @@ public abstract class ServiceTest {
 
 	@Mock
 	protected JwtTokenProvider jwtTokenProvider;
+
+	@Mock
+	protected RedisUtils redisUtils;
 
 }
