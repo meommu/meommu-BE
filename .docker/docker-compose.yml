@@ -19,6 +19,8 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
       S3_END_POINT: ${S3_END_POINT}
       GPT_API_KEY: ${GPT_API_KEY}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   green:
     container_name: green
@@ -38,3 +40,5 @@ services:
       S3_SECRET_KEY: ${S3_SECRET_KEY}
       S3_END_POINT: ${S3_END_POINT}
       GPT_API_KEY: ${GPT_API_KEY}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
