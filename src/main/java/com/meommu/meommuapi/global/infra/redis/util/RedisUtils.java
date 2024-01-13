@@ -32,12 +32,17 @@ public class RedisUtils {
 		return isDeleted != null && isDeleted;
 	}
 
-	public void setEmailCode(Long userId, String code, long milliseconds) {
-		String key = "email_code:" + userId;
+	public void setEmailCode(String email, String code, long milliseconds) {
+		String key = "email_code:" + email;
 		emailTemplate.opsForValue().set(key, code, milliseconds, TimeUnit.MILLISECONDS);
 	}
 
-	public boolean deleteEmailCode(Long userId) {
+	public String getEmailCode(String email) {
+		String key = "refresh_token:" + email;
+		return String.valueOf(emailTemplate.opsForValue().get(key));
+	}
+
+	public boolean deleteEmailCode(String userId) {
 		String key = "email_code:" + userId;
 		Boolean isDeleted = emailTemplate.delete(key);
 		return isDeleted != null && isDeleted;
