@@ -38,7 +38,7 @@ public class RedisUtils {
 	}
 
 	public String getEmailCode(String email) {
-		String key = "refresh_token:" + email;
+		String key = "email_code:" + email;
 		return String.valueOf(emailTemplate.opsForValue().get(key));
 	}
 
