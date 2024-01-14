@@ -85,7 +85,7 @@ class AuthServiceTest extends ServiceTest {
 		var request = ReissueRequest.builder()
 			.refreshToken("RefreshToken")
 			.build();
-		given(redisUtils.getRefreshToken(any())).willReturn("RefreshToken");
+		given(refreshTokenRepository.findByUserId(any())).willReturn("RefreshToken");
 		given(jwtTokenProvider.createAccessToken(any())).willReturn("NewAccessToken");
 		given(jwtTokenProvider.createRefreshToken(any())).willReturn("NewRefreshToken");
 		given(jwtTokenProvider.getExpiration(any())).willReturn(999999999L);
