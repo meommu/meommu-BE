@@ -5,15 +5,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.meommu.meommuapi.core.auth.repository.RefreshTokenRepository;
 import com.meommu.meommuapi.core.auth.service.AuthService;
 import com.meommu.meommuapi.core.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.core.diary.repository.DiaryImageRepository;
 import com.meommu.meommuapi.core.diary.repository.DiaryRepository;
 import com.meommu.meommuapi.core.diary.service.DiaryService;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
+import com.meommu.meommuapi.core.kindergarten.repository.EmailCodeRepository;
 import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
 import com.meommu.meommuapi.core.kindergarten.service.KindergartenService;
-import com.meommu.meommuapi.global.infra.redis.util.RedisUtils;
 
 @ExtendWith(MockitoExtension.class)
 public abstract class ServiceTest {
@@ -43,6 +44,8 @@ public abstract class ServiceTest {
 	protected JwtTokenProvider jwtTokenProvider;
 
 	@Mock
-	protected RedisUtils redisUtils;
+	protected RefreshTokenRepository refreshTokenRepository;
 
+	@Mock
+	protected EmailCodeRepository emailCodeRepository;
 }

@@ -2,8 +2,6 @@ package com.meommu.meommuapi.core.auth.service;
 
 import static com.meommu.meommuapi.core.auth.exception.errorCode.AuthErrorCode.*;
 
-import javax.naming.AuthenticationException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,17 +9,15 @@ import com.meommu.meommuapi.core.auth.dto.AuthInfo;
 import com.meommu.meommuapi.core.auth.dto.ReissueRequest;
 import com.meommu.meommuapi.core.auth.dto.SignInRequest;
 import com.meommu.meommuapi.core.auth.dto.TokenResponse;
-import com.meommu.meommuapi.core.auth.exception.AuthorizationException;
 import com.meommu.meommuapi.core.auth.exception.JwtException;
 import com.meommu.meommuapi.core.auth.exception.SignInFailedException;
+import com.meommu.meommuapi.core.auth.repository.RefreshTokenRepository;
 import com.meommu.meommuapi.core.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.core.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
-import com.meommu.meommuapi.global.infra.redis.util.RedisUtils;
 
-import jakarta.security.auth.message.AuthException;
-
+@Transactional(readOnly = true)
 @Service
 public class AuthService {
 
@@ -29,16 +25,16 @@ public class AuthService {
 
 	private final Encryptor encryptor;
 
+	private final RefreshTokenRepository refreshTokenRepository;
+
 	private final JwtTokenProvider jwtTokenProvider;
 
-	private final RedisUtils redisUtils;
-
 	public AuthService(KindergartenRepository kindergartenRepository, Encryptor encryptor,
-		JwtTokenProvider jwtTokenProvider, RedisUtils redisUtils) {
+		RefreshTokenRepository refreshTokenRepository, JwtTokenProvider jwtTokenProvider) {
 		this.kindergartenRepository = kindergartenRepository;
 		this.encryptor = encryptor;
+		this.refreshTokenRepository = refreshTokenRepository;
 		this.jwtTokenProvider = jwtTokenProvider;
-		this.redisUtils = redisUtils;
 	}
 
 	@Transactional
@@ -47,9 +43,9 @@ public class AuthService {
 			encryptor.encrypt(request.getPassword())).orElseThrow(() -> new SignInFailedException());
 		String accessToken = jwtTokenProvider.createAccessToken(kindergarten.getId());
 		String refreshToken = jwtTokenProvider.createRefreshToken(kindergarten.getId());
-
 		Long expiration = jwtTokenProvider.getExpiration(refreshToken);
-		redisUtils.setRefreshToken(kindergarten.getId(), refreshToken, expiration);
+
+		refreshTokenRepository.save(kindergarten.getId(), refreshToken, expiration);
 
 		return TokenResponse.from(accessToken, refreshToken);
 	}
@@ -63,7 +59,7 @@ public class AuthService {
 		Long id = authInfo.getId();
 
 		// 3. Redis RefreshToken 조회
-		String refreshToken = redisUtils.getRefreshToken(id);
+		String refreshToken = refreshTokenRepository.findByUserId(id);
 		if (!refreshToken.equals(request.getRefreshToken())) {
 			throw new JwtException(MALFORMED_JWT);
 		}
@@ -74,7 +70,7 @@ public class AuthService {
 
 		// 4. Redis RefreshToken 업데이트
 		Long expiration = jwtTokenProvider.getExpiration(refreshToken);
-		redisUtils.setRefreshToken(id, newRefreshToken, expiration);
+		refreshTokenRepository.save(id, newRefreshToken, expiration);
 
 		// 5. 토큰 반환
 		return TokenResponse.from(newAccessToken, newRefreshToken);
@@ -82,6 +78,6 @@ public class AuthService {
 
 	@Transactional
 	public void signOut(AuthInfo authInfo) {
-		redisUtils.deleteRefreshToken(authInfo.getId());
+		refreshTokenRepository.deleteByUserId(authInfo.getId());
 	}
 }

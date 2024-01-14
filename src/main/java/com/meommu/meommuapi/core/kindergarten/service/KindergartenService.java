@@ -8,24 +8,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.meommu.meommuapi.core.auth.dto.AuthInfo;
 import com.meommu.meommuapi.core.auth.exception.AuthorizationException;
+import com.meommu.meommuapi.core.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Password;
+import com.meommu.meommuapi.core.kindergarten.dto.EmailRequest;
 import com.meommu.meommuapi.core.kindergarten.dto.KindergartenPasswordUpdateRequest;
+import com.meommu.meommuapi.core.kindergarten.dto.KindergartenResponse;
+import com.meommu.meommuapi.core.kindergarten.dto.KindergartenUpdateRequest;
+import com.meommu.meommuapi.core.kindergarten.dto.MyInfoResponse;
+import com.meommu.meommuapi.core.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.core.kindergarten.exception.DuplicateEmailException;
 import com.meommu.meommuapi.core.kindergarten.exception.EmailCodeInvalidException;
 import com.meommu.meommuapi.core.kindergarten.exception.EmailNotFoundException;
 import com.meommu.meommuapi.core.kindergarten.exception.InvalidPasswordConfirmationException;
 import com.meommu.meommuapi.core.kindergarten.exception.KindergartenNotFoundException;
+import com.meommu.meommuapi.core.kindergarten.repository.EmailCodeRepository;
 import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
 import com.meommu.meommuapi.core.mail.service.MailService;
-import com.meommu.meommuapi.global.infra.redis.util.RedisUtils;
 import com.meommu.meommuapi.global.util.Utils;
-import com.meommu.meommuapi.core.kindergarten.domain.Kindergarten;
-import com.meommu.meommuapi.core.kindergarten.dto.EmailRequest;
-import com.meommu.meommuapi.core.kindergarten.dto.MyInfoResponse;
-import com.meommu.meommuapi.core.kindergarten.dto.KindergartenResponse;
-import com.meommu.meommuapi.core.kindergarten.dto.KindergartenUpdateRequest;
-import com.meommu.meommuapi.core.kindergarten.dto.SignUpRequest;
 
 @Transactional(readOnly = true)
 @Service
@@ -35,7 +35,7 @@ public class KindergartenService {
 
 	private final MailService mailService;
 
-	private final RedisUtils redisUtils;
+	private final EmailCodeRepository emailCodeRepository;
 
 	private final Encryptor encryptor;
 
@@ -43,10 +43,10 @@ public class KindergartenService {
 	private long authCodeExpirationMillis;
 
 	public KindergartenService(KindergartenRepository kindergartenRepository,
-		MailService mailService, RedisUtils redisUtils, Encryptor encryptor) {
+		MailService mailService, EmailCodeRepository emailCodeRepository, Encryptor encryptor) {
 		this.kindergartenRepository = kindergartenRepository;
 		this.mailService = mailService;
-		this.redisUtils = redisUtils;
+		this.emailCodeRepository = emailCodeRepository;
 		this.encryptor = encryptor;
 	}
 
@@ -100,7 +100,7 @@ public class KindergartenService {
 		}
 		String title = "meommu 이메일 인증 메일";
 		String code = Utils.createCode(6);
-		redisUtils.setEmailCode(email, code, authCodeExpirationMillis);
+		emailCodeRepository.save(email, code, authCodeExpirationMillis);
 		mailService.sendEmail(email, title, code);
 	}
 
@@ -109,10 +109,10 @@ public class KindergartenService {
 		if (isEmailUnique(email)) {
 			throw new EmailNotFoundException();
 		}
-		if (!redisUtils.getEmailCode(email).equals(code)) {
+		if (!emailCodeRepository.findByEmail(email).equals(code)) {
 			throw new EmailCodeInvalidException();
 		}
-		redisUtils.deleteEmailCode(email);
+		emailCodeRepository.deleteByEmail(email);
 		return true;
 	}
 
