@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.core.image.service.ImageService;
 import com.meommu.meommuapi.core.image.dto.ImageResponse;
 import com.meommu.meommuapi.core.image.dto.ImageResponses;
 import com.meommu.meommuapi.core.image.dto.ImagesSaveRequest;
+import com.meommu.meommuapi.core.image.service.ImageService;
 
 import jakarta.validation.Valid;
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.meommu.meommuapi.core.image.exception.CategoryNotFoundException;
+import com.meommu.meommuapi.core.image.exception.ImageArgumentException;
 import com.meommu.meommuapi.core.image.exception.InvalidImageCountException;
 import com.meommu.meommuapi.core.image.exception.InvalidImageTypeExeption;
-import com.meommu.meommuapi.core.image.exception.ImageArgumentException;
 
 public class ImageValidator {
 
