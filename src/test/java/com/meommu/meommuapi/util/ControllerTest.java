@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.util;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
 
@@ -21,10 +21,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import com.meommu.meommuapi.core.auth.controller.AuthController;
 import com.meommu.meommuapi.core.auth.service.AuthService;
 import com.meommu.meommuapi.core.auth.token.JwtTokenProvider;
-import com.meommu.meommuapi.global.interceptor.AuthInterceptor;
 import com.meommu.meommuapi.core.diary.controller.DiaryController;
 import com.meommu.meommuapi.core.diary.service.DiaryService;
-import com.meommu.meommuapi.errorCode.ErrorCodeController;
 import com.meommu.meommuapi.core.gpt.controller.GptController;
 import com.meommu.meommuapi.core.gpt.service.GptService;
 import com.meommu.meommuapi.core.guide.controller.GuideController;
@@ -37,6 +35,8 @@ import com.meommu.meommuapi.core.notice.controller.NoticeController;
 import com.meommu.meommuapi.core.notice.service.NoticeService;
 import com.meommu.meommuapi.core.proxy.controller.ProxyController;
 import com.meommu.meommuapi.core.proxy.service.ProxyService;
+import com.meommu.meommuapi.errorCode.ErrorCodeController;
+import com.meommu.meommuapi.global.interceptor.AuthInterceptor;
 import com.meommu.meommuapi.util.documentation.DocumentUtils;
 
 @WebMvcTest({

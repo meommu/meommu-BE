@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.meommu.meommuapi.core.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.core.kindergarten.exception.InvalidEmailFormatException;
