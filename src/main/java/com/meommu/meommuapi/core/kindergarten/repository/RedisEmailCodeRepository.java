@@ -6,11 +6,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EmailCodeRepositoryImpl implements EmailCodeRepository {
+public class RedisEmailCodeRepository implements EmailCodeRepository {
 
 	private final RedisTemplate<String, Object> emailTemplate;
 
-	public EmailCodeRepositoryImpl(RedisTemplate<String, Object> emailTemplate) {
+	public RedisEmailCodeRepository(RedisTemplate<String, Object> emailTemplate) {
 		this.emailTemplate = emailTemplate;
 	}
 
