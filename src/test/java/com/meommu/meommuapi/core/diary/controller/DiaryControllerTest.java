@@ -25,7 +25,6 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.global.util.JsonUtils;
 import com.meommu.meommuapi.core.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.core.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.core.diary.dto.DiarySaveRequest;
@@ -34,6 +33,7 @@ import com.meommu.meommuapi.core.diary.dto.DiarySummaryResponse;
 import com.meommu.meommuapi.core.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.core.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.core.diary.dto.DiaryUpdateRequest;
+import com.meommu.meommuapi.global.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
 
 @DisplayName("일기 API")

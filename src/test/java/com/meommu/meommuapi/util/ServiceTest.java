@@ -6,27 +6,31 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.meommu.meommuapi.core.auth.repository.RefreshTokenRepository;
-import com.meommu.meommuapi.core.auth.service.AuthService;
+import com.meommu.meommuapi.core.auth.service.AuthServiceImpl;
 import com.meommu.meommuapi.core.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.core.diary.repository.DiaryImageRepository;
 import com.meommu.meommuapi.core.diary.repository.DiaryRepository;
-import com.meommu.meommuapi.core.diary.service.DiaryService;
+import com.meommu.meommuapi.core.diary.service.DiaryServiceImpl;
+import com.meommu.meommuapi.core.gpt.service.GptServiceImpl;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.core.kindergarten.repository.EmailCodeRepository;
 import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
-import com.meommu.meommuapi.core.kindergarten.service.KindergartenService;
+import com.meommu.meommuapi.core.kindergarten.service.KindergartenServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public abstract class ServiceTest {
 
 	@InjectMocks
-	protected KindergartenService kindergartenService;
+	protected KindergartenServiceImpl kindergartenService;
 
 	@InjectMocks
-	protected DiaryService diaryService;
+	protected DiaryServiceImpl diaryService;
 
 	@InjectMocks
-	protected AuthService authService;
+	protected AuthServiceImpl authService;
+
+	@InjectMocks
+	protected GptServiceImpl gptService;
 
 	@Mock
 	protected KindergartenRepository kindergartenRepository;

@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.core.kindergarten.exception;
 
-import com.meommu.meommuapi.global.exception.NotFoundException;
 import com.meommu.meommuapi.core.kindergarten.exception.errorCode.KindergartenErrorCode;
+import com.meommu.meommuapi.global.exception.NotFoundException;
 
 public class EmailNotFoundException extends NotFoundException {
 

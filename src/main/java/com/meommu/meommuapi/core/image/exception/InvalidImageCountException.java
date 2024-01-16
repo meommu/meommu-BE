@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.core.image.exception;
 
-import com.meommu.meommuapi.global.exception.BadRequestException;
 import com.meommu.meommuapi.core.image.exception.errorCode.ImageErrorCode;
+import com.meommu.meommuapi.global.exception.BadRequestException;
 
 public class InvalidImageCountException extends BadRequestException {
 

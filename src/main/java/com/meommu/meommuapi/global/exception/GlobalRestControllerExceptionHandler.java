@@ -20,8 +20,6 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import com.meommu.meommuapi.global.dto.ApiResponse;
 import com.meommu.meommuapi.global.dto.ApiResponseGenerator;
-import com.meommu.meommuapi.global.exception.BusinessException;
-import com.meommu.meommuapi.global.exception.InternalServerException;
 import com.meommu.meommuapi.global.exception.errorCode.BusinessErrorCode;
 
 import lombok.extern.slf4j.Slf4j;

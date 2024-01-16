@@ -6,9 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import com.meommu.meommuapi.core.diary.domain.Diary;
-import com.meommu.meommuapi.core.diary.domain.DiaryImage;
-
 class DiaryImageTest {
 
 	@Mock

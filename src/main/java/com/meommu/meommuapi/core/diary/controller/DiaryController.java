@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.meommu.meommuapi.core.auth.dto.AuthInfo;
 import com.meommu.meommuapi.core.auth.token.Auth;
-import com.meommu.meommuapi.core.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.core.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.core.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.core.diary.dto.DiarySaveRequest;
 import com.meommu.meommuapi.core.diary.dto.DiarySaveResponse;
 import com.meommu.meommuapi.core.diary.dto.DiarySearchCriteria;
+import com.meommu.meommuapi.core.diary.dto.DiarySummaryResponses;
 import com.meommu.meommuapi.core.diary.dto.DiaryUUIDResponse;
 import com.meommu.meommuapi.core.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.core.diary.service.DiaryService;

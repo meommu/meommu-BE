@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
-
 class EncryptorTest {
 
 	Encryptor encryptor;

@@ -12,8 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import com.meommu.meommuapi.global.dto.PageRequest;
-
 @DisplayName("페이지네이션 응답")
 class PageResponseTest {
 	@DisplayName("페이지네이션 응답의 총 개수 계산")
