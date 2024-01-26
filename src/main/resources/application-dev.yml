@@ -52,3 +52,7 @@ cloud:
 
 gpt:
   api-key: ${GPT_ACCESS_KEY}
+
+sentry:
+  dsn: ${SENTRY_DNS}
+  traces-sample-rate: 1.0
