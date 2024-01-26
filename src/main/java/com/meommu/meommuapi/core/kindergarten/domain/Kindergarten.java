@@ -5,11 +5,11 @@ import org.hibernate.annotations.Where;
 
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Email;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
+import com.meommu.meommuapi.core.kindergarten.domain.embedded.Name;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.OwnerName;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.core.kindergarten.domain.embedded.Phone;
 import com.meommu.meommuapi.global.domain.BaseTimeEntity;
-import com.meommu.meommuapi.core.kindergarten.domain.embedded.Name;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 
-import com.meommu.meommuapi.core.diary.domain.Diary;
 import com.meommu.meommuapi.core.diary.exception.InvalidContentFormatException;
 import com.meommu.meommuapi.core.diary.exception.InvalidDogNameFormatException;
 import com.meommu.meommuapi.core.diary.exception.InvalidTitleFormatException;
