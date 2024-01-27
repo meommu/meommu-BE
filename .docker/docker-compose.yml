@@ -21,6 +21,7 @@ services:
       GPT_API_KEY: ${GPT_API_KEY}
       REDIS_HOST: ${REDIS_HOST}
       REDIS_PORT: ${REDIS_PORT}
+      SENTRY_DNS: ${SENTRY_DNS}
 
   green:
     container_name: green
@@ -42,3 +43,4 @@ services:
       GPT_API_KEY: ${GPT_API_KEY}
       REDIS_HOST: ${REDIS_HOST}
       REDIS_PORT: ${REDIS_PORT}
+      SENTRY_DNS: ${SENTRY_DNS}
