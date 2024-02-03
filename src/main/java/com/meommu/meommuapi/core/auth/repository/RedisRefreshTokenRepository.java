@@ -6,11 +6,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
+public class RedisRefreshTokenRepository implements RefreshTokenRepository {
 
 	private final RedisTemplate<String, Object> refreshTokenTemplate;
 
-	public RefreshTokenRepositoryImpl(RedisTemplate<String, Object> refreshTokenTemplate) {
+	public RedisRefreshTokenRepository(RedisTemplate<String, Object> refreshTokenTemplate) {
 		this.refreshTokenTemplate = refreshTokenTemplate;
 	}
 
