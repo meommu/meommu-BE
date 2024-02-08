@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RedisRefreshTokenRepository implements RefreshTokenRepository {
 
-	private final RedisTemplate<String, Object> refreshTokenTemplate;
+	private final RedisTemplate<Object, Object> refreshTokenTemplate;
 
-	public RedisRefreshTokenRepository(RedisTemplate<String, Object> refreshTokenTemplate) {
+	public RedisRefreshTokenRepository(RedisTemplate<Object, Object> refreshTokenTemplate) {
 		this.refreshTokenTemplate = refreshTokenTemplate;
 	}
 
