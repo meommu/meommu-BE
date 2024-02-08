@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RedisEmailCodeRepository implements EmailCodeRepository {
 
-	private final RedisTemplate<String, Object> emailTemplate;
+	private final RedisTemplate<Object, Object> emailTemplate;
 
-	public RedisEmailCodeRepository(RedisTemplate<String, Object> emailTemplate) {
+	public RedisEmailCodeRepository(RedisTemplate<Object, Object> emailTemplate) {
 		this.emailTemplate = emailTemplate;
 	}
 
