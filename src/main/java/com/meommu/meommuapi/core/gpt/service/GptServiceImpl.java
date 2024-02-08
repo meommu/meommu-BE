@@ -15,7 +15,6 @@ import com.meommu.meommuapi.core.gpt.util.GptClient;
 
 import reactor.core.publisher.Flux;
 
-@Transactional(readOnly = true)
 @Service
 public class GptServiceImpl implements GptService{
 
