@@ -2,6 +2,8 @@ package com.meommu.meommuapi.core.guide.service;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +35,13 @@ public class GuideServiceImpl implements GuideService {
 	}
 
 	@Override
+	@Cacheable(cacheNames = "gpt_guide")
 	public GuideResponses findGuides() {
 		return GuideResponses.from(guideRepository.findAll());
 	}
 
 	@Override
+	@Cacheable(cacheNames = "gpt_guide_detail")
 	public GuideDetailResponses findGuideDetails(Long guideId) {
 		List<GuideDetail> guideDetails = guideDetailRepository.findAllByGuideId(guideId);
 		return GuideDetailResponses.from(guideDetails);
@@ -45,6 +49,7 @@ public class GuideServiceImpl implements GuideService {
 
 	@Override
 	@Transactional
+	@CacheEvict(cacheNames = "gpt_guide_detail")
 	public GuideDetailSaveResponse createGuideDetail(
 		Long guideId,
 		GuideDetailSaveRequest guideDetailSaveRequest
@@ -57,6 +62,7 @@ public class GuideServiceImpl implements GuideService {
 
 	@Override
 	@Transactional
+	@CacheEvict(cacheNames = "gpt_guide_detail")
 	public void deleteGuideDetail(Long guideId, Long detailId) {
 		Guide guide = getGuideById(guideId);
 		GuideDetail guideDetail = getGuideDetailById(detailId);
