@@ -45,36 +45,23 @@ public class AuthServiceImpl implements AuthService{
 		String accessToken = jwtTokenProvider.createAccessToken(kindergarten.getId());
 		String refreshToken = jwtTokenProvider.createRefreshToken(kindergarten.getId());
 		Long expiration = jwtTokenProvider.getExpiration(refreshToken);
-
 		refreshTokenRepository.save(kindergarten.getId(), refreshToken, expiration);
-
 		return TokenResponse.from(accessToken, refreshToken);
 	}
 
 	@Override
 	@Transactional
 	public TokenResponse reissue(AuthInfo authInfo, ReissueRequest request) {
-		// 1. Refresh Token 검증
 		jwtTokenProvider.validateRefreshToken(request.getRefreshToken());
-
-		// 2. 인증정보
 		Long id = authInfo.getId();
-
-		// 3. Redis RefreshToken 조회
 		String refreshToken = refreshTokenRepository.findByUserId(id);
 		if (!refreshToken.equals(request.getRefreshToken())) {
 			throw new JwtException(MALFORMED_JWT);
 		}
-
-		// 3. 새로운 토큰 발급
 		String newAccessToken = jwtTokenProvider.createAccessToken(id);
 		String newRefreshToken = jwtTokenProvider.createRefreshToken(id);
-
-		// 4. Redis RefreshToken 업데이트
 		Long expiration = jwtTokenProvider.getExpiration(refreshToken);
 		refreshTokenRepository.save(id, newRefreshToken, expiration);
-
-		// 5. 토큰 반환
 		return TokenResponse.from(newAccessToken, newRefreshToken);
 	}
 
