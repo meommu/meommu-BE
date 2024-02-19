@@ -2,6 +2,7 @@ package com.meommu.meommuapi.notice.service;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	// @Cacheable(cacheNames = "notice")
+	@Cacheable(cacheNames = "notice")
 	public NoticeResponses findNotices() {
-		System.out.println("캐시 이용 전");
 		List<Notice> notices = noticeRepository.findAllByOrderByCreatedAtDesc();
 		return NoticeResponses.from(notices);
 	}
