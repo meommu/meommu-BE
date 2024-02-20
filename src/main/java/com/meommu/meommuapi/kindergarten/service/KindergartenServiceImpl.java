@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StopWatch;
 
 import com.meommu.meommuapi.auth.dto.AuthInfo;
 import com.meommu.meommuapi.auth.exception.AuthorizationException;
@@ -29,9 +28,6 @@ import com.meommu.meommuapi.kindergarten.repository.KindergartenRepository;
 import com.meommu.meommuapi.mail.service.MailService;
 import com.meommu.meommuapi.core.util.Utils;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Transactional(readOnly = true)
 @Service
 public class KindergartenServiceImpl implements KindergartenService {
@@ -111,19 +107,12 @@ public class KindergartenServiceImpl implements KindergartenService {
 	@Override
 	@Transactional
 	public void sendCodeToEmail(String email) {
-		StopWatch s = new StopWatch();
-		s.start();
-		log.info("[time] {}" , s.getTotalTimeMillis());
 		if (isEmailUnique(email)) {
 			throw new EmailNotFoundException();
 		}
-		String title = "meommu 이메일 인증 메일";
 		String code = Utils.createCode(6);
 		emailCodeRepository.save(email, code, authCodeExpirationMillis);
-		s.stop();
-		log.info("[time] {}" , s.getTotalTimeMillis());
-		eventPublisher.publishEvent(new PasswordFindEvent(email, title, code));
-		// mailService.sendEmail(email, title, code);
+		eventPublisher.publishEvent(new SendCodeEvent(email, code));
 	}
 
 	@Override

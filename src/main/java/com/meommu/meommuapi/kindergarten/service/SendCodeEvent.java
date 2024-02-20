@@ -1,8 +1,7 @@
 package com.meommu.meommuapi.kindergarten.service;
 
-public record PasswordFindEvent(
+public record SendCodeEvent(
 	String email,
-	String title,
 	String code
 ) {
 }

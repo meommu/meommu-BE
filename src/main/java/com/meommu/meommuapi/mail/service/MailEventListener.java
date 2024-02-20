@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-import com.meommu.meommuapi.kindergarten.service.PasswordFindEvent;
+import com.meommu.meommuapi.kindergarten.service.SendCodeEvent;
 
 @Component
 public class MailEventListener {
@@ -17,8 +17,9 @@ public class MailEventListener {
 	}
 
 	@Async
-	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = PasswordFindEvent.class)
-	public void handle(PasswordFindEvent event) {
-		mailService.sendEmail(event.email(), event.title(), event.code());
+	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT, classes = SendCodeEvent.class)
+	public void handle(SendCodeEvent event) {
+		String title = "meommu 이메일 인증 메일";
+		mailService.sendEmail(event.email(), title, event.code());
 	}
 }
