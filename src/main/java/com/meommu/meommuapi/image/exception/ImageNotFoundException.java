@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.image.exception;
 
 import com.meommu.meommuapi.image.exception.errorCode.ImageErrorCode;
-import com.meommu.meommuapi.core.exception.NotFoundException;
+import com.meommu.meommuapi.common.exception.NotFoundException;
 
 public class ImageNotFoundException extends NotFoundException {
 

@@ -2,7 +2,7 @@ package com.meommu.meommuapi.notice.domain;
 
 import com.meommu.meommuapi.notice.domain.embedded.Content;
 import com.meommu.meommuapi.notice.domain.embedded.Title;
-import com.meommu.meommuapi.core.domain.BaseTimeEntity;
+import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.diary.domain;
 
-import com.meommu.meommuapi.core.domain.BaseTimeEntity;
+import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

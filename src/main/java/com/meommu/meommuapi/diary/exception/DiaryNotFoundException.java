@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.diary.exception;
 
 import com.meommu.meommuapi.diary.exception.errorCode.DiaryErrorCode;
-import com.meommu.meommuapi.core.exception.NotFoundException;
+import com.meommu.meommuapi.common.exception.NotFoundException;
 
 public class DiaryNotFoundException extends NotFoundException {
 

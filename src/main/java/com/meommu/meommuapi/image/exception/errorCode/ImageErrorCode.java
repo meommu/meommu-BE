@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.image.exception.errorCode;
 
-import com.meommu.meommuapi.core.exception.errorCode.ErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 public enum ImageErrorCode implements ErrorCode {
 

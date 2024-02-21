@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.image.exception;
 
 import com.meommu.meommuapi.image.exception.errorCode.ImageErrorCode;
-import com.meommu.meommuapi.core.exception.InternalServerException;
+import com.meommu.meommuapi.common.exception.InternalServerException;
 
 public class S3DeleteException extends InternalServerException {
 	public S3DeleteException() {

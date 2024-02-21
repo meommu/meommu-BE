@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.guide.exception;
 
 import com.meommu.meommuapi.guide.exception.errorCode.GuideErrorCode;
-import com.meommu.meommuapi.core.exception.NotFoundException;
+import com.meommu.meommuapi.common.exception.NotFoundException;
 
 public class GuideDetailNotFoundException extends NotFoundException {
 

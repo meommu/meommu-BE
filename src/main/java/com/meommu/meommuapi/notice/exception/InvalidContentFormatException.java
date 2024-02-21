@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.notice.exception;
 
 import com.meommu.meommuapi.notice.exception.errorCode.NoticeErrorCode;
-import com.meommu.meommuapi.core.exception.BadRequestException;
+import com.meommu.meommuapi.common.exception.BadRequestException;
 
 public class InvalidContentFormatException extends BadRequestException {
 

@@ -7,7 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.application.dto.AuthInfo;
 import com.meommu.meommuapi.auth.exception.JwtException;
 import com.meommu.meommuapi.auth.exception.errorCode.AuthErrorCode;
 

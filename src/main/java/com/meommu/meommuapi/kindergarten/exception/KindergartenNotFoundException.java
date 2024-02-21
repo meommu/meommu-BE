@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.kindergarten.exception;
 
 import com.meommu.meommuapi.kindergarten.exception.errorCode.KindergartenErrorCode;
-import com.meommu.meommuapi.core.exception.NotFoundException;
+import com.meommu.meommuapi.common.exception.NotFoundException;
 
 public class KindergartenNotFoundException extends NotFoundException {
 

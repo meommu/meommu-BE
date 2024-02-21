@@ -17,8 +17,8 @@ import com.meommu.meommuapi.image.exception.errorCode.ImageErrorCode;
 import com.meommu.meommuapi.kindergarten.exception.errorCode.KindergartenErrorCode;
 import com.meommu.meommuapi.notice.exception.errorCode.NoticeErrorCode;
 import com.meommu.meommuapi.proxy.exception.errorCode.ProxyErrorCode;
-import com.meommu.meommuapi.core.exception.errorCode.BusinessErrorCode;
-import com.meommu.meommuapi.core.exception.errorCode.ErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.BusinessErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 @RestController
 public class ErrorCodeController {

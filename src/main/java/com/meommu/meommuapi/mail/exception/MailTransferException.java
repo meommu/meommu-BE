@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.mail.exception;
 
 import com.meommu.meommuapi.mail.exception.errorCode.MailErrorCode;
-import com.meommu.meommuapi.core.exception.InternalServerException;
+import com.meommu.meommuapi.common.exception.InternalServerException;
 
 public class MailTransferException extends InternalServerException {
 

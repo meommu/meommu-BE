@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.proxy.exception;
 
 import com.meommu.meommuapi.proxy.exception.errorCode.ProxyErrorCode;
-import com.meommu.meommuapi.core.exception.InternalServerException;
+import com.meommu.meommuapi.common.exception.InternalServerException;
 
 public class Html2canvasInternalException extends InternalServerException {
 

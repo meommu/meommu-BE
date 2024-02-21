@@ -10,7 +10,7 @@ import com.meommu.meommuapi.diary.domain.embedded.Content;
 import com.meommu.meommuapi.diary.domain.embedded.DogName;
 import com.meommu.meommuapi.diary.domain.embedded.Title;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
-import com.meommu.meommuapi.core.domain.BaseTimeEntity;
+import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

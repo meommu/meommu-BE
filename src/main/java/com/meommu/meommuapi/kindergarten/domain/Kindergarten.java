@@ -9,7 +9,7 @@ import com.meommu.meommuapi.kindergarten.domain.embedded.Name;
 import com.meommu.meommuapi.kindergarten.domain.embedded.OwnerName;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Phone;
-import com.meommu.meommuapi.core.domain.BaseTimeEntity;
+import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

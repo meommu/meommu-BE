@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.auth.exception;
 
-import com.meommu.meommuapi.core.exception.UnauthorizedException;
-import com.meommu.meommuapi.core.exception.errorCode.ErrorCode;
+import com.meommu.meommuapi.common.exception.UnauthorizedException;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 public class JwtException extends UnauthorizedException {
 	public JwtException(ErrorCode errorCode) {

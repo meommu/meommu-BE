@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.kindergarten.exception.errorCode;
 
-import com.meommu.meommuapi.core.exception.errorCode.ErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 public enum KindergartenErrorCode implements ErrorCode {
 	DUPLICATED_EMAIL("K001", "이메일이 중복되었습니다."),

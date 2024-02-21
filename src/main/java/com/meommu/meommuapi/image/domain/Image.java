@@ -3,7 +3,7 @@ package com.meommu.meommuapi.image.domain;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import com.meommu.meommuapi.core.domain.BaseTimeEntity;
+import com.meommu.meommuapi.common.domain.BaseTimeEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
