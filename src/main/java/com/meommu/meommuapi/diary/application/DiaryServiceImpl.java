@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
-import com.meommu.meommuapi.auth.exception.AuthorizationException;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.exception.AuthorizationException;
 import com.meommu.meommuapi.diary.domain.Diary;
 import com.meommu.meommuapi.diary.domain.DiaryImage;
 import com.meommu.meommuapi.diary.dto.DiaryResponse;

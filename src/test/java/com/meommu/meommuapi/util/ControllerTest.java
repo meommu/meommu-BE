@@ -18,9 +18,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.meommu.meommuapi.auth.presentation.AuthController;
-import com.meommu.meommuapi.auth.application.AuthService;
-import com.meommu.meommuapi.auth.token.JwtTokenProvider;
+import com.meommu.meommuapi.authentication.presentation.AuthController;
+import com.meommu.meommuapi.authentication.application.AuthService;
+import com.meommu.meommuapi.authentication.configuration.JwtTokenProvider;
 import com.meommu.meommuapi.diary.presentation.DiaryController;
 import com.meommu.meommuapi.diary.application.DiaryService;
 import com.meommu.meommuapi.gpt.presentation.GptController;
@@ -36,7 +36,7 @@ import com.meommu.meommuapi.notice.application.NoticeService;
 import com.meommu.meommuapi.proxy.presentation.ProxyController;
 import com.meommu.meommuapi.proxy.application.ProxyService;
 import com.meommu.meommuapi.errorCode.ErrorCodeController;
-import com.meommu.meommuapi.common.interceptor.AuthInterceptor;
+import com.meommu.meommuapi.authentication.configuration.AuthInterceptor;
 import com.meommu.meommuapi.util.documentation.DocumentUtils;
 
 @WebMvcTest({

@@ -14,9 +14,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
-import com.meommu.meommuapi.auth.exception.AuthorizationException;
-import com.meommu.meommuapi.auth.exception.errorCode.AuthErrorCode;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.exception.AuthorizationException;
+import com.meommu.meommuapi.authentication.exception.errorCode.AuthErrorCode;
 import com.meommu.meommuapi.diary.domain.Diary;
 import com.meommu.meommuapi.diary.domain.DiaryImage;
 import com.meommu.meommuapi.diary.dto.DiaryResponse;

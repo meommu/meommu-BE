@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.diary.application;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
 import com.meommu.meommuapi.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;

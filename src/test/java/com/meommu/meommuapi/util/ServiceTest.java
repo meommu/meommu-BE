@@ -5,9 +5,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.meommu.meommuapi.auth.infrastructure.RefreshTokenRepository;
-import com.meommu.meommuapi.auth.application.AuthServiceImpl;
-import com.meommu.meommuapi.auth.token.JwtTokenProvider;
+import com.meommu.meommuapi.authentication.infrastructure.RefreshTokenRepository;
+import com.meommu.meommuapi.authentication.application.AuthServiceImpl;
+import com.meommu.meommuapi.authentication.configuration.JwtTokenProvider;
 import com.meommu.meommuapi.diary.infrastructure.DiaryImageRepository;
 import com.meommu.meommuapi.diary.infrastructure.DiaryRepository;
 import com.meommu.meommuapi.diary.application.DiaryServiceImpl;

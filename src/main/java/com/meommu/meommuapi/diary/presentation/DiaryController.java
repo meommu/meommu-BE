@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
-import com.meommu.meommuapi.auth.token.Auth;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.configuration.Auth;
 import com.meommu.meommuapi.diary.dto.DiaryResponse;
 import com.meommu.meommuapi.diary.dto.DiaryResponses;
 import com.meommu.meommuapi.diary.dto.DiarySaveRequest;

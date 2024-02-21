@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.exception.errorCode.AuthErrorCode;
+import com.meommu.meommuapi.authentication.exception.errorCode.AuthErrorCode;
 import com.meommu.meommuapi.diary.exception.errorCode.DiaryErrorCode;
 import com.meommu.meommuapi.gpt.exception.errorCode.GptErrorCode;
 import com.meommu.meommuapi.guide.exception.errorCode.GuideErrorCode;

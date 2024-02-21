@@ -7,8 +7,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
-import com.meommu.meommuapi.auth.exception.AuthorizationException;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.exception.AuthorizationException;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Password;

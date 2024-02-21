@@ -8,10 +8,10 @@ import com.meommu.meommuapi.diary.infrastructure.DiaryImageRepository;
 import com.meommu.meommuapi.diary.infrastructure.DiaryRepository;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
 import com.meommu.meommuapi.kindergarten.infrastructure.KindergartenRepository;
-import com.meommu.meommuapi.common.configuration.JpaConfig;
+import com.meommu.meommuapi.common.configuration.jpa.JpaConfiguration;
 
 @DataJpaTest
-@Import(JpaConfig.class)
+@Import(JpaConfiguration.class)
 public abstract class RepositoryTest {
 
 	@Autowired

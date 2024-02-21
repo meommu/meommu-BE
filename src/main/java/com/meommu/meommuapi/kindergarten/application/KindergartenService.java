@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.kindergarten.application;
 
-import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.authentication.dto.AuthInfo;
 import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
 import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
