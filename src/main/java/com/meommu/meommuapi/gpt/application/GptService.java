@@ -1,7 +1,7 @@
 package com.meommu.meommuapi.gpt.application;
 
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateResponse;
+import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
+import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
 
 import reactor.core.publisher.Flux;
 

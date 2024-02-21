@@ -14,8 +14,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.notice.application.dto.NoticeResponse;
-import com.meommu.meommuapi.notice.application.dto.NoticeResponses;
+import com.meommu.meommuapi.notice.dto.NoticeResponse;
+import com.meommu.meommuapi.notice.dto.NoticeResponses;
 import com.meommu.meommuapi.util.ControllerTest;
 
 @DisplayName("공지 API")

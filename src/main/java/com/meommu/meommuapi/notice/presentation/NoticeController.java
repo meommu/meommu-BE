@@ -3,7 +3,7 @@ package com.meommu.meommuapi.notice.presentation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.notice.application.dto.NoticeResponses;
+import com.meommu.meommuapi.notice.dto.NoticeResponses;
 import com.meommu.meommuapi.notice.application.NoticeService;
 
 @RestController

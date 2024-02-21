@@ -20,11 +20,11 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenPasswordUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.MyInfoResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.SignUpRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
+import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
 

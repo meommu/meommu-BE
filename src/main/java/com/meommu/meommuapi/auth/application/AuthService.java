@@ -1,9 +1,9 @@
 package com.meommu.meommuapi.auth.application;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
-import com.meommu.meommuapi.auth.application.dto.SignInRequest;
-import com.meommu.meommuapi.auth.application.dto.ReissueRequest;
-import com.meommu.meommuapi.auth.application.dto.TokenResponse;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
+import com.meommu.meommuapi.auth.dto.ReissueRequest;
+import com.meommu.meommuapi.auth.dto.TokenResponse;
 
 public interface AuthService {
 

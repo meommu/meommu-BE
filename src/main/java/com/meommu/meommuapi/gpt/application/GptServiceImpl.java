@@ -4,11 +4,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateResponse;
-import com.meommu.meommuapi.gpt.application.dto.GptRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptRequestStream;
-import com.meommu.meommuapi.gpt.application.dto.GptResponse;
+import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
+import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
+import com.meommu.meommuapi.gpt.dto.GptRequest;
+import com.meommu.meommuapi.gpt.dto.GptRequestStream;
+import com.meommu.meommuapi.gpt.dto.GptResponse;
 import com.meommu.meommuapi.gpt.exception.GptGenerateException;
 import com.meommu.meommuapi.gpt.util.GptClient;
 

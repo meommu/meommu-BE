@@ -3,14 +3,14 @@ package com.meommu.meommuapi.auth.application;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
-import com.meommu.meommuapi.auth.application.dto.SignInRequest;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
 import com.meommu.meommuapi.auth.exception.JwtException;
 import com.meommu.meommuapi.auth.exception.SignInFailedException;
 import com.meommu.meommuapi.auth.exception.errorCode.AuthErrorCode;
 import com.meommu.meommuapi.auth.infrastructure.RefreshTokenRepository;
-import com.meommu.meommuapi.auth.application.dto.ReissueRequest;
-import com.meommu.meommuapi.auth.application.dto.TokenResponse;
+import com.meommu.meommuapi.auth.dto.ReissueRequest;
+import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.auth.token.JwtTokenProvider;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;
 import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;

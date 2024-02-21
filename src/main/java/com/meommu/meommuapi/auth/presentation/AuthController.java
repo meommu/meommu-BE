@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
-import com.meommu.meommuapi.auth.application.dto.SignInRequest;
-import com.meommu.meommuapi.auth.application.dto.ReissueRequest;
-import com.meommu.meommuapi.auth.application.dto.TokenResponse;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
+import com.meommu.meommuapi.auth.dto.ReissueRequest;
+import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.auth.application.AuthService;
 import com.meommu.meommuapi.auth.token.Auth;
 

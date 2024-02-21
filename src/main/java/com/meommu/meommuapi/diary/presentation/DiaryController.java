@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
 import com.meommu.meommuapi.auth.token.Auth;
-import com.meommu.meommuapi.diary.application.dto.DiaryResponse;
-import com.meommu.meommuapi.diary.application.dto.DiaryResponses;
-import com.meommu.meommuapi.diary.application.dto.DiarySaveRequest;
-import com.meommu.meommuapi.diary.application.dto.DiarySaveResponse;
-import com.meommu.meommuapi.diary.application.dto.DiarySearchCriteria;
-import com.meommu.meommuapi.diary.application.dto.DiarySummaryResponses;
-import com.meommu.meommuapi.diary.application.dto.DiaryUUIDResponse;
-import com.meommu.meommuapi.diary.application.dto.DiaryUpdateRequest;
+import com.meommu.meommuapi.diary.dto.DiaryResponse;
+import com.meommu.meommuapi.diary.dto.DiaryResponses;
+import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
+import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
+import com.meommu.meommuapi.diary.dto.DiarySearchCriteria;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
+import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.diary.application.DiaryService;
 
 import jakarta.validation.Valid;

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.image.application.dto.ImageResponse;
-import com.meommu.meommuapi.image.application.dto.ImageResponses;
-import com.meommu.meommuapi.image.application.dto.ImagesSaveRequest;
+import com.meommu.meommuapi.image.dto.ImageResponse;
+import com.meommu.meommuapi.image.dto.ImageResponses;
+import com.meommu.meommuapi.image.dto.ImagesSaveRequest;
 import com.meommu.meommuapi.image.application.ImageService;
 
 import jakarta.validation.Valid;

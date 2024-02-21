@@ -21,8 +21,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.meommu.meommuapi.image.domain.Image;
-import com.meommu.meommuapi.image.application.dto.ImageResponse;
-import com.meommu.meommuapi.image.application.dto.ImageResponses;
+import com.meommu.meommuapi.image.dto.ImageResponse;
+import com.meommu.meommuapi.image.dto.ImageResponses;
 import com.meommu.meommuapi.util.ControllerTest;
 
 @DisplayName("이미지 API")

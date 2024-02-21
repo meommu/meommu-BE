@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateResponse;
+import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
+import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
 import com.meommu.meommuapi.gpt.application.GptService;
 
 import jakarta.validation.Valid;

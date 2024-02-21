@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.proxy.application.dto.Html2canvasRequest;
+import com.meommu.meommuapi.proxy.dto.Html2canvasRequest;
 import com.meommu.meommuapi.proxy.application.ProxyService;
 
 import jakarta.validation.Valid;

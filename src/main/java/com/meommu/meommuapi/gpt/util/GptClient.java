@@ -3,9 +3,9 @@ package com.meommu.meommuapi.gpt.util;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.service.annotation.PostExchange;
 
-import com.meommu.meommuapi.gpt.application.dto.GptRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptRequestStream;
-import com.meommu.meommuapi.gpt.application.dto.GptResponse;
+import com.meommu.meommuapi.gpt.dto.GptRequest;
+import com.meommu.meommuapi.gpt.dto.GptRequestStream;
+import com.meommu.meommuapi.gpt.dto.GptResponse;
 
 import reactor.core.publisher.Flux;
 

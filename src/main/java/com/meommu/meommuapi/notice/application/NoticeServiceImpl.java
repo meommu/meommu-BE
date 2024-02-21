@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meommu.meommuapi.notice.domain.Notice;
-import com.meommu.meommuapi.notice.application.dto.NoticeResponses;
+import com.meommu.meommuapi.notice.dto.NoticeResponses;
 import com.meommu.meommuapi.notice.infrastructure.NoticeRepository;
 
 @Service

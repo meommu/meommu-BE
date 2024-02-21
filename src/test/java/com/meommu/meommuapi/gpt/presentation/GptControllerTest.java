@@ -17,8 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateRequest;
-import com.meommu.meommuapi.gpt.application.dto.GptGenerateResponse;
+import com.meommu.meommuapi.gpt.dto.GptGenerateRequest;
+import com.meommu.meommuapi.gpt.dto.GptGenerateResponse;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
 

@@ -2,9 +2,9 @@ package com.meommu.meommuapi.image.application;
 
 import java.util.List;
 
-import com.meommu.meommuapi.image.application.dto.ImageResponse;
-import com.meommu.meommuapi.image.application.dto.ImageResponses;
-import com.meommu.meommuapi.image.application.dto.ImagesSaveRequest;
+import com.meommu.meommuapi.image.dto.ImageResponse;
+import com.meommu.meommuapi.image.dto.ImageResponses;
+import com.meommu.meommuapi.image.dto.ImagesSaveRequest;
 
 public interface ImageService {
 	ImageResponses findAllById(List<Long> imageIds);

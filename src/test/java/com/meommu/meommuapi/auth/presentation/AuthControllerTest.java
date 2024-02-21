@@ -17,9 +17,9 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.auth.application.dto.ReissueRequest;
-import com.meommu.meommuapi.auth.application.dto.SignInRequest;
-import com.meommu.meommuapi.auth.application.dto.TokenResponse;
+import com.meommu.meommuapi.auth.dto.ReissueRequest;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
+import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
 

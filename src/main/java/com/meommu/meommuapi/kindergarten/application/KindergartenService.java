@@ -1,12 +1,12 @@
 package com.meommu.meommuapi.kindergarten.application;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
-import com.meommu.meommuapi.kindergarten.application.dto.EmailRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenPasswordUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.MyInfoResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.SignUpRequest;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
+import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 
 public interface KindergartenService {
 

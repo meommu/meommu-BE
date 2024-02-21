@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.guide.application.dto.GuideDetailResponses;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveRequest;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveResponse;
-import com.meommu.meommuapi.guide.application.dto.GuideResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveRequest;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveResponse;
+import com.meommu.meommuapi.guide.dto.GuideResponses;
 import com.meommu.meommuapi.guide.application.GuideService;
 
 @RestController

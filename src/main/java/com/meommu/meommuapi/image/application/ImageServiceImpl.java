@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meommu.meommuapi.image.domain.Image;
-import com.meommu.meommuapi.image.application.dto.ImageResponse;
-import com.meommu.meommuapi.image.application.dto.ImageResponses;
-import com.meommu.meommuapi.image.application.dto.ImagesSaveRequest;
+import com.meommu.meommuapi.image.dto.ImageResponse;
+import com.meommu.meommuapi.image.dto.ImageResponses;
+import com.meommu.meommuapi.image.dto.ImagesSaveRequest;
 import com.meommu.meommuapi.image.exception.CategoryNotFoundException;
 import com.meommu.meommuapi.image.exception.ImageNotFoundException;
 import com.meommu.meommuapi.image.infrastructure.ImageRepository;

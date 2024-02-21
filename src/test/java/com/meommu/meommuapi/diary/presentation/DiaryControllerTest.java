@@ -25,14 +25,14 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.meommu.meommuapi.diary.application.dto.DiaryResponse;
-import com.meommu.meommuapi.diary.application.dto.DiaryResponses;
-import com.meommu.meommuapi.diary.application.dto.DiarySaveRequest;
-import com.meommu.meommuapi.diary.application.dto.DiarySaveResponse;
-import com.meommu.meommuapi.diary.application.dto.DiarySummaryResponse;
-import com.meommu.meommuapi.diary.application.dto.DiarySummaryResponses;
-import com.meommu.meommuapi.diary.application.dto.DiaryUUIDResponse;
-import com.meommu.meommuapi.diary.application.dto.DiaryUpdateRequest;
+import com.meommu.meommuapi.diary.dto.DiaryResponse;
+import com.meommu.meommuapi.diary.dto.DiaryResponses;
+import com.meommu.meommuapi.diary.dto.DiarySaveRequest;
+import com.meommu.meommuapi.diary.dto.DiarySaveResponse;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponse;
+import com.meommu.meommuapi.diary.dto.DiarySummaryResponses;
+import com.meommu.meommuapi.diary.dto.DiaryUUIDResponse;
+import com.meommu.meommuapi.diary.dto.DiaryUpdateRequest;
 import com.meommu.meommuapi.common.util.JsonUtils;
 import com.meommu.meommuapi.util.ControllerTest;
 

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
 import com.meommu.meommuapi.auth.token.Auth;
-import com.meommu.meommuapi.kindergarten.application.dto.EmailRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenPasswordUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.KindergartenUpdateRequest;
-import com.meommu.meommuapi.kindergarten.application.dto.MyInfoResponse;
-import com.meommu.meommuapi.kindergarten.application.dto.SignUpRequest;
+import com.meommu.meommuapi.kindergarten.dto.EmailRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenPasswordUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenResponse;
+import com.meommu.meommuapi.kindergarten.dto.KindergartenUpdateRequest;
+import com.meommu.meommuapi.kindergarten.dto.MyInfoResponse;
+import com.meommu.meommuapi.kindergarten.dto.SignUpRequest;
 import com.meommu.meommuapi.kindergarten.application.KindergartenService;
 
 import jakarta.validation.Valid;

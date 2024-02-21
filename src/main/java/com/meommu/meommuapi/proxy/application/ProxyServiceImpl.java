@@ -6,7 +6,7 @@ import java.net.URL;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.util.IOUtils;
-import com.meommu.meommuapi.proxy.application.dto.Html2canvasRequest;
+import com.meommu.meommuapi.proxy.dto.Html2canvasRequest;
 import com.meommu.meommuapi.proxy.exception.Html2canvasInternalException;
 
 @Service

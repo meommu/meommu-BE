@@ -20,12 +20,12 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.meommu.meommuapi.common.util.JsonUtils;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailResponse;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailResponses;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveRequest;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveResponse;
-import com.meommu.meommuapi.guide.application.dto.GuideResponse;
-import com.meommu.meommuapi.guide.application.dto.GuideResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailResponse;
+import com.meommu.meommuapi.guide.dto.GuideDetailResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveRequest;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveResponse;
+import com.meommu.meommuapi.guide.dto.GuideResponse;
+import com.meommu.meommuapi.guide.dto.GuideResponses;
 import com.meommu.meommuapi.util.ControllerTest;
 
 @DisplayName("가이드 API")

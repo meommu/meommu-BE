@@ -11,10 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.meommu.meommuapi.auth.application.dto.AuthInfo;
-import com.meommu.meommuapi.auth.application.dto.ReissueRequest;
-import com.meommu.meommuapi.auth.application.dto.SignInRequest;
-import com.meommu.meommuapi.auth.application.dto.TokenResponse;
+import com.meommu.meommuapi.auth.dto.AuthInfo;
+import com.meommu.meommuapi.auth.dto.ReissueRequest;
+import com.meommu.meommuapi.auth.dto.SignInRequest;
+import com.meommu.meommuapi.auth.dto.TokenResponse;
 import com.meommu.meommuapi.auth.exception.SignInFailedException;
 import com.meommu.meommuapi.auth.exception.errorCode.AuthErrorCode;
 import com.meommu.meommuapi.kindergarten.domain.Kindergarten;

@@ -1,9 +1,9 @@
 package com.meommu.meommuapi.guide.application;
 
-import com.meommu.meommuapi.guide.application.dto.GuideDetailResponses;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveRequest;
-import com.meommu.meommuapi.guide.application.dto.GuideDetailSaveResponse;
-import com.meommu.meommuapi.guide.application.dto.GuideResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailResponses;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveRequest;
+import com.meommu.meommuapi.guide.dto.GuideDetailSaveResponse;
+import com.meommu.meommuapi.guide.dto.GuideResponses;
 
 public interface GuideService {
 	GuideResponses findGuides();
