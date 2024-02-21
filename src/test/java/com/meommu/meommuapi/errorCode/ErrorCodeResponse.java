@@ -1,6 +1,6 @@
 package com.meommu.meommuapi.errorCode;
 
-import com.meommu.meommuapi.global.exception.errorCode.ErrorCode;
+import com.meommu.meommuapi.common.exception.errorCode.ErrorCode;
 
 import lombok.Getter;
 import lombok.Setter;

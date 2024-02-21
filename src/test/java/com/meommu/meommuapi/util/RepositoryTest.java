@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
-import com.meommu.meommuapi.core.diary.repository.DiaryImageRepository;
-import com.meommu.meommuapi.core.diary.repository.DiaryRepository;
-import com.meommu.meommuapi.core.kindergarten.domain.embedded.Encryptor;
-import com.meommu.meommuapi.core.kindergarten.repository.KindergartenRepository;
-import com.meommu.meommuapi.global.config.JpaConfig;
+import com.meommu.meommuapi.diary.infrastructure.DiaryImageRepository;
+import com.meommu.meommuapi.diary.infrastructure.DiaryRepository;
+import com.meommu.meommuapi.kindergarten.domain.embedded.Encryptor;
+import com.meommu.meommuapi.kindergarten.infrastructure.KindergartenRepository;
+import com.meommu.meommuapi.common.configuration.jpa.JpaConfiguration;
 
 @DataJpaTest
-@Import(JpaConfig.class)
+@Import(JpaConfiguration.class)
 public abstract class RepositoryTest {
 
 	@Autowired
