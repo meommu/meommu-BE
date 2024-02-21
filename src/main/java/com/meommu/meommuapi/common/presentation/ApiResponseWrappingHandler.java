@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice(basePackages = {
 	"com.meommu.meommuapi.kindergarten.presentation",
-	"com.meommu.meommuapi.auth.presentation",
+	"com.meommu.meommuapi.authentication.presentation",
 	"com.meommu.meommuapi.image.presentation",
 	"com.meommu.meommuapi.gpt.presentation",
 	"com.meommu.meommuapi.guide.presentation",
